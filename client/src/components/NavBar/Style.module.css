@@ -1,0 +1,27 @@
+.NavBar {
+    height: 7vw;
+    width: 100%;
+    opacity: 0.4;
+    background-color: black;
+    padding: 10;
+    color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbarLinks {
+    margin: 30px;
+    font-size: 24px;
+    color: white;
+}
+
+.navbarLinks:hover {
+    color: #fc1114;
+}
