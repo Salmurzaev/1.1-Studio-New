@@ -3,7 +3,7 @@ import style from './style.module.css'
 const Contacts = () => {
   return (
     <div className={style.contactWrapper}>
-      <h1>Serials</h1>
+      <h1>Contacts</h1>
     </div>
   )
 }

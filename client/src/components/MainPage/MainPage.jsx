@@ -1,6 +1,7 @@
 import React from 'react'
 import style from './Style.module.css'
 import logo from '../image/logo.png'
+import { Link } from 'react-router-dom'
 const MainPage = () => {
     return (
         <>
@@ -12,11 +13,7 @@ const MainPage = () => {
                     комедийные сериалы, скетчкомы, рекламные ролики,
                     корпоративные фильмы, видеопрезентации и многое другое.
                 </div>
-                <div class='d-grid gap-2 col-6 mx-auto'>
-                    <button className='btn btn-danger' type='button'>
-                        ПОДПИСАТЬСЯ
-                    </button>
-                </div>
+                <div class={style.buttonMain} > <Link to='/contacts'>  ПОДПИСАТЬСЯ </Link></div>
             </div>
         </>
     )

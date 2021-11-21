@@ -15,3 +15,21 @@
     font-size: 20px;
     color: white;
 }
+
+.buttonMain {
+    display: flex;
+    justify-content: center;
+    background-color: #F51116;
+    width: 30%;
+    font-size: 26px;
+    padding: 1%;
+    border-radius: 15px;
+    font-weight: bold;
+}
+a {
+    color: white;
+    text-decoration: none;
+}
+.buttonMain:hover{
+    font-size: 32px;
+}
