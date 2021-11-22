@@ -1,4 +1,5 @@
 import React from 'react'
+import Carousel from '../Carousel/Carousel'
 import Search from '../Search/Search'
 import style from './style.module.css'
 const Films = () => {
@@ -6,6 +7,7 @@ const Films = () => {
         <div className={style.filmWrapper}>
             <Search />
             <h1>Films</h1>
+            <Carousel/>
         </div>
     )
 }
