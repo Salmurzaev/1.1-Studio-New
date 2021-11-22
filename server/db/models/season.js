@@ -17,13 +17,14 @@ module.exports = (sequelize, DataTypes) => {
   };
   Season.init({
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true
+      type: DataTypes.INTEGER,
+      defaultValue: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
     serial_id: {
       allowNull: false,
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
     },
     title: DataTypes.STRING,
   }, {

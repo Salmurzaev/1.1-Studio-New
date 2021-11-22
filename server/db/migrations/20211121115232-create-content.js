@@ -1,23 +1,23 @@
 'use strict';
 module.exports = {
-  up: async (queryInterface, DataTypes) => {
+  up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Contents', {
       id: {
         allowNull: false,
-        type: DataTypes.UUID,
+        autoIncrement: true,
         primaryKey: true,
-        defaultValue: DataTypes.UUIDV4,
+        type: Sequelize.INTEGER
       },
       title: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       desc: {
-        type: DataTypes.TEXT,
+        type: Sequelize.TEXT,
         allowNull: false,
       },
       season_id: {
-        type: DataTypes.UUID,
+        type: Sequelize.INTEGER,
         references: {
           model: "Seasons",
           key: "id"
@@ -25,7 +25,7 @@ module.exports = {
         onDelete: "CASCADE"
       },
       serial_id: {
-        type: DataTypes.UUID,
+        type: Sequelize.INTEGER,
         references: {
           model: "Serials",
           key: "id"
@@ -33,22 +33,22 @@ module.exports = {
         onDelete: "CASCADE"
       },
       path_video: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false
       },
       path_img: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       createdAt: {
         allowNull: false,
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.literal('CURRENT_TIMESTAMP')
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       updatedAt: {
         allowNull: false,
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.literal('CURRENT_TIMESTAMP')
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     });
   },
