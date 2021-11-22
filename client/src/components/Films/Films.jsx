@@ -1,10 +1,13 @@
 import React from 'react'
 import Search from '../Search/Search'
-import { useEffect } from 'react'
 import style from './style.module.css'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { getContent } from '../redux/ac/ac'
+import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import Button from '@mui/material/Button';
+
 const Films = () => {
     const dispatch = useDispatch()
     useEffect(() => {
@@ -22,7 +25,8 @@ const Films = () => {
             <h1>Films</h1>
             {films.map((el) => (
                 <>
-                    <div>{el.title}</div>
+                     <Link to={`/content/${el.id}`}> {el.title} <Button variant="contained" color="error">Смотреть</Button></Link>
+                    
                     <div>{el.desc}</div>
                     <div>{el.path_video}</div>
                     <div>{el.path_img}</div>

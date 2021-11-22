@@ -2,8 +2,18 @@ import React from 'react'
 import Search from '../Search/Search'
 import style from './style.module.css'
 import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { getSerials } from '../redux/ac/ac'
+import { useEffect } from 'react'
+import Season from '../Season/Season'
+import SerialOne from '../SerialOne/SerialOne'
+
 const Serials = () => {
-    const content = useSelector((state) => state.content)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getSerials())
+    }, [dispatch])
+    const content = useSelector((state) => state.serials)
     const serials = content.filter(
         (el) => el.season_id !== null && el.serial_id !== null
     )
@@ -12,10 +22,7 @@ const Serials = () => {
             <Search />
             {serials.map((el) => (
                 <>
-                    <div>{el.title}</div>
-                    <div>{el.desc}</div>
-                    <div>{el.path_video}</div>
-                    <div>{el.path_img}</div>
+                    <SerialOne key={el.id} serial_id = {el.id} title={ el.title}/>
                 </>
             ))}
         </div>

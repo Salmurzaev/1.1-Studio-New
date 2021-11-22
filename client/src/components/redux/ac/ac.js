@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GET_WORDS, SET_CONTENT,  SIGNIN, SIGNOUT, SIGNUP } from '../types/types'
+import {SET_SERIES, SET_WATCH_SERIES, GET_WORDS,SET_SEASON, SET_CONTENT,  SET_SERIALS,  SIGNIN, SIGNOUT, SIGNUP } from '../types/types'
 
 const setContent = (value) => {
   return {
@@ -8,16 +8,55 @@ const setContent = (value) => {
   }
 }
 
-// const setSerials = (value) => {
-//   return {
-//       type: SET_SERIALS,
-//       payload: value,
-//   }
-// }
+const setSerials = (value) => {
+  return {
+    type: SET_SERIALS,
+    payload: value
+  }
+}
+
+const setSeason = (value) => {
+  return {
+    type: SET_SEASON,
+    payload: value
+  }
+}
+const setSeries = (value) => {
+  return {
+    type: SET_SERIES,
+    payload: value
+  }
+}
+const setWatchSeries = (value) => {
+  return {
+    type: SET_WATCH_SERIES,
+    payload: value
+  }
+}
 
 export const getContent = () => async (dispatch) => {
   const content = await axios('/content')
   dispatch(setContent(content.data))
+}
+
+export const getSerials = () => async (dispatch) => {
+  const serials = await axios('/serials')
+  dispatch(setSerials(serials.data))
+}
+
+export const getSeason = (serial_id) => async (dispatch) => {
+  const seasons = await axios(`/serials/${serial_id}`)
+  dispatch(setSeason(seasons.data))
+}
+
+export const getSeries = (serial_id, season_id) => async (dispatch) => {
+  const series = await axios(`/serials/${serial_id}/${season_id}`)
+  dispatch(setSeries(series.data))
+}
+
+export const getWatchSeries = (id) => async (dispatch) => {
+  const seriya = await axios(`/content/${id}`)
+  dispatch(setWatchSeries(seriya.data))
 }
 
 // export const getSerials = () => async (dispatch) => {

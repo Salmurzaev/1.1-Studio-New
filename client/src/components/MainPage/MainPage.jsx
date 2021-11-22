@@ -2,7 +2,9 @@ import React from 'react'
 import style from './Style.module.css'
 import logo from '../image/logo.png'
 import { Link } from 'react-router-dom'
+
 const MainPage = () => {
+  
     return (
         <>
             <div className={style.main}>
@@ -13,7 +15,10 @@ const MainPage = () => {
                     комедийные сериалы, скетчкомы, рекламные ролики,
                     корпоративные фильмы, видеопрезентации и многое другое.
                 </div>
-                <div class={style.buttonMain} > <Link to='/contacts'>  ПОДПИСАТЬСЯ </Link></div>
+                <div class={style.buttonMain}>
+                    {' '}
+                    <Link to='/contacts'> ПОДПИСАТЬСЯ </Link>
+                </div>
             </div>
         </>
     )
