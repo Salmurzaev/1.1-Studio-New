@@ -1,0 +1,33 @@
+.oneProducer{
+  width: 199px;
+height: 489px;
+position: relative;
+}
+.backGroundPro{
+  position: relative;
+}
+
+.nameProducer{
+  padding-top: 450px;
+  padding-left: 60px;
+  width: 80px;
+  font-family: 'Bebas Neue';
+  font-size: 22.4px;
+  line-height: 31px;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-shadow: 1px 2px 0px rgba(0,0,0,0.85);
+  color: #ffffff;
+  position: absolute;
+
+}
+.photo{
+  
+  border-radius: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 408px;
+  left: 59px;
+  width: 174px;
+  height: 172px;
+}

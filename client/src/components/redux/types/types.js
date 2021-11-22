@@ -8,3 +8,5 @@ export const SIGNOUT = 'SIGNOUT'
 
 export const SET_WORDS = 'SET_WORDS'
 export const GET_WORDS = 'GET_WORDS'
+
+export const GET_PRODUCER = 'GET_PRODUCER'
