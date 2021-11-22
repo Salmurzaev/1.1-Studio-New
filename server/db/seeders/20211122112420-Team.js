@@ -15,22 +15,22 @@ module.exports = {
       {
         group: 'продюсеры',
         name: 'АСКАТ ТАБАЛДИЕВ',
-        path_img: "./images/2.jpg"
+        path_img: "http://localhost:3001/images/2.jpg"
       },
       {
         group: 'продюсеры',
         name: 'ДАНИЯР БОЛОТБЕКОВ',
-        path_img: "./images/1.jpg"
+        path_img: "http://localhost:3001/images/1.jpg"
       },
       {
         group: 'продюсеры',
         name: 'РОСТИСТЛАВ ЯЩЕНКО',
-        path_img: "./images/3.jpg"
+        path_img: "http://localhost:3001/images/3.jpg"
       },
       {
         group: 'продюсеры',
         name: 'БАХТИЯР МАТЯНЬЮ',
-        path_img: "./images/4.jpg"
+        path_img: "http://localhost:3001/images/4.jpg"
       },
 
     ], {});

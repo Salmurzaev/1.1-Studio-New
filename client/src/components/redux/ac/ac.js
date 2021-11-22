@@ -57,7 +57,7 @@ export const getWords = (value) => {
 }
 
 export const getProducer = () => async (dispatch) => {
-  const allProducers = (await axios.get('http://localhost:3001/listproducer'))
+  const allProducers = (await axios.get('/team'))
   dispatch({
     type: GET_PRODUCER,
     payload:allProducers.data
