@@ -1,29 +1,29 @@
 import axios from 'axios'
-import { GET_WORDS, SET_FILMS, SET_SERIALS, SIGNIN, SIGNOUT, SIGNUP } from '../types/types'
+import { GET_WORDS, SET_CONTENT,  SIGNIN, SIGNOUT, SIGNUP } from '../types/types'
 
-const setFilms = (value) => {
+const setContent = (value) => {
   return {
-      type: SET_FILMS,
+      type: SET_CONTENT,
       payload: value,
   }
 }
 
-const setSerials = (value) => {
-  return {
-      type: SET_SERIALS,
-      payload: value,
-  }
+// const setSerials = (value) => {
+//   return {
+//       type: SET_SERIALS,
+//       payload: value,
+//   }
+// }
+
+export const getContent = () => async (dispatch) => {
+  const content = await axios('/content')
+  dispatch(setContent(content.data))
 }
 
-export const getFilms = () => async (dispatch) => {
-  const allFilms = await axios('/films')
-  dispatch(setFilms(allFilms.data))
-}
-
-export const getSerials = () => async (dispatch) => {
-  const allSerials = await axios('/serials')
-  dispatch(setSerials(allSerials.data))
-}
+// export const getSerials = () => async (dispatch) => {
+//   const allSerials = await axios('/serials')
+//   dispatch(setSerials(allSerials.data))
+// }
 
 
 export const signUp = (value) => async (dispatch) => {

@@ -13,6 +13,22 @@ module.exports = {
     */
     await queryInterface.bulkInsert('Contents', [
       {
+        title: 'Фильм 1',
+        desc: "Описание фильма 1",
+        season_id: null,
+        serial_id: null,
+        path_video: 'qqqqqqqqqqq',
+        path_img: 'wwwwwwwww'
+      },
+      {
+        title: 'Фильм 2',
+        desc: "Описание фильма 2",
+        season_id: null,
+        serial_id: null,
+        path_video: 'qqqqqqqqqqq',
+        path_img: 'wwwwwwwww'
+      },
+      {
         title: 'Cерия 1',
         desc: "Описание 1",
         season_id: 1,
