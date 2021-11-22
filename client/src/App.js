@@ -7,7 +7,8 @@ function App() {
     return (
         <div className={style.AppWrapper}>
             <NavBar />
-            <MainRouter></MainRouter>
+            <MainRouter/>
+            {/* </MainRouter> */}
         </div>
     )
 }
