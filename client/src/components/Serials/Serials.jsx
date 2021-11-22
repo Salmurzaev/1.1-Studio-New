@@ -3,13 +3,16 @@ import Search from '../Search/Search'
 import style from './style.module.css'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { getSerials } from '../redux/ac/ac'
+import { getContent, getSerials } from '../redux/ac/ac'
 import { useEffect } from 'react'
 import Season from '../Season/Season'
 import SerialOne from '../SerialOne/SerialOne'
 
 const Serials = () => {
     const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getContent())
+    }, [dispatch])
     useEffect(() => {
         dispatch(getSerials())
     }, [dispatch])

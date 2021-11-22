@@ -33,7 +33,7 @@ const contentRouter = require('./routes/contentRouter')
 const serialRouter = require('./routes/serialRouter')
 const seasonRouter = require('./routes/seasonRouter')
 // const videoRouter = require('./routes/videoRouter')
-// const wordsRouter = require('./routes/wordsRouter')
+const wordsRouter = require('./routes/wordsRouter')
 
 
 app.use(cors({credentials:true, origin: 'http://localhost:3000'}))
@@ -60,7 +60,7 @@ app.use('/content', contentRouter)
 app.use('/seasons', seasonRouter)
 app.use('/serials', serialRouter)
 // app.use('/video', videoRouter)
-// app.use('/search', wordsRouter)
+app.use('/search', wordsRouter)
 
 
 app.post('/single', upload.single('image'), (req, res) => {

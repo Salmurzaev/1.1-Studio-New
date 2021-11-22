@@ -18,6 +18,7 @@ import AdminContactsList from '../AdminContactsList/AdminContactsList'
 import Season from '../Season/Season'
 import SeriesOne from '../SeriesOne/SeriesOne'
 import WatchSeries from '../WatchSeries/WatchSeries'
+import Words from '../Words/Words'
 
 
 export default function MainRouter() {
@@ -41,6 +42,7 @@ export default function MainRouter() {
                 <Route path='/serials/:serial_id/' element={<Season />} />
                 <Route path='/serials/:serial_id/:season_id' element={<SeriesOne />} />
                 <Route path='/content/:id' element={<WatchSeries />} />
+                <Route path='/search' element={<Words />} />
             </Routes>
         </div>
     )

@@ -17,4 +17,5 @@ export const rootReducer = combineReducers({
     watchSeries: watchSeriesReducer ,
     user: userReducer,
     words: wordsReducer,
+    
 })

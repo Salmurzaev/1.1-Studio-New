@@ -59,10 +59,7 @@ export const getWatchSeries = (id) => async (dispatch) => {
   dispatch(setWatchSeries(seriya.data))
 }
 
-// export const getSerials = () => async (dispatch) => {
-//   const allSerials = await axios('/serials')
-//   dispatch(setSerials(allSerials.data))
-// }
+
 
 
 export const signUp = (value) => async (dispatch) => {
