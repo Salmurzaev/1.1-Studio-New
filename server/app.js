@@ -29,9 +29,9 @@ const upload = multer({ storage: fileStorageEngine });
 
 
 
-// const contentRouter = require('./routes/contentRouter')
-// const serialRouter = require('./routes/serialRouter')
-// const userRouter = require('./routes/userRouter')
+const contentRouter = require('./routes/contentRouter')
+const serialRouter = require('./routes/serialRouter')
+const seasonRouter = require('./routes/seasonRouter')
 // const videoRouter = require('./routes/videoRouter')
 // const wordsRouter = require('./routes/wordsRouter')
 
@@ -56,9 +56,9 @@ app.use((req, res, next) => {
     next()
 })
 
-// app.use('/content', contentRouter)
-// app.use('/serial', serialRouter)
-app.use('/user', userRouter)
+app.use('/content', contentRouter)
+app.use('/seasons', seasonRouter)
+app.use('/serials', serialRouter)
 // app.use('/video', videoRouter)
 // app.use('/search', wordsRouter)
 

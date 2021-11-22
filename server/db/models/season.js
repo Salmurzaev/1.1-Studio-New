@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ Content, Serial }) {
       // define association here
-      this.hasMany(Content, { foreignKey: 'id' })
-      this.belongsTo(Serial, { foreignKey: 'seasons_id' })
+      this.hasMany(Content, { foreignKey: 'season_id' })
+      this.belongsTo(Serial, { foreignKey: 'serial_id' })
     }
   };
   Season.init({
@@ -21,7 +21,10 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
-    content_id: DataTypes.UUID,
+    serial_id: {
+      allowNull: false,
+      type: DataTypes.UUID,
+    },
     title: DataTypes.STRING,
   }, {
     sequelize,

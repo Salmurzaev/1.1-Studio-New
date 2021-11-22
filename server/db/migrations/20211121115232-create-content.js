@@ -18,11 +18,19 @@ module.exports = {
       },
       season_id: {
         type: DataTypes.UUID,
-        
+        references: {
+          model: "Seasons",
+          key: "id"
+        },
+        onDelete: "CASCADE"
       },
       serial_id: {
         type: DataTypes.UUID,
-        
+        references: {
+          model: "Serials",
+          key: "id"
+        },
+        onDelete: "CASCADE"
       },
       path_video: {
         type: DataTypes.STRING,

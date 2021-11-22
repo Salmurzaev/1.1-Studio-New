@@ -8,18 +8,18 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
       },
-      content_id: {
-        type: Sequelize.UUID,
-        allowNull: false,
-        references: {
-          model: "Contents",
-          key: "id"
-        },
-        onDelete: "CASCADE",
-      },
       title: {
         type: Sequelize.STRING,
         allowNull: false
+      },
+      serial_id: {
+        allowNull: false,
+        type: Sequelize.UUID,
+        references: {
+          model: "Serials",
+          key: "id"
+        },
+        onDelete: "CASCADE"
       },
       createdAt: {
         allowNull: false,

@@ -12,14 +12,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      seasons_id: {
-        type: Sequelize.UUID,
-        references: {
-          model: "Seasons",
-          key: "id"
-        },
-        onDelete: "CASCADE",
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
