@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Season, Serial } = require('../db/models')
+const { Season, Serial, Content } = require('../db/models')
 
 router.route('/')
     .get(async (req, res) => {
@@ -22,6 +22,14 @@ router.route('/:id')
     .delete(async (req, res) => {
         await Serial.destroy({ where: {id: req.params.id}})
         res.sendStatus(200)
+    })
+router.route('/:serial_id/:season_id')
+    .get(async(req, res) => {
+        const content = await Content.findAll({where: {
+            serial_id: req.params.serial_id,
+            season_id: req.params.season_id
+        }})
+        res.json(content)
     })
 
 module.exports = router

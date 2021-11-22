@@ -45,6 +45,7 @@ margin: 0 -20px;
   overflow: hidden;
   width: 100%;
   position: relative;
+  border: 7px solid #930504;
 }
 
 .placeholder {

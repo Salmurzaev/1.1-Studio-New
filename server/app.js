@@ -36,6 +36,8 @@ const teamRouter = require('./routes/teamRouter')
 const servicesRouter = require('./routes/servicesRouter')
 const vacancyRouter = require('./routes/vacancyRouter')
 const projectRouter = require('./routes/projectRouter')
+const userRouter = require('./routes/userRouter')
+
 
 // const videoRouter = require('./routes/videoRouter')
 // const wordsRouter = require('./routes/wordsRouter')
@@ -69,7 +71,7 @@ app.use('/team', teamRouter)
 app.use('/services', servicesRouter)
 app.use('/vacancies', vacancyRouter)
 app.use('/projects', projectRouter)
-// app.use('/search', wordsRouter)
+app.use('/user', userRouter)
 
 
 app.post('/single', upload.single('image'), (req, res) => {
