@@ -4,9 +4,9 @@ module.exports = {
     await queryInterface.createTable('Seasons', {
       id: {
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
+        type: Sequelize.INTEGER
       },
       title: {
         type: Sequelize.STRING,
@@ -14,7 +14,7 @@ module.exports = {
       },
       serial_id: {
         allowNull: false,
-        type: Sequelize.UUID,
+        type: Sequelize.INTEGER,
         references: {
           model: "Serials",
           key: "id"

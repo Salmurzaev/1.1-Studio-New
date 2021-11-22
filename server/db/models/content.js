@@ -18,9 +18,10 @@ module.exports = (sequelize, DataTypes) => {
   };
   Content.init({
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true
+      type: DataTypes.INTEGER,
+      defaultValue: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
     title: DataTypes.STRING,
     desc: DataTypes.TEXT,

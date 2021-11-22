@@ -4,9 +4,9 @@ module.exports = {
     await queryInterface.createTable('Serials', {
       id: {
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4
+        type: Sequelize.INTEGER
       },
       title: {
         type: Sequelize.STRING,
