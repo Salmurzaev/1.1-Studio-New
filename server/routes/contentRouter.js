@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Content, Season, Serial } = require('../db/models')
+const { Content, Season, Serial, Rating } = require('../db/models')
 
 
 router.route('/')
@@ -27,6 +27,20 @@ router.route('/:id')
     })
     .delete(async (req, res) => {
         await Content.destroy({ where: { id: req.params.id } })
+        res.sendStatus(200)
+    })
+
+router.route('/:id/rating')
+    .get(async (req, res) => {
+        const rating = await Rating.findAll({ where: { content_id: req.params.id } })
+        const sumRating = rating.reduce((acc, item) => {
+            return acc + item.rating
+        }, 0)
+        const currentRating = sumRating / rating.length
+        res.json(currentRating)
+    })
+    .post(async (req, res) => {
+        await Rating.create({ content_id: req.params.id, user_id: req.session.user.id, rating: req.body.rating })
         res.sendStatus(200)
     })
 

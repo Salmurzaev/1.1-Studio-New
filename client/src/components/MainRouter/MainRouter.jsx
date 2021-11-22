@@ -19,6 +19,9 @@ import Season from '../Season/Season'
 import SeriesOne from '../SeriesOne/SeriesOne'
 import WatchSeries from '../WatchSeries/WatchSeries'
 import Words from '../Words/Words'
+import UploadForm from '../UploadForm/UploadForm'
+import SignupForm from '../SignupForm/SignupForm'
+import SigninForm from '../SigninForm/SigninForm'
 
 
 export default function MainRouter() {
@@ -43,6 +46,7 @@ export default function MainRouter() {
                 <Route path='/serials/:serial_id/:season_id' element={<SeriesOne />} />
                 <Route path='/content/:id' element={<WatchSeries />} />
                 <Route path='/search' element={<Words />} />
+                <Route path='/upload' element={<UploadForm />} />
             </Routes>
         </div>
     )

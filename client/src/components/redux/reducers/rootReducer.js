@@ -6,8 +6,10 @@ import { seriesReducer } from './seriesReducer'
 import { userReducer } from './userReducer'
 import { watchSeriesReducer } from './watchSeriesReducer'
 import { wordsReducer } from './wordsReducer'
+import { producerReducer } from './producerReducer'
 
 export const rootReducer = combineReducers({
+<<<<<<< HEAD
     // reducers
 
     content: contentReducer,
@@ -18,4 +20,12 @@ export const rootReducer = combineReducers({
     user: userReducer,
     words: wordsReducer,
     
+=======
+  // reducers
+  films: filmReducer,
+  serials: serialReducer,
+  user: userReducer,
+  words: wordsReducer,
+  producer: producerReducer
+>>>>>>> b97edb6736f23f2ca85c6641f24cae890e01cf5f
 })

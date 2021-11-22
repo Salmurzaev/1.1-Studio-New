@@ -23,6 +23,14 @@ router.route('/:id')
         await Serial.destroy({ where: {id: req.params.id}})
         res.sendStatus(200)
     })
+router.route('/:serial_id/:season_id')
+    .get(async(req, res) => {
+        const content = await Content.findAll({where: {
+            serial_id: req.params.serial_id,
+            season_id: req.params.season_id
+        }})
+        res.json(content)
+    })
 
     router.route('/:serial_id/:season_id')
     .get(async(req, res) => {
