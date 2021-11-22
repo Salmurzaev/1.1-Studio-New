@@ -12,16 +12,17 @@ module.exports = (sequelize, DataTypes) => {
     static associate({ Season, Content }) {
       // define association here
       this.hasMany(Season, { foreignKey: "serial_id" })
-      this.hasMany(Content, { foreignKey: "serial_id"})
+      this.hasMany(Content, { foreignKey: "serial_id" })
     }
   };
   Serial.init({
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true
+  id: {
+      type: DataTypes.INTEGER,
+      defaultValue: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    title: DataTypes.STRING,
+  title: DataTypes.STRING,
 
   }, {
     sequelize,
