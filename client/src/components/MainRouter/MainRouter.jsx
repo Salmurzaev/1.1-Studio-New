@@ -15,6 +15,7 @@ import AdminFilmsList from '../AdminFilmsList/AdminFilmsList'
 import AdminSerialsList from '../AdminSerialsList/AdminSerialsList'
 import AdminJobsList from '../AdminJobsList/AdminJobsList'
 import AdminContactsList from '../AdminContactsList/AdminContactsList'
+import UploadForm from '../UploadForm/UploadForm'
 
 
 export default function MainRouter() {
@@ -35,6 +36,7 @@ export default function MainRouter() {
                 <Route path='/admin/serials' element={<AdminSerialsList />} />
                 <Route path='/admin/jobs' element={<AdminJobsList />} />
                 <Route path='/admin/contacts' element={<AdminContactsList />} />
+                <Route path='/upload' element={<UploadForm/>} />
             </Routes>
         </div>
     )

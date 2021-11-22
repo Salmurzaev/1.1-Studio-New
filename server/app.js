@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 3001
 
 const fileStorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./images"); //important this is a direct path fron our current file to storage location
+    cb(null, "./uploads"); //important this is a direct path fron our current file to storage location
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + "--" + file.originalname);
@@ -45,6 +45,7 @@ app.use(cors({credentials:true, origin: 'http://localhost:3000'}))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(process.env.PWD, 'public')))
+
 
 app.use(
     session({
