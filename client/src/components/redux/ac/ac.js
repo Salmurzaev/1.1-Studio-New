@@ -15,7 +15,7 @@ import {
 
 const setContent = (value) => {
     return {
-        type: SET_FILMS,
+        type: SET_CONTENT,
         payload: value,
     }
 }

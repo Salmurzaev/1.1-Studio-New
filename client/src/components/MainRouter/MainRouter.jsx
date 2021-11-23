@@ -20,8 +20,8 @@ import SeriesOne from '../SeriesOne/SeriesOne'
 import WatchSeries from '../WatchSeries/WatchSeries'
 import Words from '../Words/Words'
 import UploadForm from '../UploadForm/UploadForm'
-import SignupForm from '../SignupForm/SignupForm'
-import SigninForm from '../SigninForm/SigninForm'
+// import SignupForm from '../SignupForm/SignupForm'
+// import SigninForm from '../SigninForm/SigninForm'
 
 
 export default function MainRouter() {
