@@ -39,9 +39,8 @@ const projectRouter = require('./routes/projectRouter')
 const userRouter = require('./routes/userRouter')
 
 
-// const videoRouter = require('./routes/videoRouter')
 const videoRouter = require('./routes/videoRouter')
-// const wordsRouter = require('./routes/wordsRouter')
+const wordsRouter = require('./routes/wordsRouter')
 
 
 app.use(cors({credentials:true, origin: 'http://localhost:3000'}))
@@ -68,6 +67,8 @@ app.use((req, res, next) => {
 app.use('/content', contentRouter)
 app.use('/seasons', seasonRouter)
 app.use('/serials', serialRouter)
+// app.use('/video', videoRouter)
+app.use('/search', wordsRouter)
 app.use('/team', teamRouter)
 app.use('/services', servicesRouter)
 app.use('/vacancies', vacancyRouter)

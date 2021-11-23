@@ -17,8 +17,8 @@ module.exports = {
         desc: "Описание фильма 1",
         season_id: null,
         serial_id: null,
-        path_video: 'qqqqqqqqqqq',
-        path_img: 'wwwwwwwww'
+        path_video: 'http://localhost:3001/video',
+        path_img: 'https://fs.kinomania.ru/image/file/film_poster/7/aa/7aa440389afcf90bf406a30c04277566.738.369.jpeg'
       },
       {
         title: 'Фильм 2',
@@ -108,6 +108,7 @@ module.exports = {
         path_video: 'qqqqqqqqqqq',
         path_img: 'wwwwwwwww'
       },
+   
     ], {});
   },
 

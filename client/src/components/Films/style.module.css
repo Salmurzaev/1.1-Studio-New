@@ -2,3 +2,31 @@
   width: 100%;
   height: 100vh;
 }
+.card{
+  padding-top: 5px;
+display: flex;
+justify-content: space-around;
+}
+.card_title{
+text-align: center;
+font-size: 27px;
+padding-top: 5px;
+}
+.card_text{
+font-size: 17px;
+}
+.card_body{
+  padding-left: 20px;
+  padding-bottom: 20px;
+}
+.main{
+width: calc(100% / 12 * 4 - 40px);
+margin: 20px;
+}
+.allFilm{
+  display: flex;
+  flex-wrap: wrap;
+}
+.new_film{
+text-align: center;
+}

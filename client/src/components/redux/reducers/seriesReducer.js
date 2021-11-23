@@ -1,9 +1,9 @@
-import { SET_FILMS } from '../types/types'
+import { SET_SERIES } from '../types/types'
 
-export const filmReducer = (state = [], action) => {
+export const seriesReducer = (state = [], action) => {
     const { type, payload } = action
     switch (type) {
-        case SET_FILMS:
+        case SET_SERIES:
             return payload
 
         default:
