@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 3001
 
 const fileStorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./uploads"); //important this is a direct path fron our current file to storage location
+    cb(null, __dirname+"/public/uploads"); //important this is a direct path fron our current file to storage location
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + "--" + file.originalname);
@@ -40,7 +40,8 @@ const userRouter = require('./routes/userRouter')
 
 
 const videoRouter = require('./routes/videoRouter')
-const wordsRouter = require('./routes/wordsRouter')
+const wordsRouter = require('./routes/wordsRouter');
+const {Content} = require('./db/models');
 
 
 app.use(cors({credentials:true, origin: 'http://localhost:3000'}))
@@ -78,18 +79,29 @@ app.use('/video', videoRouter)
 // app.use('/search', wordsRouter)
 
 
-app.post('/single', upload.single('image'), (req, res) => {
+app.post('/single/:id', upload.single('image'), async (req, res) => {
   // req.file - файл `avatar`
   // req.body сохранит текстовые поля, если они будут
+  const id = req.params.id
+  
+  const newDataContent = await Content.update({ path_img: req.file.path }, {
+    where: {
+      id
+    }
+  })
   console.log('FILE',req.file)
-  console.log('BODY',req.body)
+  
+  
   res.send("Single FIle upload success");
 })
 
 
-app.post('/addInfo', async (req, res) => {
- 
-})
+// app.post('/addInfo', async (req, res) => {
+//   console.log(req.body);
+//   const {title, desc} = req.body;
+//  const newCon = await Content.create({ title, desc })
+//  console.log(newCon);
+// })
 
 
 
