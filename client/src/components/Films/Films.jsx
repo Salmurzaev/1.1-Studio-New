@@ -21,25 +21,32 @@ const Films = () => {
         (el) => el.season_id === null && el.serial_id === null
     )
 
+
+
     return (
         <div className={style.filmWrapper}>
-            <Search path={ location.pathname}/>
-            <h1>Films</h1>
-            {films.map((el) => (
-                <>
-                    <Link to={`/content/${el.id}`}>
-                        {el.title}
-                        <Button variant='contained' color='error'>
-                            Смотреть
-                        </Button>
-                    </Link>
-
-                    <div>{el.desc}</div>
-                    <div>{el.path_video}</div>
-                    <div>{el.path_img}</div>
-                </>
-            ))}
+            <Search />
+            <h1 className={style.new_film}>Новинки</h1>
             <Carousel />
+            <div className={style.allFilm}>
+                {films.map((el) => (
+                    <>
+                        <div className={style.main}>
+                            <div className={style.col}>
+                                <img src={el.path_img} className="card-img-top" alt="..." />
+                                <div className={style.card}>
+                                    <h5 className={style.card_title}>{el.title}</h5>
+                                    <Link to={`/content/${el.id}`}> <Button variant="contained" path={`/content/${el.id}`} description={el.desc} color="error">Смотреть</Button></Link>
+                                    {/* <div className={style.card_body}>
+                                </div> */}
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                ))}
+
+            </div>
+
         </div>
     )
 }

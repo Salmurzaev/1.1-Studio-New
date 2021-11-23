@@ -45,7 +45,10 @@ router.route('/:id')
                 return acc + item.rating
             }, 0)
             const currentRating = sumRating / rating.length
-            res.json({...content, rating: currentRating})
+            console.log(currentRating)
+            const {dataValues} = content
+            // console.log({...dataValues, currentRating})
+            res.json({...dataValues, currentRating})
         } catch (error) {
             console.log(error)
             res.sendStatus(500)
