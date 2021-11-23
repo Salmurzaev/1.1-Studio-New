@@ -1,4 +1,5 @@
 import React from 'react'
+import Carousel from '../Carousel/Carousel'
 import Search from '../Search/Search'
 import { useEffect } from 'react'
 import style from './style.module.css'
@@ -28,6 +29,7 @@ const Films = () => {
                     <div>{el.path_img}</div>
                 </>
             ))}
+            <Carousel/>
         </div>
     )
 }
