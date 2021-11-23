@@ -7,7 +7,7 @@ import  VideoPlayer from '../VideoPlayer/VideoPlayer'
 const MainPage = () => {
   
     return (
-        <>
+        <>  
             <div className={style.main}>
                 <VideoPlayer/>
                 <img src={logo}  className={style.logo} width='30%' alt='1.1 Studio' />

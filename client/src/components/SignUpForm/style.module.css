@@ -21,7 +21,14 @@ input {
     margin: 10px;
     background-color: rgba(0, 0, 0, 0.178);
 }
-
+button {
+  border: none;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  font-size: 30px;
+  
+}
 
 .buttonMain {
   background: transparent;
@@ -34,6 +41,8 @@ input {
 .buttonMain {
   display: flex;
   justify-content: center;
+  width: 80%;
+  margin: 0 auto;
   position: relative;
   padding: 20px 38px;
   top: 0;

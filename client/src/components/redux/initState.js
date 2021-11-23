@@ -1,6 +1,6 @@
 const initState = {
   // states
-  users: null,
+  user: null,
   content: [],
   serials: [],
   season:[],

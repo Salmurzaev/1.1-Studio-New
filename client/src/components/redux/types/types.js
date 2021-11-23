@@ -16,3 +16,5 @@ export const SIGNUP = 'SIGNUP'
 export const SIGNIN = 'SIGNIN'
 export const SIGNOUT = 'SIGNOUT'
 export const GET_PRODUCER = 'GET_PRODUCER'
+
+export const CLEAR_SEARCH = 'CLEAR_SEARCH'

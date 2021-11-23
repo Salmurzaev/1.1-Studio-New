@@ -11,9 +11,9 @@ import SerialOne from '../SerialOne/SerialOne'
 const Serials = () => {
     let location = useLocation()
     const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(getContent())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getContent())
+    // }, [dispatch])
     useEffect(() => {
         dispatch(getSerials())
     }, [dispatch])
