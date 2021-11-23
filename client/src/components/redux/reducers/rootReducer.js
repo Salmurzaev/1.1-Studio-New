@@ -15,8 +15,8 @@ export const rootReducer = combineReducers({
     serials: serialReducer,
     season: seasonReducer,
     series: seriesReducer,
-    watchSeries: watchSeriesReducer ,
+    watchSeries: watchSeriesReducer,
     user: userReducer,
     words: wordsReducer,
-  producer: producerReducer
+    producer: producerReducer,
 })
