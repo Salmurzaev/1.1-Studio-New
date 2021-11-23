@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const { Content, Season } = require('../db/models')
+const  adminCheck  = require('../middleware/adminCheck')
 
 
 router.route('/:id')
@@ -7,7 +8,7 @@ router.route('/:id')
         const season = await Content.findAll({ where: { id: req.params.id } })
         res.json(season)
     })
-    .delete(async (req, res) => {
+    .delete(adminCheck, async (req, res) => {
         await Season.destroy({ where: { id: req.params.id}})
         res.sendStatus(200)
     })

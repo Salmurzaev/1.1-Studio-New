@@ -37,8 +37,6 @@ const servicesRouter = require('./routes/servicesRouter')
 const vacancyRouter = require('./routes/vacancyRouter')
 const projectRouter = require('./routes/projectRouter')
 const userRouter = require('./routes/userRouter')
-
-
 const videoRouter = require('./routes/videoRouter')
 const wordsRouter = require('./routes/wordsRouter')
 
@@ -67,7 +65,6 @@ app.use((req, res, next) => {
 app.use('/content', contentRouter)
 app.use('/seasons', seasonRouter)
 app.use('/serials', serialRouter)
-// app.use('/video', videoRouter)
 app.use('/search', wordsRouter)
 app.use('/team', teamRouter)
 app.use('/services', servicesRouter)
