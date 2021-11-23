@@ -22,11 +22,22 @@ font-size: 17px;
 .main{
 width: calc(100% / 12 * 4 - 40px);
 margin: 20px;
+display: flex;
+flex-wrap: wrap;
 }
+.cardImgTop {
+  height: 230px;
+  aspect-ratio: 16/9;
+}
+
 .allFilm{
   display: flex;
   flex-wrap: wrap;
 }
 .new_film{
 text-align: center;
+}
+
+h1 {
+  margin-top: 13px;
 }

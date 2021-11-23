@@ -2,7 +2,10 @@ import React from 'react'
 import style from './style.module.css'
 import Button from '@mui/material/Button'
 import { Link } from 'react-router-dom'
+
+
 const SignUpForm = () => {
+    
     return (
         <div className={style.wrapper}>
             <form>

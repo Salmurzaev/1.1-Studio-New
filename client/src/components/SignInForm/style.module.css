@@ -36,10 +36,11 @@ input {
   display: flex;
   justify-content: center;
   position: relative;
-  padding: 20px 38px;
+  margin-top: 7px;
+  padding: 3px 15px;
   top: 0;
-  font-size: 30px;
-  font-family: 'Open Sans', Helvetica;
+  font-size: 28px;
+  font-family: "Open Sans", Helvetica;
   border-radius: 15px;
   background: #f51116;
   color: #fff;
