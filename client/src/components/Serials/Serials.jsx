@@ -5,10 +5,11 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { getContent, getSerials } from '../redux/ac/ac'
 import { useEffect } from 'react'
-import Season from '../Season/Season'
+import {  useLocation } from 'react-router-dom'
 import SerialOne from '../SerialOne/SerialOne'
 
 const Serials = () => {
+    let location = useLocation()
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getContent())
@@ -22,7 +23,7 @@ const Serials = () => {
     )
     return (
         <div className={style.serialWrapper}>
-            <Search />
+            <Search path={ location.pathname} />
             {serials.map((el) => (
                 <>
                     <SerialOne key={el.id} serial_id = {el.id} title={ el.title}/>

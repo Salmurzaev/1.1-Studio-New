@@ -18,16 +18,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Content.init({
-    id: {
-      type: DataTypes.INTEGER,
-      defaultValue: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
     title: DataTypes.STRING,
     desc: DataTypes.TEXT,
-    season_id: DataTypes.UUID,
-    serial_id: DataTypes.UUID,
+    season_id: DataTypes.INTEGER,
+    serial_id: DataTypes.INTEGER,
     path_video: DataTypes.STRING,
     path_img: DataTypes.STRING
   }, {

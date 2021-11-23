@@ -26,6 +26,15 @@ const NavBar = () => {
                 <Link to='/contacts'>
                     <div className={style.navbarLinks}> Контакты </div>
                 </Link>
+                <Link to='/user/signin'>
+                    <div className={style.navbarLinks}> Вход </div>
+                </Link>
+                <Link to='/user/signup'>
+                    <div className={style.navbarLinks}> Регистрация </div>
+                </Link>
+                <Link to='/user/signout'>
+                    <div className={style.navbarLinks}> Выход </div>
+                </Link>
             </div>
         </div>
     )

@@ -18,7 +18,6 @@ const MainPage = () => {
                     корпоративные фильмы, видеопрезентации и многое другое.
                 </div>
                 <div class={style.buttonMain}>
-                    {' '}
                     <Link to='/contacts'> ПОДПИСАТЬСЯ </Link>
                 </div>
             </div>

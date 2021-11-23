@@ -5,36 +5,60 @@ const  adminCheck  = require('../middleware/adminCheck')
 
 router.route('/')
     .get(async (req, res) => {
-        const allContent = await Content.findAll()
-        res.json(allContent)
+        try {
+            const allContent = await Content.findAll()
+            res.json(allContent)
+        } catch (error) {
+            console.log(error)
+            res.sendStatus(500)
+        }
     })
-    .post(adminCheck, async (req, res) => {
-        const content = await Content.create({ ...req.body })
-        res.json(content)
+    .post(async (req, res) => {
+        try {
+            const content = await Content.create({ ...req.body })
+            res.json(content)
+        } catch (error) {
+            console.log(error)
+            res.sendStatus(401)
+        }
     })
     .patch(adminCheck,async (req, res) => {
-        const newDataContent = await Content.update({ season_id: req.body.season_id, serial_id: req.body.serial_id }, {
-            where: {
-                id: req.body.id
-            }
-        })
-        res.json(newDataContent)
+        try {
+            const newDataContent = await Content.update({ season_id: req.body.season_id, serial_id: req.body.serial_id }, {
+                where: {
+                    id: req.body.id
+                }
+            })
+            res.json(newDataContent)
+        } catch (error) {
+            console.log(error)
+            res.sendStatus(401)
+        }
     })
 
 router.route('/:id')
     .get(async (req, res) => {
-        const content = await Content.findOne({ where: { id: req.params.id } })
-        const rating = await Rating.findAll({ where: { content_id: req.params.id } })
-        const sumRating = rating.reduce((acc, item) => {
-            return acc + item.rating
-        }, 0)
-        const currentRating = sumRating / rating.length
-        res.json({...content, rating: currentRating})
+        try {
+            const content = await Content.findOne({ where: { id: req.params.id } })
+            const rating = await Rating.findAll({ where: { content_id: req.params.id } })
+            const sumRating = rating.reduce((acc, item) => {
+                return acc + item.rating
+            }, 0)
+            const currentRating = sumRating / rating.length
+            res.json({...content, rating: currentRating})
+        } catch (error) {
+            console.log(error)
+            res.sendStatus(500)
+        }
     })
     .delete(adminCheck, async (req, res) => {
-        
-        await Content.destroy({ where: { id: req.params.id } })
-        res.sendStatus(200)
+        try {
+            await Content.destroy({ where: { id: req.params.id } })
+            res.sendStatus(200)
+        } catch (error) {
+            console.log(error)
+            res.sendStatus(401)
+        }
     })
 
 router.route('/:id/rating')

@@ -31,7 +31,6 @@ router.route('/signup')
 
 router.route( '/signin')
     .post(authCheck, async (req, res) => {
-
         const { email, password } = req.body;
         if (email && password) {
             try {
@@ -59,8 +58,13 @@ router.route( '/signin')
 
 router.route('/signout')
     .get(userCheck, (req, res) => {
-        req.session.destroy()
-        res.clearCookie('sid').sendStatus(200)
+        try {
+            req.session.destroy()
+            res.clearCookie('sid').sendStatus(200)
+        } catch (error) {
+            console.log(error)
+            res.sendStatus(401)
+        }
     })
 
 module.exports = router
