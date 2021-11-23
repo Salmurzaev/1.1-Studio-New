@@ -108,6 +108,7 @@ module.exports = {
         path_video: 'qqqqqqqqqqq',
         path_img: 'wwwwwwwww'
       },
+   
     ], {});
   },
 
