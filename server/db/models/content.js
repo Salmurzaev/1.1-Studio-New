@@ -9,21 +9,25 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Season }) {
+    static associate({ Season, Serial, User }) {
       // define association here
-      this.belongsTo(Season, { foreignKey: "id" })
+      this.belongsTo(Season, { foreignKey: "season_id" })
+      this.belongsTo(Serial, { foreignKey: "serial_id" })
+      this.belongsToMany(User, { through: "Ratings" })
+
     }
   };
   Content.init({
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true
+      type: DataTypes.INTEGER,
+      defaultValue: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
     title: DataTypes.STRING,
     desc: DataTypes.TEXT,
-    season_id: DataTypes.INTEGER,
-    serial_id: DataTypes.INTEGER,
+    season_id: DataTypes.UUID,
+    serial_id: DataTypes.UUID,
     path_video: DataTypes.STRING,
     path_img: DataTypes.STRING
   }, {

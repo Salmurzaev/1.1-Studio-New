@@ -1,8 +1,7 @@
 const initState = {
   // states
   users: null,
-  films: [],
-  serials: [],
+  content:[],
   words: []
 }
 

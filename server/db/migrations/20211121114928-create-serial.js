@@ -1,21 +1,12 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Seasons', {
+    await queryInterface.createTable('Serials', {
       id: {
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
-      },
-      content_id: {
-        type: Sequelize.UUID,
-        allowNull: false,
-        references: {
-          model: "Contents",
-          key: "id"
-        },
-        onDelete: "CASCADE",
+        type: Sequelize.INTEGER
       },
       title: {
         type: Sequelize.STRING,
@@ -34,6 +25,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Seasons');
+    await queryInterface.dropTable('Serials');
   }
 };

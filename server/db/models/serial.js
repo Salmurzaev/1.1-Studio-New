@@ -9,20 +9,21 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Season }) {
+    static associate({ Season, Content }) {
       // define association here
-      this.hasMany(Season, { foreignKey: "id" })
-      
+      this.hasMany(Season, { foreignKey: "serial_id" })
+      this.hasMany(Content, { foreignKey: "serial_id" })
     }
   };
   Serial.init({
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true
+  id: {
+      type: DataTypes.INTEGER,
+      defaultValue: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    title: DataTypes.STRING,
-    seasons_id: DataTypes.UUID
+  title: DataTypes.STRING,
+
   }, {
     sequelize,
     modelName: 'Serial',

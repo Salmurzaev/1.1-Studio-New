@@ -1,20 +1,21 @@
+require('dotenv').config()
 const router = require('express').Router()
 const bcrypt = require('bcrypt');
 const { User } = require('../db/models')
-const { authCheck } = require('../middleware/authCheck')
 
 router.route('/signup')
     .post(async (req, res) => {
         const { email, password } = req.body;
+
         if (email && password) {
             const cryptPass = await bcrypt.hash(password, Number(process.env.SALT_ROUND))
             try {
                 const currentUser = await User.create({ ...req.body, password: cryptPass })
-                req.session.user = { id: currentUser.uuid, name: currentUser.name }
+                req.session.user = { id: currentUser.id, name: currentUser.name }
                 return res.json({
                     user: {
                         name: currentUser.name,
-                        id: currentUser.uuid,
+                        id: currentUser.id,
                     },
                 })
             } catch (err) {
@@ -28,7 +29,7 @@ router.route('/signup')
 
 router.route('/signin')
     .post(async (req, res) => {
-        
+
         const { email, password } = req.body;
         if (email && password) {
             try {

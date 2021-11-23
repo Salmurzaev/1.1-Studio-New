@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 3001
 
 const fileStorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./images"); //important this is a direct path fron our current file to storage location
+    cb(null, "./uploads"); //important this is a direct path fron our current file to storage location
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + "--" + file.originalname);
@@ -29,10 +29,18 @@ const upload = multer({ storage: fileStorageEngine });
 
 
 
-// const contentRouter = require('./routes/contentRouter')
-// const serialRouter = require('./routes/serialRouter')
-// const userRouter = require('./routes/userRouter')
+const contentRouter = require('./routes/contentRouter')
+const serialRouter = require('./routes/serialRouter')
+const seasonRouter = require('./routes/seasonRouter')
+const teamRouter = require('./routes/teamRouter')
+const servicesRouter = require('./routes/servicesRouter')
+const vacancyRouter = require('./routes/vacancyRouter')
+const projectRouter = require('./routes/projectRouter')
+const userRouter = require('./routes/userRouter')
+
+
 // const videoRouter = require('./routes/videoRouter')
+const videoRouter = require('./routes/videoRouter')
 // const wordsRouter = require('./routes/wordsRouter')
 
 
@@ -40,6 +48,7 @@ app.use(cors({credentials:true, origin: 'http://localhost:3000'}))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(process.env.PWD, 'public')))
+
 
 app.use(
     session({
@@ -56,10 +65,15 @@ app.use((req, res, next) => {
     next()
 })
 
-// app.use('/content', contentRouter)
-// app.use('/serial', serialRouter)
+app.use('/content', contentRouter)
+app.use('/seasons', seasonRouter)
+app.use('/serials', serialRouter)
+app.use('/team', teamRouter)
+app.use('/services', servicesRouter)
+app.use('/vacancies', vacancyRouter)
+app.use('/projects', projectRouter)
 app.use('/user', userRouter)
-// app.use('/video', videoRouter)
+app.use('/video', videoRouter)
 // app.use('/search', wordsRouter)
 
 

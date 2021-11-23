@@ -1,4 +1,7 @@
 .mainRouterWrapper {
-    margin: 20px;
-    
+  margin: 0 auto;
+  max-width: 1400px;
+  padding: 20px;
+  /* min-height: calc(100% - 6vw); */
+  min-height: 100%;
 }

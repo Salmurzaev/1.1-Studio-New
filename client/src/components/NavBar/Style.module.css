@@ -1,5 +1,5 @@
 .NavBar {
-    height: 7vw;
+    height: 4vw;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.527);
     padding: 10;
@@ -33,7 +33,7 @@ a {
     display: inline-block;
     position: relative;
     top: 0;
-    font-size: 24px;
+    font-size: 28px;
     font-family: 'Open Sans', Helvetica;
     border-radius: 5px;
     color: #fff;
