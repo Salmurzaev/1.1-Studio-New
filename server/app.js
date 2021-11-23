@@ -33,7 +33,7 @@ const contentRouter = require('./routes/contentRouter')
 const serialRouter = require('./routes/serialRouter')
 const seasonRouter = require('./routes/seasonRouter')
 const teamRouter = require('./routes/teamRouter')
-// const videoRouter = require('./routes/videoRouter')
+const videoRouter = require('./routes/videoRouter')
 // const wordsRouter = require('./routes/wordsRouter')
 
 
@@ -61,6 +61,7 @@ app.use('/content', contentRouter)
 app.use('/seasons', seasonRouter)
 app.use('/serials', serialRouter)
 app.use('/team', teamRouter)
+app.use('/video', videoRouter)
 // app.use('/search', wordsRouter)
 
 
