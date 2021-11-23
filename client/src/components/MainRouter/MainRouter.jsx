@@ -16,8 +16,7 @@ import AdminSerialsList from '../AdminSerialsList/AdminSerialsList'
 import AdminJobsList from '../AdminJobsList/AdminJobsList'
 import AdminContactsList from '../AdminContactsList/AdminContactsList'
 import UploadForm from '../UploadForm/UploadForm'
-import SignupForm from '../SignupForm/SignupForm'
-import SigninForm from '../SigninForm/SigninForm'
+
 
 
 export default function MainRouter() {
