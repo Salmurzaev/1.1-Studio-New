@@ -1,12 +1,13 @@
 const router = require('express').Router()
 const { Project } = require('../db/models')
+const  adminCheck  = require('../middleware/adminCheck')
 
 router.route('/')
     .get(async (req, res) => {
         const projects = await Project.findAll()
         res.json(projects)
     })
-    .post(async (req, res) => {
+    .post(adminCheck, async (req, res) => {
         const newProject = await Project.create({ ...req.body })
         res.json(newProject)
     })
@@ -15,7 +16,7 @@ router.route('/:id')
         const project = await Project.findOne({ where: { id: req.params.id } })
         res.json(project)
     })
-    .delete(async (req, res) => {
+    .delete(adminCheck, async (req, res) => {
         await Project.destroy({ where: { id: req.params.id } })
         res.sendStatus(200)
     })
