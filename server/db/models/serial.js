@@ -16,14 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Serial.init({
-  id: {
-      type: DataTypes.INTEGER,
-      defaultValue: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
   title: DataTypes.STRING,
-
+  desc: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Serial',
