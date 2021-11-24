@@ -16,16 +16,32 @@ router.route('/:id')
     })
     .delete(adminCheck, async (req, res) => {
         try {
-            const season = await Season.findOne({ where: { id: req.params.id } })
-            const { dataValues } = season
             const regEx = /http:\/\/\w+(\.\w+)*(:[0-9]+)?\/?(\/[.\w]*)\//mg
+            const path = './public/uploads/'
+            const content = await Content.findAll({ where: { season_id: req.params.id } })
+            content.forEach(async (element) => {
+                try {
+                    const { dataValues } = element
+                    const pathImg = dataValues.path_img.split(regEx)
+                    const pathVideo = dataValues.path_video.split(regEx)
+                    const videoFileName = pathVideo.pop()
+                    const imgFileName = pathImg.pop()
+                    await rm(path + videoFileName)
+                    await rm(path + imgFileName)
+                    await Content.destroy({ where: { id: dataValues.id } })
+                    
+                    } catch (error) {
+                    console.log(error)
+                }
+            })
+            const deletedSeason = await Season.findOne({where: { id: req.params.id}})
+            const { dataValues } = deletedSeason
             const pathImg = dataValues.path_img.split(regEx)
             const imgFileName = pathImg.pop()
-            const path = './public/uploads/'
             try {
                 await rm(path + imgFileName)
-                await Season.destroy({ where: { id: req.params.id } })
-                console.log("Img file successfully deleted")
+                await Season.destroy({where : {id: req.params.id}})
+                console.log("Season successfully deleted")
             } catch (error) {
                 console.log(error)
             }

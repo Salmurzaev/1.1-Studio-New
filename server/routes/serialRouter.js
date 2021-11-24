@@ -44,17 +44,47 @@ router
         }
     })
     .delete(adminCheck, async (req, res) => {
+        const regEx = /http:\/\/\w+(\.\w+)*(:[0-9]+)?\/?(\/[.\w]*)\//mg
+        const path = './public/uploads/'
         try {
-            const serial = await Serial.findOne({ where: { id: req.params.id } })
+            const content = await Content.findAll({ where: { id: req.params.id } })
+
+            content.forEach(async (element) => {
+                try {
+                    const { dataValues } = element
+                    const pathImg = dataValues.path_img.split(regEx)
+                    const pathVideo = dataValues.path_video.split(regEx)
+                    const videoFileName = pathVideo.pop()
+                    const imgFileName = pathImg.pop()
+                    await rm(path + videoFileName)
+                    await rm(path + imgFileName)
+                    await Content.destroy({ where: { id: dataValues.id } })
+                } catch (error) {
+                    console.log(error)
+                }
+            })
+            const seasons = await Season.findAll({ where: { serial_id: req.params.id } })
+
+            seasons.forEach(async (element) => {
+                try {
+                    const { dataValues } = element
+                    const pathImg = dataValues.path_img.split(regEx)
+                    const imgFileName = pathImg.pop()
+                    await rm(path + imgFileName)
+                    await Season.destroy({ where: { id: dataValues.id } })
+                } catch (error) {
+                    console.log(error)
+                }
+            })
+
+                        const serial = await Serial.findOne({ where: { id: req.params.id } })
             const { dataValues } = serial
-            const regEx = /http:\/\/\w+(\.\w+)*(:[0-9]+)?\/?(\/[.\w]*)\//mg
             const pathImg = dataValues.path_img.split(regEx)
             const imgFileName = pathImg.pop()
-            const path = './public/uploads/'
             try {
                 await rm(path + imgFileName)
                 await Serial.destroy({ where: { id: req.params.id } })
-                console.log("Img file successfully deleted")
+                console.log("Serial successfully deleted")
             } catch (error) {
                 console.log(error)
             }
@@ -78,7 +108,7 @@ router.route('/:serial_id/:season_id')
             console.log(error)
             res.sendStatus(500)
         }
-        res.json(content)
+
     })
 
 

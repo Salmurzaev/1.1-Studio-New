@@ -51,7 +51,7 @@ router.route('/:id')
         const currentRating = sumRating / rating.length
         res.json({ ...dataValues, currentRating })
     })
-    .post(async (req, res) => {
+    .post(userCheck, async (req, res) => {
         await Rating.create({
             content_id: req.params.id,
             user_id: req.session.user.id,
@@ -73,7 +73,7 @@ router.route('/:id')
             await rm(path + videoFileName)
             await rm(path + imgFileName)
             await Content.destroy({ where : {id : req.params.id}})
-            console.log("Files successfully deleted")
+            console.log("Content successfully deleted")
         } catch (error) {
             console.log(error)
         }
