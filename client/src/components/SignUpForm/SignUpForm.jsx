@@ -46,6 +46,8 @@ const SignUpForm = () => {
                     value={registerInput.email}
                     onChange={registerInputHandler}
                 />
+        
+
                 <input
                     placeholder='Пароль'
                     type='password'

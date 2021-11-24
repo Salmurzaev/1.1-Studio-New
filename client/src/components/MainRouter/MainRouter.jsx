@@ -19,9 +19,13 @@ import Season from '../Season/Season'
 import SeriesOne from '../SeriesOne/SeriesOne'
 import WatchSeries from '../WatchSeries/WatchSeries'
 import Words from '../Words/Words'
-import UploadForm from '../UploadForm/UploadForm'
+
 import SignInForm from '../SignInForm/SignInForm'
 import SignUpForm from '../SignUpForm/SignUpForm'
+import UploadFormFilm from '../UploadFormFilm/UploadForm'
+import UploadSerial from '../UploadSerial/UploadSerial'
+import MultSecondPartForm from '../MutlSecondPartForm/MultSecondPartForm'
+
 
 
 
@@ -48,9 +52,11 @@ export default function MainRouter() {
                 <Route path='/serials/:serial_id/:season_id' element={<SeriesOne />} />
                 <Route path='/content/:id' element={<WatchSeries />} />
                 <Route path='/search' element={<Words />} />
-                <Route path='/upload' element={<UploadForm />} />
                 <Route path='/user/signin' element={<SignInForm />} />
                 <Route path='/user/signup' element={<SignUpForm />} />
+                <Route path='/uploadfilm' element={<UploadFormFilm />} />
+                <Route path='/uploadserial' element={<UploadSerial />} />
+                <Route path='/mult/:serial_id/:season_id' element={<MultSecondPartForm />} />
             </Routes>
         </div>
     )

@@ -16,12 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Season.init({
-    id: {
-      type: DataTypes.INTEGER,
-      defaultValue: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
+   
     serial_id: {
       allowNull: false,
       type: DataTypes.INTEGER,

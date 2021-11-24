@@ -1,77 +1,62 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-const UploadForm = () => {
+const UploadFormFilm = () => {
+    const navigate = useNavigate()
     const [fileData, setFileData] = useState()
-
+    const [videoData, setvideoData] = useState()
     const [addMulter, setAddMulter] = useState(true)
 
     const [postInput, setPostInput] = useState({ title: '', desc: '' })
 
     const [id, setId] = useState('')
 
-    const [multerVideo, setMulterVideo] = useState(true)
-
     const postInputHandler = (e) => {
         setPostInput((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
-    const navigate = useNavigate()
-
     const fileChangeHandler = (e) => {
         setFileData(e.target.files[0])
+    }
+    const filmChangeHandler = (e) => {
+        console.log(e.target.files)
+        setvideoData(e.target.files[0])
     }
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
-        const data = new FormData()
-        data.append('image', fileData)
-
-        fetch(`http://localhost:3001/single/${id}`, {
+        const dataImg = new FormData()
+        dataImg.append('image', fileData)
+        dataImg.append('video', videoData)
+        fetch(`http://localhost:3001/uploadfilm/${id}`, {
             method: 'POST',
-            body: data,
+            body: dataImg,
         })
             .then((result) => {
                 console.log('File Sent Successful')
+                navigate('/films')
             })
             .catch((err) => {
                 console.log(err.message)
             })
-
-        setMulterVideo(false)
-        // setAddMulter(false)
-        // navigate('')
     }
 
     const onSubmitInfoHandler = async (e) => {
         e.preventDefault()
-
-        console.log(postInput)
-        // fetch("http://localhost:3001/addInfo", {
-        //       method: "POST",
-        //       body: JSON.stringify(postInput),
-        //   })
         const response = await axios.post(
             'http://localhost:3001/content',
             postInput
         )
-        console.log(response)
         setId(response.data.id)
         setAddMulter(false)
-    }
-
-    const [value, setValue] = React.useState('Controlled')
-
-    const handleChange = (event) => {
-        setValue(event.target.value)
     }
 
     return (
         <div className='AP'>
             {addMulter ? (
                 <>
-                    <h1>Установить название\год\описание</h1>
+                    <h1>Название, Описание</h1>
                     <form
                         component='form'
                         noValidate
@@ -80,7 +65,7 @@ const UploadForm = () => {
                     >
                         <div>
                             <input
-                                placeholder='Title'
+                                placeholder='Название фильма'
                                 name='title'
                                 value={postInput.title}
                                 onChange={postInputHandler}
@@ -91,7 +76,7 @@ const UploadForm = () => {
                             multiline
                             rows={4}
                             name='desc'
-                            placeholder='Discriptions'
+                            placeholder='Описание фильма'
                             value={postInput.desc}
                             onChange={postInputHandler}
                         />
@@ -102,9 +87,22 @@ const UploadForm = () => {
                 </>
             ) : (
                 <>
-                    <h1>Загрузить видео/постер</h1>
-                    <form onSubmit={onSubmitHandler}>
-                        <input type='file' onChange={fileChangeHandler} />
+                    <h1>Загрузить Постер, Фильм</h1>
+                        <form onSubmit={onSubmitHandler}>
+                        <span>Загрузите постер</span>
+                        <input
+                            type='file'
+                                name='img'
+                                label='Загрузите постер'
+                            onChange={fileChangeHandler}
+                            />
+                             <span>Загрузите фильм</span>
+                        <input
+                            type='file'
+                                name='video'
+                                label='Загрузите видео'
+                            onChange={filmChangeHandler}
+                        />
                         <br />
                         <br />
                         <button type='submit'>Submit File to Backend</button>
@@ -115,4 +113,4 @@ const UploadForm = () => {
     )
 }
 
-export default UploadForm
+export default UploadFormFilm

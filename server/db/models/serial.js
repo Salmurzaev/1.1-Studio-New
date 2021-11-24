@@ -1,32 +1,26 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+'use strict'
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
-  class Serial extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate({ Season, Content }) {
-      // define association here
-      this.hasMany(Season, { foreignKey: "serial_id" })
-      this.hasMany(Content, { foreignKey: "serial_id" })
+    class Serial extends Model {
+        /**
+         * Helper method for defining associations.
+         * This method is not a part of Sequelize lifecycle.
+         * The `models/index` file will call this method automatically.
+         */
+        static associate({ Season, Content }) {
+            // define association here
+            this.hasMany(Season, { foreignKey: 'serial_id' })
+            this.hasMany(Content, { foreignKey: 'serial_id' })
+        }
     }
-  };
-  Serial.init({
-  id: {
-      type: DataTypes.INTEGER,
-      defaultValue: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-  title: DataTypes.STRING,
-
-  }, {
-    sequelize,
-    modelName: 'Serial',
-  });
-  return Serial;
-};
+    Serial.init(
+        {
+            title: DataTypes.STRING,
+        },
+        {
+            sequelize,
+            modelName: 'Serial',
+        }
+    )
+    return Serial
+}
