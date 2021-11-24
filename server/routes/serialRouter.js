@@ -44,7 +44,19 @@ router
     })
     .delete(adminCheck, async (req, res) => {
         try {
-            await Serial.destroy({ where: { id: req.params.id } })
+            const serial = await Serial.findOne({ where: { id: req.params.id } })
+            const { dataValues } = serial
+            const regEx = /http:\/\/\w+(\.\w+)*(:[0-9]+)?\/?(\/[.\w]*)\//mg
+            const pathImg = dataValues.path_img.split(regEx)
+            const imgFileName = pathImg.pop()
+            const path = './public/uploads/'
+            try {
+                await rm(path + imgFileName)
+                await Serial.destroy({ where: { id: req.params.id } })
+                console.log("Img file successfully deleted")
+            } catch (error) {
+                console.log(error)
+            }
             res.sendStatus(200)
         } catch (error) {
             console.log(error)
