@@ -34,9 +34,11 @@ module.exports = {
       },
       path_video: {
         type: Sequelize.STRING,
+        
       },
       path_img: {
         type: Sequelize.STRING,
+        
       },
       createdAt: {
         allowNull: false,

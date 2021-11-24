@@ -22,13 +22,13 @@ function OneProducer() {
           <img className={style.bg} src={backgr} alt="backGroundPro" />
 
           <div className={style.content}>
-          <div className={style.photo}>
-            <img src="https://via.placeholder.com/150" class={style.placeholder} />
-            <img src={el.path_img} alt="photoProducer" class={style.img} />
+            <div className={style.photo}>
+              <img src="https://via.placeholder.com/150" class={style.placeholder} />
+              <img src={el.path_img} alt="photoProducer" class={style.img} />
 
-          </div>
-          <p className={style.nameProducer}>{el.name}</p>
-<img src={logotype} alt="" className={style.logo} />
+            </div>
+            <p className={style.nameProducer}>{el.name}</p>
+            <img src={logotype} alt="" className={style.logo} />
           </div>
         </div>
       ))

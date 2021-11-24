@@ -18,7 +18,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Content.init({
-    
     title: DataTypes.STRING,
     desc: DataTypes.TEXT,
     season_id: DataTypes.INTEGER,
