@@ -80,8 +80,6 @@ app.use('/video', videoRouter)
 
 
 app.post('/single/:id', upload.single('image'), async (req, res) => {
-  // req.file - файл `avatar`
-  // req.body сохранит текстовые поля, если они будут
   const id = req.params.id
   
   const newDataContent = await Content.update({ path_img: req.file.path }, {
@@ -91,17 +89,9 @@ app.post('/single/:id', upload.single('image'), async (req, res) => {
   })
   console.log('FILE',req.file)
   
-  
   res.send("Single FIle upload success");
 })
 
-
-// app.post('/addInfo', async (req, res) => {
-//   console.log(req.body);
-//   const {title, desc} = req.body;
-//  const newCon = await Content.create({ title, desc })
-//  console.log(newCon);
-// })
 
 
 
