@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const { Season, Serial, Content } = require('../db/models')
 const adminCheck = require('../middleware/adminCheck')
+const { rm } = require('fs/promises');
 
 router
     .route('/')
