@@ -1,10 +1,12 @@
 require('dotenv').config()
 const router = require('express').Router()
 const bcrypt = require('bcrypt');
-const { User } = require('../db/models')
+const  userCheck  = require('../middleware/userCheck')
+const { User } = require('../db/models');
+const authCheck = require('../middleware/authCheck');
 
 router.route('/signup')
-    .post(async (req, res) => {
+    .post(authCheck, async (req, res) => {
         const { email, password } = req.body;
 
         if (email && password) {
@@ -27,8 +29,8 @@ router.route('/signup')
         }
     })
 
-router.route('/signin')
-    .post(async (req, res) => {
+router.route( '/signin')
+    .post(authCheck, async (req, res) => {
 
         const { email, password } = req.body;
         if (email && password) {
@@ -56,7 +58,7 @@ router.route('/signin')
     })
 
 router.route('/signout')
-    .get((req, res) => {
+    .get(userCheck, (req, res) => {
         req.session.destroy()
         res.clearCookie('sid').sendStatus(200)
     })

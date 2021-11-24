@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getSeries, getWatchSeries } from '../redux/ac/ac'
 import style from './style.module.css'
+import ReactStars from "react-rating-stars-component";
+import { render } from "react-dom";
 
 
 
@@ -28,6 +30,7 @@ const WatchSeries = () => {
           </video>
         </div>
       <div className={style.title}>{seriya.title}</div>
+      
         <div className={style.description}>
           {seriya.desc}
         </div>
@@ -40,7 +43,3 @@ const WatchSeries = () => {
 
 export default WatchSeries
 
-{/* <div>{seriya.title}</div>
-    <div>{seriya.desc}</div>
-    <div>{seriya.path_video}</div>
-    <div>{seriya.path_img }</div> */}
