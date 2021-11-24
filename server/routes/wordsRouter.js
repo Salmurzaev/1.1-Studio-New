@@ -5,6 +5,7 @@ router.route('/').post(async (req, res) => {
     const search = await req.body.word
     console.log(search)
     if (search.path === '/films') {
+      // const films = content.filter((el) => el.serial_id === null && el.season_id === null)
         const word = await Content.findAll({
             where: { title: { [Op.iLike]: `%${search.input}%` } },
         })
