@@ -11,6 +11,7 @@ import {
     SIGNOUT,
     SIGNUP,
     GET_PRODUCER,
+    CLEAR_SEARCH,
 } from '../types/types'
 
 const setContent = (value) => {
@@ -82,7 +83,6 @@ export const signIn = (value, navigate) => async (dispatch) => {
         const user = await axios.post('/user/signin', value)
         if (user) {
             dispatch({ type: SIGNIN, payload: user.data.user })
-            navigate('/')
         }
     } catch (err) {
         navigate('/user/signin')
@@ -106,5 +106,11 @@ export const getProducer = () => async (dispatch) => {
     dispatch({
         type: GET_PRODUCER,
         payload: allProducers.data,
+    })
+}
+
+export const clearStateSearch = () => async (dispatch) => {
+    dispatch({
+        type: CLEAR_SEARCH,
     })
 }

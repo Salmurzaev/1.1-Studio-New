@@ -42,9 +42,8 @@ const data = [
 const useStyles = makeStyles(({ palette, breakpoints, spacing }) => ({
   root: {
     margin: 'auto',
-    // a must if you want to set arrows, indicator as absolute
     position: 'relative',
-    width: '40%',
+    width: '60%',
   },
   slide: {
     perspective: 1000, // create perspective
@@ -73,6 +72,8 @@ const useStyles = makeStyles(({ palette, breakpoints, spacing }) => ({
     color: 'white',
     display: 'none',
     position: 'absolute',
+    padding: '40px',
+    border: "40px",
     top: '50%',
     transform: 'translateY(-50%)',
     [breakpoints.up('sm')]: {
@@ -83,14 +84,14 @@ const useStyles = makeStyles(({ palette, breakpoints, spacing }) => ({
     color: 'white',
     left: 0,
     [breakpoints.up('lg')]: {
-      left: -4,
+      left: -24,
     },
   },
   arrowRight: {
     color: 'white',
     right: 0,
     [breakpoints.up('lg')]: {
-      right: -39,
+      right: -78,
     },
   },
 

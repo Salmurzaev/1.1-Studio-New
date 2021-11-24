@@ -1,23 +1,44 @@
 const router = require('express').Router()
 const { Vacancy } = require('../db/models')
+const adminCheck = require('../middleware/adminCheck')
 
 router.route('/')
     .get(async (req, res) => {
-        const vacancies = await Vacancy.findAll()
-        res.json(vacancies)
+        try {
+            const vacancies = await Vacancy.findAll()
+            res.json(vacancies)
+        } catch (error) {
+            console.log(error)
+            res.sendStatus(500)
+        }
     })
-    .post(async (req, res) => {
-        const newVacancy = await Vacancy.create({ ...req.body })
-        res.json(newVacancy)
+    .post(adminCheck, async (req, res) => {
+        try {
+            const newVacancy = await Vacancy.create({ ...req.body })
+            res.json(newVacancy)
+        } catch (error) {
+            console.log(error)
+            res.sendStatus(401)
+        }
     })
 router.route('/:id')
     .get(async (req, res) => {
-        const vacancy = await Vacancy.findOne({ where: { id: req.params.id } })
-        res.json(vacancy)
+        try {
+            const vacancy = await Vacancy.findOne({ where: { id: req.params.id } })
+            res.json(vacancy)
+        } catch (error) {
+            console.log(error)
+            res.sendStatus(500)
+        }
     })
-    .delete(async (req, res) => {
-        await Vacancy.destroy({ where: { id: req.params.id } })
-        res.sendStatus(200)
+    .delete(adminCheck, async (req, res) => {
+        try {
+            await Vacancy.destroy({ where: { id: req.params.id } })
+            res.sendStatus(200)
+        } catch (error) {
+            console.log(error)
+            res.sendStatus(401)
+        }
     })
 
 module.exports = router

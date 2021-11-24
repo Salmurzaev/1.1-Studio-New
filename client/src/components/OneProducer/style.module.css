@@ -14,21 +14,6 @@ width: calc(100%+40px);
 margin: 0 -20px;
 }
 
-/* .nameProducer{
-  padding-top: 450px;
-  padding-left: 60px;
-  width: 80px;
-  font-family: 'Bebas Neue';
-  font-size: 22.4px;
-  line-height: 31px;
-  font-weight: 400;
-  text-transform: uppercase;
-  text-shadow: 1px 2px 0px rgba(0,0,0,0.85);
-  color: #ffffff;
-  position: absolute;
-
-} */
-
 .nameProducer{
   padding-top: 20px;
   font-family: 'Bebas Neue';

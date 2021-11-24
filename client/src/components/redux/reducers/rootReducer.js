@@ -8,15 +8,16 @@ import { watchSeriesReducer } from './watchSeriesReducer'
 import { wordsReducer } from './wordsReducer'
 import { producerReducer } from './producerReducer'
 
+
 export const rootReducer = combineReducers({
     // reducers
-
     content: contentReducer,
     serials: serialReducer,
     season: seasonReducer,
     series: seriesReducer,
-    watchSeries: watchSeriesReducer ,
+    watchSeries: watchSeriesReducer,
     user: userReducer,
     words: wordsReducer,
-  producer: producerReducer
+    producer: producerReducer,
 })
+

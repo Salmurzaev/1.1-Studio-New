@@ -34,11 +34,11 @@ module.exports = {
       },
       path_video: {
         type: Sequelize.STRING,
-        allowNull: false
+        
       },
       path_img: {
         type: Sequelize.STRING,
-        allowNull: false,
+        
       },
       createdAt: {
         allowNull: false,
