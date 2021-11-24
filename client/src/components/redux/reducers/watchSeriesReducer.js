@@ -1,4 +1,4 @@
-import { SET_WATCH_SERIES } from '../types/types'
+import { CLEAR_SEARCH, SET_WATCH_SERIES } from '../types/types'
 
 export const watchSeriesReducer = (state = [], action) => {
     const { type, payload } = action

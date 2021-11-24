@@ -17,6 +17,7 @@ router.route('/')
     .post(adminCheck, async (req, res) => {
         try {
             const content = await Content.create({ ...req.body })
+            
             res.json(content)
         } catch (error) {
             console.log(error)

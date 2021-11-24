@@ -17,7 +17,7 @@ const Season = () => {
   console.log(serial_id)
 
   const dispatch = useDispatch()
-  
+
   useEffect(() => {
     dispatch(getSeason(serial_id))
   }, [dispatch])
@@ -29,6 +29,7 @@ const Season = () => {
 
   return (
     <div className={style.allFilm}>
+      <Link to={`/season/${serial_id}`}>Добавить сезон</Link>
       {seasons.map(el => (
         // <>
         //   <Link to={`/serials/${serial_id}/${el.id}`}> {el.title} </Link>
@@ -36,24 +37,25 @@ const Season = () => {
         // </>
 
         <div className={style.main}>
-              <div className={style.col}>
-                <img src={el.path_img} className={style.cardImgTop} alt="..." />
-                <div className={style.card}>
-                  <h5 className={style.card_title}>{el.title}</h5>
-                  <Link to={`/serials/${serial_id}/${el.id}`}> <Button variant="contained" path={`/content/${el.id}`} description={el.desc} color="error">Смотреть</Button></Link>
-                  {user?.name === "admin" ?
-                    <Button variant="contained" color="error" onClick={() => dispatch(delSeason(el.id))}>Delete</Button>
-                    :
-                    <></>
-                  }
-                </div>
-              </div>
+          <div className={style.col}>
+            <img src={el.path_img} className={style.cardImgTop} alt="..." />
+            <div className={style.card}>
+              <h5 className={style.card_title}>{el.title}</h5>
+              <Link to={`/serials/${serial_id}/${el.id}`}> <Button variant="contained" path={`/content/${el.id}`} description={el.desc} color="error">Смотреть</Button></Link>
+              {user?.name === "admin" ?
+                <Button variant="contained" color="error" onClick={() => dispatch(delSeason(el.id))}>Delete</Button>
+                :
+                <></>
+              }
             </div>
-         )
-        )
-       }
+          </div>
+        </div>
+      )
+      )
+      }
     </div>
   )
 }
 
 export default Season
+

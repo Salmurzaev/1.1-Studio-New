@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Button } from '@material-ui/core'
+
+
 const Search = ({ path }) => {
   const dispatch = useDispatch()
   const [input, setInput] = useState('')
@@ -54,4 +56,3 @@ const Search = ({ path }) => {
 }
 
 export default Search
-

@@ -1,14 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getSeries, getWatchSeries } from '../redux/ac/ac'
+import { clearStateSearch, getSeries, getWatchSeries } from '../redux/ac/ac'
 import style from './style.module.css'
-import ReactStars from "react-rating-stars-component";
-import { render } from "react-dom";
-
-
 
 
 const WatchSeries = () => {
@@ -26,7 +22,7 @@ const WatchSeries = () => {
     <>
       <div>
         <div className={style.videoplayer}>
-          <video id="videoPlayer" className="video" width="100%"  poster={seriya.path_img} controls>
+          <video id="videoPlayer" className="video" width="100%"  poster={seriya.path_img} controls autoPlay>
             <source src={`http://localhost:3001/video/${id}`} type="video/mp4" />
           </video>
         </div>
@@ -43,4 +39,3 @@ const WatchSeries = () => {
 }
 
 export default WatchSeries
-
