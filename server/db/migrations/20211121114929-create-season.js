@@ -15,6 +15,9 @@ module.exports = {
       desc: {
         type: Sequelize.STRING,
       },
+      path_img: {
+        type:Sequelize.TEXT
+      },
       serial_id: {
         allowNull: false,
         type: Sequelize.INTEGER,

@@ -15,6 +15,7 @@ router
     })
     .post(adminCheck, async (req, res) => {
         try {
+            
             const newSerial = await Serial.create({ ...req.body })
             res.json(newSerial)
         } catch (error) {
@@ -35,7 +36,8 @@ router
     })
     .post(adminCheck, async (req, res) => {
         try {
-            const newSeason = await Season.create({ title: req.body.title, serial_id: req.params.id })
+            console.log(req.body, req.params.id, 'asd')
+            const newSeason = await Season.create({ ...req.body,  serial_id: req.params.id })
             res.json(newSeason)
         } catch (error) {
             console.log(error)
@@ -65,7 +67,7 @@ router.route('/:serial_id/:season_id')
             console.log(error)
             res.sendStatus(500)
         }
-        res.json(content)
+   
     })
 
 

@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         {
             title: DataTypes.STRING,
             desc: DataTypes.STRING,
+            path_img: DataTypes.TEXT
         },
         {
             sequelize,

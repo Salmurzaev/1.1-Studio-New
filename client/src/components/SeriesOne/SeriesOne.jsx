@@ -24,9 +24,7 @@ const SeriesOne = () => {
                             Смотреть
                         </Button>
                     </Link>
-                    <div>{el.desc}</div>
-                    <div>{el.path_video}</div>
-                    <div>{el.path_img}</div>
+                  
                 </>
             ))}
         </div>

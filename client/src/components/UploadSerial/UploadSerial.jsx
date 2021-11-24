@@ -5,24 +5,26 @@ import { useNavigate } from 'react-router-dom'
 
 const UploadSerial = () => {
     const navigate = useNavigate()
-    const [serialTitle, setSerialTitle] = useState('')
+    const [postInput, setPostInput] = useState({ title: '', desc: '' })
+
     const [serial_id, setSerial_id] = useState('')
     const [season_id, setSeason_id] = useState('')
     const [switchForm, setSwitchForm] = useState(true)
-    const [season_title, setSeasonTitle] = useState('')
+    const [season_input, setSeason_Input] = useState({ title: '', desc: '' })
 
     const titleHandler = (e) => {
-        setSerialTitle(e.target.value)
+        setPostInput((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
     const seasonTitleHandler = (e) => {
-        setSeasonTitle(e.target.value)
+        setSeason_Input((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
     const onSubmitInfoHandler = async (e) => {
         e.preventDefault()
         const response = await axios.post('http://localhost:3001/serials', {
-            title: serialTitle,
+            title: postInput.title,
+            desc: postInput.desc,
         })
         setSerial_id(response.data.id)
         setSwitchForm(false)
@@ -32,9 +34,9 @@ const UploadSerial = () => {
         e.preventDefault()
         const response = await axios.post(
             `http://localhost:3001/serials/${serial_id}`,
-            { title: season_title }
+            { title: season_input.title, desc: season_input.desc }
         )
-        if (response.status===200) {
+        if (response.status === 200) {
             const data = await response.data
             setSeason_id(data.id)
             navigate(`/mult/${serial_id}/${data.id}`)
@@ -48,7 +50,13 @@ const UploadSerial = () => {
                     <input
                         placeholder='Название сериала'
                         name='title'
-                        value={serialTitle}
+                        value={postInput.title}
+                        onChange={titleHandler}
+                    />
+                    <input
+                        placeholder='Описание сериала'
+                        name='desc'
+                        value={postInput.desc}
                         onChange={titleHandler}
                     />
                     <button type='submit'>Submit</button>
@@ -58,7 +66,13 @@ const UploadSerial = () => {
                     <input
                         placeholder='Название сезона'
                         name='title'
-                        value={season_title}
+                        value={season_input.title}
+                        onChange={seasonTitleHandler}
+                    />
+                    <input
+                        placeholder='Описание сезона'
+                        name='desc'
+                        value={season_input.desc}
                         onChange={seasonTitleHandler}
                     />
                     <button type='submit'>Submit</button>

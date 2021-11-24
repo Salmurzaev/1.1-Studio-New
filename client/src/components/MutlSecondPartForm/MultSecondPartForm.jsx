@@ -10,6 +10,8 @@ const MultSecondPartForm = () => {
     const [contentId, setContentId] = useState('')
     const [fileData, setFileData] = useState()
     const [videoData, setvideoData] = useState()
+    const [serialData, setSerialData] = useState()
+    const [seasonData, setSeasonData] = useState()
     const postInputHandler = (e) => {
         setPostInput((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
@@ -33,13 +35,21 @@ const MultSecondPartForm = () => {
     const filmChangeHandler = (e) => {
         setvideoData(e.target.files[0])
     }
-
+    const serialChangeHandler = (e) => {
+        setSerialData(e.target.files[0])
+    }
+    const seasonChangeHandler = (e) => {
+        setSeasonData(e.target.files[0])
+    }
+    console.log(fileData, videoData, serialData, '================')
     const onSubmitHandler = (e) => {
         e.preventDefault()
         const dataImg = new FormData()
         dataImg.append('image', fileData)
         dataImg.append('video', videoData)
-
+        dataImg.append('path_imgserial', serialData)
+        dataImg.append('path_imgseason', seasonData)
+        console.log(dataImg, 'dataImg')
         fetch(`http://localhost:3001/uploadfilm/${contentId}`, {
             method: 'POST',
             body: dataImg,
@@ -83,6 +93,19 @@ const MultSecondPartForm = () => {
                             type='file'
                             name='img'
                             onChange={fileChangeHandler}
+                        />
+
+                        <span>Постер Сериала</span>
+                        <input
+                            type='file'
+                            name='path_imgserial'
+                            onChange={serialChangeHandler}
+                        />
+                        <span>Постер Сезона</span>
+                        <input
+                            type='file'
+                            name='path_imgseason'
+                            onChange={seasonChangeHandler}
                         />
                         <span>Видео серии</span>
                         <input
