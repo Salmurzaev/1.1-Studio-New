@@ -3,8 +3,7 @@ const { Content, Season, Serial, Rating } = require('../db/models')
 const userCheck = require('../middleware/userCheck')
 const adminCheck = require('../middleware/adminCheck')
 
-router
-    .route('/')
+router.route('/')
     .get(async (req, res) => {
         try {
             const allContent = await Content.findAll()
@@ -36,13 +35,9 @@ router
             res.sendStatus(401)
         }
     })
-    .delete(adminCheck,async (req, res) => {
-        await Content.destroy({ where: { id: req.params.id } })
-        res.sendStatus(200)
-    })
 
-router
-    .route('/:id/rating')
+
+router.route('/:id')
     .get(async (req, res) => {
         const rating = await Rating.findAll({
             where: { content_id: req.params.id },
@@ -50,8 +45,10 @@ router
         const sumRating = rating.reduce((acc, item) => {
             return acc + item.rating
         }, 0)
+        const data = await Content.findOne({ where: { id: req.params.id }})
+        const { dataValues } = data
         const currentRating = sumRating / rating.length
-        res.json(content)
+        res.json({...dataValues, currentRating })
     })
     .post(async (req, res) => {
         await Rating.create({
@@ -61,19 +58,24 @@ router
         })
         res.sendStatus(200)
     })
-
-router.route('/:id/rating').post(userCheck, async (req, res) => {
-    try {
-        await Rating.create({
-            content_id: req.params.id,
-            user_id: req.session.user.id,
-            rating: req.body.rating,
-        })
+    .delete(adminCheck, async (req, res) => {
+        await Content.destroy({ where: { id: req.params.id } })
         res.sendStatus(200)
-    } catch (error) {
-        console.log(error)
-        res.sendStatus(401)
-    }
-})
+    })
+
+router.route('/:id/rating')
+    .post(userCheck, async (req, res) => {
+        try {
+            await Rating.create({
+                content_id: req.params.id,
+                user_id: req.session.user.id,
+                rating: req.body.rating,
+            })
+            res.sendStatus(200)
+        } catch (error) {
+            console.log(error)
+            res.sendStatus(401)
+        }
+    })
 
 module.exports = router
