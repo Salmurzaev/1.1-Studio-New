@@ -28,6 +28,9 @@ const Films = () => {
             <Search />
             <h1 className={style.new_film}>Новинки</h1>
             <Carousel />
+            <div>
+                <Link to='/uploadfilm'>Добавить фильм</Link>
+            </div>
             <div className={style.allFilm}>
                 {films.map((el) => (
                     <>

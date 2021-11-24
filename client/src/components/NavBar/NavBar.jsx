@@ -1,12 +1,14 @@
 import React from 'react'
 import style from './Style.module.css'
-import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-
-
+import { useDispatch, useSelector } from 'react-redux'
+import { signOut } from '../redux/ac/ac'
 const NavBar = () => {
-    const  user  = useSelector(state => state.user)
-
+    const user = useSelector(state => state.user)
+    const dispatch = useDispatch()
+    const logOutHandler = () => {
+        dispatch(signOut())
+    }
     return (
         <div className={style.NavBar}>
             <div className={style.wrapper}>
@@ -38,11 +40,11 @@ const NavBar = () => {
                     <div className={style.navbarLinks}> Регистрация </div>
                 </Link>
                 {
-                    user ? 
-                <Link to='/user/signout'>
-                    <div className={style.navbarLinks}> Выход </div>
-                </Link>
-                : ""
+                    user ?
+                        <button onClick={logOutHandler} className={style.navbarLinks}>
+                            Выход
+                        </button>
+                        : ""
                 }
             </div>
         </div>
@@ -50,3 +52,5 @@ const NavBar = () => {
 }
 
 export default NavBar
+
+

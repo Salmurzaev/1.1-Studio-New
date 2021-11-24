@@ -14,7 +14,6 @@ module.exports = {
       },
       desc: {
         type: Sequelize.STRING,
-        allowNull: false
       },
       serial_id: {
         allowNull: false,

@@ -1,8 +1,9 @@
 const router = require('express').Router()
 const { Season, Serial, Content } = require('../db/models')
-const  adminCheck  = require('../middleware/adminCheck')
+const adminCheck = require('../middleware/adminCheck')
 
-router.route('/')
+router
+    .route('/')
     .get(async (req, res) => {
         try {
             const serials = await Serial.findAll()
@@ -21,7 +22,8 @@ router.route('/')
             res.sendStatus(401)
         }
     })
-router.route('/:id')
+router
+    .route('/:id')
     .get(async (req, res) => {
         try {
             const seasons = await Season.findAll({ where: { serial_id: req.params.id } })
@@ -42,7 +44,7 @@ router.route('/:id')
     })
     .delete(adminCheck, async (req, res) => {
         try {
-            await Serial.destroy({ where: {id: req.params.id}})
+            await Serial.destroy({ where: { id: req.params.id } })
             res.sendStatus(200)
         } catch (error) {
             console.log(error)
@@ -50,17 +52,21 @@ router.route('/:id')
         }
     })
 router.route('/:serial_id/:season_id')
-    .get(async(req, res) => {
+    .get(async (req, res) => {
         try {
-            const content = await Content.findAll({where: {
-                serial_id: req.params.serial_id,
-                season_id: req.params.season_id
-            }})
+            const content = await Content.findAll({
+                where: {
+                    serial_id: req.params.serial_id,
+                    season_id: req.params.season_id
+                }
+            })
             res.json(content)
         } catch (error) {
             console.log(error)
             res.sendStatus(500)
         }
+        res.json(content)
     })
+
 
 module.exports = router
