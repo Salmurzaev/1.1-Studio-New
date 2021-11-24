@@ -33,19 +33,20 @@ const UploadFormFilm = () => {
         const dataImg = new FormData()
         dataImg.append('image', fileData)
         dataImg.append('video', videoData)
-        fetch(`http://localhost:3001/uploadfilm/${id}`, {
-            method: 'POST',
-            body: dataImg,
-            // onUploadProgress: progress => {
-            //     const { total, loaded } = progress;
-            //     const totalSizeInMB = total / 1000000;
-            //     const loadedSizeInMB = loaded / 1000000;
-            //     const uploadPercentage = (loadedSizeInMB / totalSizeInMB) * 100;
-            //     setProgress(uploadPercentage.toFixed(2))
-            //     console.log("total size in MB ==> ", totalSizeInMB);
-            //     console.log("uploaded size in MB ==> ", loadedSizeInMB);
-            // }
-        })
+
+        const options = {
+            onUploadProgress: progress => {
+                const { total, loaded } = progress;
+                const totalSizeInMB = total / 1000000;
+                const loadedSizeInMB = loaded / 1000000;
+                const uploadPercentage = (loadedSizeInMB / totalSizeInMB) * 100;
+                setProgress(uploadPercentage.toFixed(2))
+                console.log("total size in MB ==> ", totalSizeInMB);
+                console.log("uploaded size in MB ==> ", loadedSizeInMB);
+            }
+        }
+
+        axios.post(`http://localhost:3001/uploadfilm/${id}`, dataImg, options)
             .then((result) => {
                 console.log('File Sent Successful')
                 navigate('/films')

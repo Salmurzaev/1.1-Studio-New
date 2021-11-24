@@ -1,19 +1,21 @@
 import axios from 'axios'
 import {
-    SET_SERIES,
-    SET_FILMS,
-    DEL_FILMS,
-    SET_WATCH_SERIES,
-    GET_WORDS,
-    SET_SEASON,
-    SET_CONTENT,
-    SET_SERIALS,
-    SIGNIN,
-    SIGNOUT,
-    SIGNUP,
-    GET_PRODUCER,
-    CLEAR_SEARCH,
-    DEL_SERIAL,
+  SET_SERIES,
+  SET_FILMS,
+  DEL_FILMS,
+  SET_WATCH_SERIES,
+  GET_WORDS,
+  SET_SEASON,
+  SET_CONTENT,
+  SET_SERIALS,
+  SIGNIN,
+  SIGNOUT,
+  SIGNUP,
+  GET_PRODUCER,
+  CLEAR_SEARCH,
+  DEL_SERIAL,
+  DEL_SERIE,
+  DEL_SEASON,
 } from '../types/types'
 
 const setContent = (value) => {
@@ -65,6 +67,33 @@ const deleteSerial = (id) => {
     }
 }
 
+const deleteSerie = (id) => {
+  return {
+    type: DEL_SERIE,
+    payload: id
+  }
+}
+
+const deleteSeason = (id) => {
+  return {
+    type: DEL_SEASON,
+    payload: id
+  }
+}
+
+
+export const delSeason = (id) => async (dispatch) => {
+  const response = await axios.delete(`/seasons/${id}`)
+  
+  dispatch(deleteSeason(id))
+}
+
+
+export const delSerie = (id) => async (dispatch) => {
+  const response = await axios.delete(`/content/${id}`)
+  
+  dispatch(deleteSerie(id))
+}
 
 export const delSerial = (id) => async (dispatch) => {
     const response = await axios.delete(`/serials/${id}`)

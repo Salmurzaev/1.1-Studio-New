@@ -7,7 +7,9 @@ export const SET_CONTENT = 'SET_CONTENT'
 
 
 export const SET_SEASON = 'SET_SEASON'
+export const DEL_SEASON = 'DEL_SEASON'
 export const SET_SERIES = 'SET_SERIES'
+export const DEL_SERIE = 'DEL_SERIE'
 export const SET_WATCH_SERIES = 'SET_WATCH_SERIES'
 
 export const SET_WORDS = 'SET_WORDS'
