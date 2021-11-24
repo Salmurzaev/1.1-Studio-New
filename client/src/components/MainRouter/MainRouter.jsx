@@ -24,6 +24,9 @@ import SignUpForm from '../SignUpForm/SignUpForm'
 import UploadFormFilm from '../UploadFormFilm/UploadForm'
 import UploadSerial from '../UploadSerial/UploadSerial'
 import MultSecondPartForm from '../MutlSecondPartForm/MultSecondPartForm'
+import CreateSeason from '../CreateSeason/CreateSeason'
+import CreateSeries from '../CreateSeries/CreateSeries'
+import CreateSeriesOne from '../CreateSeriesOne/CreateSeriesOne'
 
 
 
@@ -56,6 +59,9 @@ export default function MainRouter() {
                 <Route path='/uploadfilm' element={<UploadFormFilm />} />
                 <Route path='/uploadserial' element={<UploadSerial />} />
                 <Route path='/mult/:serial_id/:season_id' element={<MultSecondPartForm />} />
+                <Route path='/season/:serial_id/' element={<CreateSeason />} />
+                <Route path='/season/:serial_id/:season_id' element={<CreateSeries />} />
+                <Route path='/newserial/:serial_id/:season_id/' element={<CreateSeriesOne />} />
             </Routes>
         </div>
     )

@@ -5,7 +5,7 @@ export const watchSeriesReducer = (state = [], action) => {
     switch (type) {
         case SET_WATCH_SERIES:
             return payload
-          
+
         default:
             return state
     }

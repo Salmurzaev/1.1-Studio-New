@@ -41,7 +41,7 @@ const MultSecondPartForm = () => {
     const seasonChangeHandler = (e) => {
         setSeasonData(e.target.files[0])
     }
-    console.log(fileData, videoData, serialData, '================')
+    
     const onSubmitHandler = (e) => {
         e.preventDefault()
         const dataImg = new FormData()
@@ -75,7 +75,7 @@ const MultSecondPartForm = () => {
                             onChange={postInputHandler}
                         />
                         <input
-                            label='Discriptions'
+                            label='Descriptions'
                             name='desc'
                             placeholder='Описание серии'
                             value={postInput.desc}

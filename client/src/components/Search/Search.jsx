@@ -3,7 +3,7 @@ import style from './style.module.css'
 import { clearStateSearch, getWords } from '../redux/ac/ac'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+
 const Search = ({ path }) => {
     const dispatch = useDispatch()
     const [input, setInput] = useState('')
@@ -34,4 +34,3 @@ const Search = ({ path }) => {
 }
 
 export default Search
-

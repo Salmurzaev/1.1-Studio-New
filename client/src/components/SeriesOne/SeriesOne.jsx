@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom'
 import { getSeries } from '../redux/ac/ac'
 import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button'
+
 const SeriesOne = () => {
     const dispatch = useDispatch()
     const { serial_id, season_id } = useParams()
@@ -16,8 +17,10 @@ const SeriesOne = () => {
     console.log(series, 'series')
     return (
         <div>
+            <Link to={`/newserial/${serial_id}/${season_id}`}>Добавить Cерию</Link>
             {series.map((el) => (
                 <>
+                    
                     <Link to={`/content/${el.id}`}>
                         {el.title}
                         <Button variant='contained' color='error'>
