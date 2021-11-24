@@ -30,7 +30,7 @@ const SeriesOne = () => {
                             Смотреть
                         </Button>
                     </Link>
-                    {user.name === "admin" ?
+                    {user?.name === "admin" ?
                     <Button variant="contained" color="error">Delete</Button>
                     :
                     <></>

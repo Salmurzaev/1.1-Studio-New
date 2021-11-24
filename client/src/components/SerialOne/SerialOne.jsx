@@ -9,7 +9,7 @@ const SerialOne = ({serial_id, title}) => {
   return (
     <div>
       <Link to={`/serials/${serial_id}`}> {title}</Link>
-      {user.name === "admin" ?
+      {user?.name === "admin" ?
                     <Button variant="contained" color="error">Delete</Button>
                     :
                     <></>
