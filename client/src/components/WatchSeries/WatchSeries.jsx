@@ -19,14 +19,15 @@ const WatchSeries = () => {
     dispatch(getWatchSeries(id))
   }, [dispatch])
   const seriya = useSelector((state) => state.watchSeries)
+  
   return (
 
 
     <>
       <div>
         <div className={style.videoplayer}>
-          <video id="videoPlayer" className="video" width="100%"  poster={seriya.path_img} controls loop='true' >
-            <source src={seriya.path_video} type="video/mp4" />
+          <video id="videoPlayer" className="video" width="100%"  poster={seriya.path_img} controls>
+            <source src={`http://localhost:3001/video/${id}`} type="video/mp4" />
           </video>
         </div>
       <div className={style.title}>{seriya.title}</div>
