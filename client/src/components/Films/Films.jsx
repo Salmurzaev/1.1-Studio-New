@@ -25,7 +25,7 @@ const Films = () => {
 
     return (
         <div className={style.filmWrapper}>
-            <Search />
+            <Search path={location.pathname}/>
             <h1 className={style.new_film}>Новинки</h1>
             <Carousel />
             <div>
