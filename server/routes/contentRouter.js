@@ -51,7 +51,7 @@ router
             return acc + item.rating
         }, 0)
         const currentRating = sumRating / rating.length
-        res.json(currentRating)
+        res.json(content)
     })
     .post(async (req, res) => {
         await Rating.create({
