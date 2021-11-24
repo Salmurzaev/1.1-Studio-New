@@ -1,5 +1,7 @@
 export const SET_FILMS = 'SET_FILMS'
+export const DEL_FILMS = 'DEL_FILMS'
 export const SET_SERIALS = 'SET_SERIALS'
+export const DEL_SERIAL = 'DEL_SERIAL'
 
 export const SET_CONTENT = 'SET_CONTENT'
 

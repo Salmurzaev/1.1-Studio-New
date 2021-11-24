@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getSeries } from '../redux/ac/ac'
+import { delFilm, getSeries } from '../redux/ac/ac'
 import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button'
 const SeriesOne = () => {
@@ -31,7 +31,7 @@ const SeriesOne = () => {
                         </Button>
                     </Link>
                     {user?.name === "admin" ?
-                    <Button variant="contained" color="error">Delete</Button>
+                    <Button variant="contained" color="error" onClick={() => dispatch(delFilm(el.id))}>Delete</Button>
                     :
                     <></>
                   }

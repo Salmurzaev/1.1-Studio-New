@@ -4,7 +4,7 @@ import Search from '../Search/Search'
 import style from './style.module.css'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { getContent } from '../redux/ac/ac'
+import { delFilm, getContent } from '../redux/ac/ac'
 import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Button from '@mui/material/Button'
@@ -15,6 +15,7 @@ const Films = () => {
   let location = useLocation()
 
   const dispatch = useDispatch()
+
   useEffect(() => {
     dispatch(getContent())
   }, [dispatch])
@@ -26,9 +27,9 @@ const Films = () => {
   )
 
 
-  const deleteFunc = () => {
+  // const deleteFunc = () => {
 
-  }
+  // }
 
   const user = useSelector((state) => state.user)
 
@@ -50,7 +51,7 @@ const Films = () => {
                   <h5 className={style.card_title}>{el.title}</h5>
                   <Link to={`/content/${el.id}`}> <Button variant="contained" path={`/content/${el.id}`} description={el.desc} color="error">Смотреть</Button></Link>
                   {user?.name === "admin" ?
-                    <Button variant="contained" color="error">Delete</Button>
+                    <Button variant="contained" color="error" onClick={() => dispatch(delFilm(el.id))}>Delete</Button>
                     :
                     <></>
                   }
