@@ -32,14 +32,13 @@ const Advertising = () => {
                     {service.map((el) => (
                         <>
                             <div className={style.serviceTitle}>
-                                <h3>{el.title}</h3>
+                                <h3 className={style.titleAdvertising}>{el.title}</h3>
                             </div>
                             <div className={style.serviceDescript}>
-                                {el.desc}
-                            </div>
-                            <div>
+                               <p> {el.desc}</p> 
                                 <Button variant="contained" color="error" onClick={() => dispatch(delSerice(el.id))}>Delete</Button>
                             </div>
+                            
                         </>
 
                     ))}

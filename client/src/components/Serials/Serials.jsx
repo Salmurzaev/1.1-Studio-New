@@ -9,6 +9,8 @@ import { useLocation } from 'react-router-dom'
 import SerialOne from '../SerialOne/SerialOne'
 import { Link } from 'react-router-dom'
 import { Button } from '@material-ui/core'
+import plus from '../image/plus.png'
+// import Button from '@mui/material/Button'
 
 const Serials = () => {
   let location = useLocation()
@@ -29,8 +31,9 @@ const Serials = () => {
         <Search path={location.pathname} />
         {
           user?.name === "admin" ?
-            <div>
-              <Link to='/uploadserial'>Добавить Cериал</Link>
+            <div className={style.allSerialContainer}>
+              <Link className={style.addSerial}  to='/uploadserial'>Добавить Cериал</Link>
+              <Link to='/uploadserial'><img src={plus} className={style.plus} width='30px' height='30px' alt="plus" /></Link>
             </div>
             :
             <></>

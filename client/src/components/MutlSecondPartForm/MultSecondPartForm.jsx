@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
+import Button from '@mui/material/Button'
 const MultSecondPartForm = () => {
     const navigate = useNavigate()
     const [postInput, setPostInput] = useState({ title: '', desc: '' })
@@ -81,7 +82,7 @@ const MultSecondPartForm = () => {
                             value={postInput.desc}
                             onChange={postInputHandler}
                         />
-                        <button>Send</button>
+                       <Button variant="contained" color="error" type='submit'>Submit</Button>
                     </form>
                 </>
             ) : (
@@ -115,7 +116,7 @@ const MultSecondPartForm = () => {
                         />
                         <br />
                         <br />
-                        <button type='submit'>Submit File to Backend</button>
+                        <Button variant="contained" color="error" type='submit'>Submit</Button>
                     </form>
                 </>
             )}
