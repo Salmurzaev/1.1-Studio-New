@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
+import Button from '@mui/material/Button'
+import ProgresBar from '../ProgresBar/ProgresBar'
+
+
 
 const CreateSeriesOne = () => {
     const navigate = useNavigate()
@@ -11,6 +15,8 @@ const CreateSeriesOne = () => {
     const [contentId, setContentId] = useState('')
     const [fileData, setFileData] = useState()
     const [videoData, setvideoData] = useState()
+    const [progress, setProgress] = useState(0);
+    const [persent, setPersent] = useState(0)
 
     const postInputHandler = (e) => {
         setPostInput((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -47,13 +53,22 @@ const CreateSeriesOne = () => {
         dataImg.append('image', fileData)
         dataImg.append('video', videoData)
 
-        fetch(
-            `http://localhost:3001/newserial/${serial_id}/${season_id}/${contentId}`,
-            {
-                method: 'POST',
-                body: dataImg,
+        const options = {
+            onUploadProgress: progress => {
+                const { total, loaded } = progress;
+                const totalSizeInMB = total / 1000000;
+                const loadedSizeInMB = loaded / 1000000;
+                const uploadPercentage = (loadedSizeInMB / totalSizeInMB) * 100;
+                setProgress(uploadPercentage.toFixed(2))
+                console.log("total size in MB ==> ", totalSizeInMB);
+                console.log("uploaded size in MB ==> ", loadedSizeInMB);
+                setPersent(uploadPercentage)
             }
-        ).then((res) => navigate('/serials'))
+        }
+        console.log(options);
+
+        axios.post(`http://localhost:3001/newserial/${serial_id}/${season_id}/${contentId}`, dataImg, options)
+            .then((res) => navigate('/serials'))
     }
 
     return (
@@ -86,7 +101,7 @@ const CreateSeriesOne = () => {
                         onChange={fileChangeHandler}
                     />
 
-                  
+
                     <span>Видео серии</span>
                     <input
                         type='file'
@@ -94,8 +109,9 @@ const CreateSeriesOne = () => {
                         onChange={filmChangeHandler}
                     />
                     <br />
+                    <ProgresBar progress={progress} />
                     <br />
-                    <button type='submit'>Submit File to Backend</button>
+                    <Button type='submit' variant="contained" color="error">Send</Button>
                 </form>
             )}
         </div>
