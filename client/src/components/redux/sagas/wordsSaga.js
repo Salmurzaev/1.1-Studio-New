@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { call, put, takeEvery, debounce, delay } from 'redux-saga/effects'
+import { call, put,  debounce, delay } from 'redux-saga/effects'
 import { GET_WORDS, SET_WORDS } from '../types/types';
 
 const fetchWords = (word) => {

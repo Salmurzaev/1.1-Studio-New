@@ -24,7 +24,7 @@ const Films = () => {
     (el) => el.season_id === null && el.serial_id === null
   )
   const user = useSelector((state) => state.user)
-
+  const words = useSelector((state)=> state.words)
   return (
     <div className={style.filmWrapper}>
       <Search path={location.pathname} />
