@@ -52,14 +52,7 @@ router.route('/:id')
         const currentRating = sumRating / rating.length
         res.json({ ...dataValues, currentRating })
     })
-    .post(userCheck, async (req, res) => {
-        await Rating.create({
-            content_id: req.params.id,
-            user_id: req.session.user.id,
-            rating: req.body.rating,
-        })
-        res.sendStatus(200)
-    })
+    
     .delete(adminCheck, async (req, res) => {
         const content = await Content.findOne({ where: { id: req.params.id } })
         const { dataValues } = content
