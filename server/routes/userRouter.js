@@ -20,12 +20,14 @@ router.route('/signup').post(async (req, res) => {
             req.session.user = {
                 id: currentUser.id,
                 name: currentUser.name,
+                isAdmin: currentUser.isAdmin
             }
             
             res.json({
                 user: {
                     name: currentUser.name,
                     id: currentUser.id,
+                    isAdmin: currentUser.isAdmin
                 },
             })
         } catch (err) {
@@ -35,18 +37,19 @@ router.route('/signup').post(async (req, res) => {
 })
 
 
-router.route( '/signin')
+router.route('/signin')
     .post(authCheck, async (req, res) => {
         const { email, password } = req.body;
         if (email && password) {
             try {
                 const currentUser = await User.findOne({ where: { email } })
                 if (currentUser && await bcrypt.compare(password, currentUser.password)) {
-                    req.session.user = { id: currentUser.id, name: currentUser.name }
+                    req.session.user = { id: currentUser.id, name: currentUser.name, isAdmin: currentUser.isAdmin }
                     return res.status(200).json({
                         user: {
                             name: currentUser.name,
                             id: currentUser.id,
+                            isAdmin: currentUser.isAdmin 
                         },
                     })
                 } else {
@@ -62,7 +65,7 @@ router.route( '/signin')
     })
 
 router.route('/signout')
-    .get(userCheck, (req, res) => {
+    .get((req, res) => {
         try {
             req.session.destroy()
             res.clearCookie('sid').sendStatus(200)

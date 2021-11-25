@@ -24,14 +24,14 @@ const Films = () => {
     (el) => el.season_id === null && el.serial_id === null
   )
   const user = useSelector((state) => state.user)
-
+  const words = useSelector((state)=> state.words)
   return (
     <div className={style.filmWrapper}>
       <Search path={location.pathname} />
       <h1 className={style.new_film}>Новинки</h1>
       <Carousel />
       {
-        user?.name === "admin" ?
+        user?.isAdmin ?
           <div className={style.allFilmContainer}>
             <Link className={style.addFilm} to='/uploadfilm'>Добавить фильм</Link>
             <Link to='/uploadfilm'><img src={plus} className={style.plus} width='30px' height='30px' alt="plus" /></Link>
@@ -41,7 +41,7 @@ const Films = () => {
       }
       <div className={style.allFilm}>
         {
-          films.map((el) => (
+          films?.map((el) => (
             <>
               <div className={style.main}>
                 <div className={style.col}>
@@ -50,7 +50,7 @@ const Films = () => {
                     <h5 className={style.card_title}>{el.title}</h5>
                     <Link to={`/content/${el.id}`}> <Button variant="contained" path={`/content/${el.id}`} description={el.desc} color="error">Смотреть</Button></Link>
                     {
-                      user?.name === "admin" ?
+                      user?.isAdmin ?
                         <Button variant="contained" color="error" onClick={() => dispatch(delFilm(el.id))}>Delete</Button>
                         :
                         <></>
