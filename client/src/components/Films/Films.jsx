@@ -8,12 +8,11 @@ import { delFilm, getContent } from '../redux/ac/ac'
 import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Button from '@mui/material/Button'
+import plus from '../image/plus.png'
 
 const Films = () => {
 
-
   let location = useLocation()
-
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -21,16 +20,9 @@ const Films = () => {
   }, [dispatch])
 
   const content = useSelector((state) => state.content)
-
   const films = content.filter(
     (el) => el.season_id === null && el.serial_id === null
   )
-
-
-  // const deleteFunc = () => {
-
-  // }
-
   const user = useSelector((state) => state.user)
 
   return (
@@ -40,8 +32,9 @@ const Films = () => {
       <Carousel />
       {
         user?.name === "admin" ?
-          <div>
-            <Link to='/uploadfilm'>Добавить фильм</Link>
+          <div className={style.allFilmContainer}>
+            <Link className={style.addFilm} to='/uploadfilm'>Добавить фильм</Link>
+            <Link to='/uploadfilm'><img src={plus} className={style.plus} width='30px' height='30px' alt="plus" /></Link>
           </div>
           :
           <></>

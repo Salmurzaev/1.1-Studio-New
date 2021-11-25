@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { clearStateSearch, getSeries, getWatchSeries } from '../redux/ac/ac'
 import style from './style.module.css'
+import Rating from '../Rating/Rating'
 
 
 const WatchSeries = () => {
@@ -15,6 +16,7 @@ const WatchSeries = () => {
     dispatch(getWatchSeries(id))
   }, [dispatch])
   const seriya = useSelector((state) => state.watchSeries)
+  console.log(seriya.currentRating);
   
   return (
 
@@ -28,7 +30,7 @@ const WatchSeries = () => {
         </div>
         
       <div className={style.title}>{seriya.title}</div>
-      
+      <Rating rating={seriya.currentRating}/>
         <div className={style.description}>
           {seriya.desc}
         </div>
