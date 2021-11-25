@@ -18,8 +18,11 @@ import {
     DEL_SEASON,
     NEW_JOB,
     SET_JOB,
+    NEW_SERVICE,
+    SET_SERVICE,
     DEL_JOB,
     CHANGE_RATING,
+    DEL_SERVICE,
 } from '../types/types'
 
 const setContent = (value) => {
@@ -32,14 +35,14 @@ const setContent = (value) => {
 const setSerials = (value) => {
     return {
         type: SET_SERIALS,
-        payload: value
+        payload: value,
     }
 }
 
 const setJobs = (value) => {
     return {
         type: SET_JOB,
-        payload: value
+        payload: value,
     }
 }
 
@@ -62,19 +65,17 @@ const setWatchSeries = (value) => {
     }
 }
 
-
 const deleteFilm = (id) => {
     return {
         type: DEL_FILMS,
-        payload: id
+        payload: id,
     }
 }
-
 
 const deleteSerial = (id) => {
     return {
         type: DEL_SERIAL,
-        payload: id
+        payload: id,
     }
 }
 
@@ -100,11 +101,8 @@ const deleteJob = (id) => {
 }
 
 
-export const delJob = (id) => async (dispatch) => {
-    const response = await axios.delete(`/vacancies/${id}`)
 
-    dispatch(deleteJob(id))
-}
+
 
 
 
@@ -113,6 +111,7 @@ export const delSeason = (id) => async (dispatch) => {
 
     dispatch(deleteSeason(id))
 }
+
 
 
 export const delSerie = (id) => async (dispatch) => {
@@ -127,22 +126,17 @@ export const delSerial = (id) => async (dispatch) => {
     dispatch(deleteSerial(id))
 }
 
-
-
 export const delFilm = (id) => async (dispatch) => {
     const response = await axios.delete(`/content/${id}`)
     console.log(id)
     dispatch(deleteFilm(id))
 }
 
-
 export const getContent = () => async (dispatch) => {
     const content = await axios('/content')
 
     dispatch(setContent(content.data))
 }
-
-
 
 export const getSerials = () => async (dispatch) => {
     const serials = await axios('/serials')
@@ -180,7 +174,26 @@ export const jobAdd = (value) => async (dispatch) => {
     dispatch({ type: NEW_JOB, payload: job.data })
 }
 
+export const delJob = (id) => async (dispatch) => {
+    const response = await axios.delete(`/vacancies/${id}`)
 
+    dispatch(deleteJob(id))
+}
+
+export const setService = () => async (dispatch) => {
+    const service = await axios('/services')
+    dispatch({ type: SET_SERVICE, payload: service.data })
+}
+
+export const serviceAdd = (value) => async (dispatch) => {
+    const service = await axios.post('/services', value)
+    dispatch({ type: NEW_SERVICE, payload: service.data })
+}
+
+export const delSerice = (id) => async (dispatch) => {
+    await axios.delete(`/services/${id}`)
+    dispatch({type: DEL_SERVICE, payload: id})
+}
 
 export const signIn = (value, navigate) => async (dispatch) => {
     try {
