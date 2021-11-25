@@ -8,12 +8,11 @@ import { delFilm, getContent } from '../redux/ac/ac'
 import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Button from '@mui/material/Button'
+import plus from '../image/plus.png'
 
 const Films = () => {
 
-
   let location = useLocation()
-
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -21,50 +20,48 @@ const Films = () => {
   }, [dispatch])
 
   const content = useSelector((state) => state.content)
-
   const films = content.filter(
     (el) => el.season_id === null && el.serial_id === null
   )
-
-
-  // const deleteFunc = () => {
-
-  // }
-
   const user = useSelector((state) => state.user)
 
   return (
     <div className={style.filmWrapper}>
-      <Search path={location.pathname}/>
+      <Search path={location.pathname} />
       <h1 className={style.new_film}>Новинки</h1>
       <Carousel />
-      <div>
-        <Link to='/uploadfilm'>Добавить фильм</Link>
-      </div>
+      {
+        user?.name === "admin" ?
+          <div className={style.allFilmContainer}>
+            <Link className={style.addFilm} to='/uploadfilm'>Добавить фильм</Link>
+            <Link to='/uploadfilm'><img src={plus} className={style.plus} width='30px' height='30px' alt="plus" /></Link>
+          </div>
+          :
+          <></>
+      }
       <div className={style.allFilm}>
-        {films.map((el) => (
-          <>
-            <div className={style.main}>
-              <div className={style.col}>
-                <img src={`http://localhost:3001/${el.path_img.replace(/.\public/gmi, '')}`} className={style.cardImgTop} alt="..." />
-                <div className={style.card}>
-                  <h5 className={style.card_title}>{el.title}</h5>
-                  <Link to={`/content/${el.id}`}> <Button variant="contained" path={`/content/${el.id}`} description={el.desc} color="error">Смотреть</Button></Link>
-                  {user?.name === "admin" ?
-                    <Button variant="contained" color="error" onClick={() => dispatch(delFilm(el.id))}>Delete</Button>
-                    :
-                    <></>
-                  }
-                  {/* <div className={style.card_body}>
-                                </div> */}
+        {
+          films.map((el) => (
+            <>
+              <div className={style.main}>
+                <div className={style.col}>
+                  <img src={`http://localhost:3001/${el.path_img.replace(/.\public/gmi, '')}`} className={style.cardImgTop} alt="..." />
+                  <div className={style.card}>
+                    <h5 className={style.card_title}>{el.title}</h5>
+                    <Link to={`/content/${el.id}`}> <Button variant="contained" path={`/content/${el.id}`} description={el.desc} color="error">Смотреть</Button></Link>
+                    {
+                      user?.name === "admin" ?
+                        <Button variant="contained" color="error" onClick={() => dispatch(delFilm(el.id))}>Delete</Button>
+                        :
+                        <></>
+                    }
+                  </div>
                 </div>
               </div>
-            </div>
-          </>
-        ))}
-
+            </>
+          ))
+        }
       </div>
-
     </div>
   )
 }

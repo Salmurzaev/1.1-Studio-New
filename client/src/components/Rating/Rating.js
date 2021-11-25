@@ -1,20 +1,29 @@
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
+import { useDispatch } from 'react-redux';
+import { changeRating } from '../redux/ac/ac';
 
-// import ReactStars from "react-rating-stars-component";
-// import React from "react";
-// import { render } from "react-dom";
- 
-// const RatingChanged = (newRating) => {
-//   console.log(newRating);
-// };
- 
-// render(
-//   <ReactStars
-//     count={5}
-//     onChange={RatingChanged}
-//     size={24}
-//     activeColor="#ffd700"
-//   />,
- 
-//   document.getElementById("where-to-render")
-// );
-// export default RatingChanged
+export default function BasicRating({ rating }) {
+    const [value, setValue] = React.useState(rating);
+    const dispatch = useDispatch()
+    return (
+        <Box
+            sx={{
+                '& > legend': { mt: 2 },
+            }}
+        >
+            <Typography component="legend">Рейтинг фильма</Typography>
+            <Rating
+                name="simple-controlled"
+                value={value}
+
+                onClick={() => dispatch(changeRating(value))}
+                onClick={(event, newValue) => {
+                    setValue(newValue);
+                }}
+            />
+        </Box>
+    );
+}

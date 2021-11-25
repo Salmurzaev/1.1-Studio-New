@@ -1,4 +1,4 @@
-import {  NEW_SERVICE, SET_SERVICE } from '../types/types'
+import {  DEL_SERVICE, NEW_SERVICE, SET_SERVICE } from '../types/types'
 
 export const serviceReducer = (state = [], action) => {
     const { type, payload } = action
@@ -9,6 +9,8 @@ export const serviceReducer = (state = [], action) => {
         case NEW_SERVICE:
             return [...state, payload]
 
+        case DEL_SERVICE:
+            return state.filter(el=>el.id !== payload)
         default:
             return state
     }

@@ -11,74 +11,78 @@ import { Link } from 'react-router-dom'
 import { Button } from '@material-ui/core'
 
 const Serials = () => {
-    let location = useLocation()
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(getSerials())
-    }, [dispatch])
-    const content = useSelector((state) => state.serials)
-    const serials = content.filter(
-        (el) => el.season_id !== null && el.serial_id !== null
-    )
+  let location = useLocation()
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getSerials())
+  }, [dispatch])
+  const content = useSelector((state) => state.serials)
+  const serials = content.filter(
+    (el) => el.season_id !== null && el.serial_id !== null
+  )
 
-    const user = useSelector((state) => state.user)
+  const user = useSelector((state) => state.user)
 
-    return (
-        <>
-            <div className={style.filmWrapper}>
-                <Search path={location.pathname} />
-                <div>
-                    <Link to='/uploadserial'>Добавить Cериал</Link>
-                </div>
-                <div className={style.allFilm}>
-                    {serials.map((el) => (
-                        // <>
-                        //     <SerialOne key={el.id} serial_id={el.id} title={el.title} />
-                        // </>
-
-                        <div className={style.main}>
-                            <div className={style.col}>
-                                <img
-                                    src={`http://localhost:3001/${el.path_img.replace(/.\public/gmi, '')}`}
-                                    className={style.cardImgTop}
-                                    alt='...'
-                                />
-                                <div className={style.card}>
-                                    <h5 className={style.card_title}>
-                                        {el.title}
-                                    </h5>
-                                    <Link to={`/serials/${el.id}`}>
-                                        {' '}
-                                        <Button
-                                            variant='contained'
-                                            path={`/serials/${el.id}`}
-                                            description={el.desc}
-                                            color='error'
-                                        >
-                                            Смотреть
-                                        </Button>
-                                    </Link>
-                                    {user?.name === 'admin' ? (
-                                        <Button
-                                            variant='contained'
-                                            color='error'
-                                            onClick={() =>
-                                                dispatch(delSerial(el.id))
-                                            }
-                                        >
-                                            Delete
-                                        </Button>
-                                    ) : (
-                                        <></>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+  return (
+    <>
+      <div className={style.filmWrapper}>
+        <Search path={location.pathname} />
+        {
+          user?.name === "admin" ?
+            <div>
+              <Link to='/uploadserial'>Добавить Cериал</Link>
             </div>
-        </>
-    )
+            :
+            <></>
+        }
+        <div className={style.allFilm}>
+          {
+            serials.map((el) => (
+              <div className={style.main}>
+                <div className={style.col}>
+                  <img
+                    src={`http://localhost:3001/${el.path_img.replace(/.\public/gmi, '')}`}
+                    className={style.cardImgTop}
+                    alt='...'
+                  />
+                  <div className={style.card}>
+                    <h5 className={style.card_title}>
+                      {el.title}
+                    </h5>
+                    <Link to={`/serials/${el.id}`}>
+                      {' '}
+                      <Button
+                        variant='contained'
+                        path={`/serials/${el.id}`}
+                        description={el.desc}
+                        color='error'
+                      >
+                        Смотреть
+                      </Button>
+                    </Link>
+                    {
+                      user?.name === 'admin' ? (
+                        <Button
+                          variant='contained'
+                          color='error'
+                          onClick={() =>
+                            dispatch(delSerial(el.id))
+                          }
+                        >
+                          Delete
+                        </Button>
+                      ) : (
+                        <></>
+                      )}
+                  </div>
+                </div>
+              </div>
+            ))}
+        </div>
+      </div>
+    </>
+  )
 }
+
 
 export default Serials

@@ -1,15 +1,14 @@
 .video {
   z-index: 1;
 }
-.title{
-    padding-top: 20px;
-    font-size: 30px;
-    text-align: center;
-    font-weight:lighter;
+.title {
+  padding-top: 20px;
+  font-size: 30px;
+  text-align: center;
+  font-weight: lighter;
 }
-.description{
+.description {
   padding-top: 20px;
   font-size: 20px;
   font-style: italic;
-  
 }

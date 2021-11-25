@@ -52,27 +52,19 @@ router.route('/:id')
         const currentRating = sumRating / rating.length
         res.json({ ...dataValues, currentRating })
     })
-    .post(userCheck, async (req, res) => {
-        await Rating.create({
-            content_id: req.params.id,
-            user_id: req.session.user.id,
-            rating: req.body.rating,
-        })
-        res.sendStatus(200)
-    })
+    
     .delete(adminCheck, async (req, res) => {
         const content = await Content.findOne({ where: { id: req.params.id } })
         const { dataValues } = content
-        const regEx = /http:\/\/\w+(\.\w+)*(:[0-9]+)?\/?(\/[.\w]*)\//mg
-        const pathVideo = dataValues.path_video.split(regEx)
-        const pathImg = dataValues.path_img.split(regEx)
-        const videoFileName = pathVideo.pop()
-        const imgFileName = pathImg.pop()
-        const path = './public/uploads/'
+        const pathVideo = dataValues.path_video
+        const pathImg = dataValues.path_img
+        // const videoFileName = pathVideo.pop()
+        // const imgFileName = pathImg.pop()
+        // const path = './public/uploads/'
 
         try {
-            await rm(path + videoFileName)
-            await rm(path + imgFileName)
+            await rm(pathVideo)
+            await rm(pathImg)
             await Content.destroy({ where : {id : req.params.id}})
             console.log("Content successfully deleted")
         } catch (error) {

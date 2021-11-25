@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import ProgresBar from '../ProgresBar/ProgresBar'
-
+import style from './style.module.css'
+import Button from '@mui/material/Button'
 const UploadFormFilm = () => {
     const navigate = useNavigate()
     const [fileData, setFileData] = useState()
@@ -15,6 +16,7 @@ const UploadFormFilm = () => {
     const [postInput, setPostInput] = useState({ title: '', desc: '' })
 
     const [id, setId] = useState('')
+    const [persent, setPersent] = useState(0)
 
     const postInputHandler = (e) => {
         setPostInput((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -28,7 +30,7 @@ const UploadFormFilm = () => {
         setvideoData(e.target.files[0])
     }
 
-    const onSubmitHandler =  (e) => {
+    const onSubmitHandler = (e) => {
         e.preventDefault()
         const dataImg = new FormData()
         dataImg.append('image', fileData)
@@ -43,8 +45,10 @@ const UploadFormFilm = () => {
                 setProgress(uploadPercentage.toFixed(2))
                 console.log("total size in MB ==> ", totalSizeInMB);
                 console.log("uploaded size in MB ==> ", loadedSizeInMB);
+                setPersent(uploadPercentage)
             }
         }
+        console.log(options);
 
         axios.post(`http://localhost:3001/uploadfilm/${id}`, dataImg, options)
             .then((result) => {
@@ -95,7 +99,8 @@ const UploadFormFilm = () => {
                             onChange={postInputHandler}
                         />
                         <div>
-                            <button>Send</button>
+                            <Button type='submit' variant="contained" color="error">Send</Button>
+
                         </div>
                     </form>
                 </>
@@ -118,9 +123,11 @@ const UploadFormFilm = () => {
                             onChange={filmChangeHandler}
                         />
                         <br />
-                        {/* <ProgresBar progress={progress}/> */}
+                        <div className={style.load}> Загрузка: {Math.floor(persent)} %</div>
+                        <ProgresBar progress={progress} />
                         <br />
-                        <button type='submit'>Submit File to Backend</button>
+                        <Button type='submit' variant="contained" color="error">Submit File to Backend</Button>
+                        {/* <button >Submit File to Backend</button> */}
                     </form>
                 </>
             )}

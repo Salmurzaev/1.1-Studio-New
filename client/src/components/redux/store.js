@@ -4,14 +4,14 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import createSagaMiddleware from 'redux-saga'
 import thunk from 'redux-thunk'
 import { wordsSagaWatcher } from './sagas/wordsSaga'
-// import getInitState from './initState'
-import initState from './initState'
+import getInitState from './initState'
+// import initState from './initState'
 const sagaMiddleware = createSagaMiddleware()
 
 const store = createStore(
     rootReducer,
-    initState,
-    // getInitState(),
+    // initState,
+    getInitState(),
     composeWithDevTools(applyMiddleware(thunk, sagaMiddleware))
 )
 sagaMiddleware.run(wordsSagaWatcher)

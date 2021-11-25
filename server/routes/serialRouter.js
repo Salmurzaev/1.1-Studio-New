@@ -49,24 +49,19 @@ router
     .delete(adminCheck, async (req, res) => {
         try {
             const content = await Content.findAll({ where: { serial_id: req.params.id } })
-      
-
             for (const element of content) {
                 try {
                     const { dataValues } = element
                     const pathImg = dataValues.path_img
                     const pathVideo = dataValues.path_video
-                    await rm(pathVideo, { recursive:true, force:true })
-                    await rm(pathImg, { recursive:true, force:true })
+                    await rm(pathVideo, { recursive: true, force: true })
+                    await rm(pathImg, { recursive: true, force: true })
                     await Content.destroy({ where: { id: dataValues.id } })
                 } catch (error) {
                     console.log(error)
                 }
             }
-
-
             const seasons = await Season.findAll({ where: { serial_id: req.params.id } })
-            console.log(seasons);
             for (const element of seasons) {
                 try {
                     const { dataValues } = element
@@ -77,10 +72,7 @@ router
                     console.log(error)
                 }
             }
-
-
             const serial = await Serial.findOne({ where: { id: req.params.id } })
-            console.log(serial)
             const { dataValues } = serial
             const pathImg = dataValues.path_img
             try {

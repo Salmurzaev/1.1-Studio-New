@@ -20,6 +20,9 @@ import {
     SET_JOB,
     NEW_SERVICE,
     SET_SERVICE,
+    DEL_JOB,
+    CHANGE_RATING,
+    DEL_SERVICE,
 } from '../types/types'
 
 const setContent = (value) => {
@@ -79,22 +82,37 @@ const deleteSerial = (id) => {
 const deleteSerie = (id) => {
     return {
         type: DEL_SERIE,
-        payload: id,
+        payload: id
     }
 }
 
 const deleteSeason = (id) => {
     return {
         type: DEL_SEASON,
-        payload: id,
+        payload: id
     }
 }
+
+const deleteJob = (id) => {
+    return {
+        type: DEL_JOB,
+        payload: id
+    }
+}
+
+
+
+
+
+
 
 export const delSeason = (id) => async (dispatch) => {
     const response = await axios.delete(`/seasons/${id}`)
 
     dispatch(deleteSeason(id))
 }
+
+
 
 export const delSerie = (id) => async (dispatch) => {
     const response = await axios.delete(`/content/${id}`)
@@ -156,6 +174,12 @@ export const jobAdd = (value) => async (dispatch) => {
     dispatch({ type: NEW_JOB, payload: job.data })
 }
 
+export const delJob = (id) => async (dispatch) => {
+    const response = await axios.delete(`/vacancies/${id}`)
+
+    dispatch(deleteJob(id))
+}
+
 export const setService = () => async (dispatch) => {
     const service = await axios('/services')
     dispatch({ type: SET_SERVICE, payload: service.data })
@@ -164,6 +188,11 @@ export const setService = () => async (dispatch) => {
 export const serviceAdd = (value) => async (dispatch) => {
     const service = await axios.post('/services', value)
     dispatch({ type: NEW_SERVICE, payload: service.data })
+}
+
+export const delSerice = (id) => async (dispatch) => {
+    await axios.delete(`/services/${id}`)
+    dispatch({type: DEL_SERVICE, payload: id})
 }
 
 export const signIn = (value, navigate) => async (dispatch) => {
@@ -200,5 +229,13 @@ export const getProducer = () => async (dispatch) => {
 export const clearStateSearch = () => async (dispatch) => {
     dispatch({
         type: CLEAR_SEARCH,
+    })
+}
+
+export const changeRating = (value) => async (dispatch) => {
+    const changeRating = await axios.patch('/id/rating', value)
+    dispatch({
+        type: CHANGE_RATING,
+        payload: changeRating.data,
     })
 }
