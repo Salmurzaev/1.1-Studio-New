@@ -21,7 +21,7 @@ const SignUpForm = () => {
     }
     const submitRegisterHandler = (e) => {
         e.preventDefault()
-        dispatch(signUp({ registerInput }))
+        dispatch(signUp( registerInput ))
         setRegisterInput({
             name: '',
             email: '',

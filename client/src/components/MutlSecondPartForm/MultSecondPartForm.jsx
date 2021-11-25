@@ -2,16 +2,22 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
+import ProgresBar from '../ProgresBar/ProgresBar'
+import Button from '@mui/material/Button'
+
+
 const MultSecondPartForm = () => {
     const navigate = useNavigate()
     const [postInput, setPostInput] = useState({ title: '', desc: '' })
     const [addMulter, setAddMulter] = useState(true)
-
+    const [progress, setProgress] = useState(0);
+    const [persent, setPersent] = useState(0)
     const [contentId, setContentId] = useState('')
     const [fileData, setFileData] = useState()
     const [videoData, setvideoData] = useState()
     const [serialData, setSerialData] = useState()
     const [seasonData, setSeasonData] = useState()
+
     const postInputHandler = (e) => {
         setPostInput((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
@@ -50,10 +56,21 @@ const MultSecondPartForm = () => {
         dataImg.append('path_imgserial', serialData)
         dataImg.append('path_imgseason', seasonData)
         console.log(dataImg, 'dataImg')
-        fetch(`http://localhost:3001/uploadfilm/${contentId}`, {
-            method: 'POST',
-            body: dataImg,
-        })
+
+        const options = {
+            onUploadProgress: progress => {
+                const { total, loaded } = progress;
+                const totalSizeInMB = total / 1000000;
+                const loadedSizeInMB = loaded / 1000000;
+                const uploadPercentage = (loadedSizeInMB / totalSizeInMB) * 100;
+                setProgress(uploadPercentage.toFixed(2))
+                console.log("total size in MB ==> ", totalSizeInMB);
+                console.log("uploaded size in MB ==> ", loadedSizeInMB);
+                setPersent(uploadPercentage)
+            }
+        }
+
+        axios.post(`http://localhost:3001/uploadfilm/${contentId}`, dataImg, options)
             .then((result) => {
                 console.log('File Sent Successful')
                 navigate('/serials')
@@ -114,8 +131,9 @@ const MultSecondPartForm = () => {
                             onChange={filmChangeHandler}
                         />
                         <br />
+                        <ProgresBar progress={progress} />
                         <br />
-                        <button type='submit'>Submit File to Backend</button>
+                        <Button type='submit' variant="contained" color="error">Submit File to Backend</Button>
                     </form>
                 </>
             )}

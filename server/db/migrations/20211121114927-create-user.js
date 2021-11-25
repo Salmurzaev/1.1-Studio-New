@@ -11,18 +11,20 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
         allowNull: false,
-        
+        unique: true,
       },
       email: {
         type: Sequelize.STRING,
         allowNull: false,
-        
-        
+        unique: true,
+      },
+      isAdmin: {
+        type: Sequelize.BOOLEAN,
+        unique: true,
       },
       password: {
         type: Sequelize.STRING,
         allowNull: false,
-        
       },
       createdAt: {
         allowNull: false,
