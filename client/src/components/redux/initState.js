@@ -4,7 +4,8 @@ const initState = {
   content: [],
   serials: [],
   season:[],
-  words: []
+  words: [],
+  job: []
 }
 
 // const getInitState = () => {

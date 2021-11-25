@@ -22,3 +22,6 @@ export const SIGNOUT = 'SIGNOUT'
 export const GET_PRODUCER = 'GET_PRODUCER'
 
 export const CLEAR_SEARCH = 'CLEAR_SEARCH'
+
+export const NEW_JOB = 'NEW_JOB'
+export const SET_JOB = 'SET_JOB'
