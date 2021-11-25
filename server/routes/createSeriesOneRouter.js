@@ -12,7 +12,7 @@ const fileStorageEngine = multer.diskStorage({
             max = Math.floor(max)
             return Math.random() * (max - min) + min //The maximum is exclusive and the minimum is inclusive
         }
-        cb(null, getRandomInt(0, 1000000) + file.originalname)
+        cb(null, getRandomInt(0, 100) + file.originalname)
     },
 })
 
@@ -31,8 +31,8 @@ router.route('/:serial_id/:season_id/:contentId').post(
      
   ]),async (req, res) => {
     const {contentId } = req.params
-    const path_video = `http://localhost:3001/uploads/${req.files.video[0].filename}`
-    const path_img = `http://localhost:3001/uploads/${req.files.image[0].filename}`
+    const path_video = `./public/uploads/${req.files.video[0].filename}`
+    const path_img = `./public/uploads/${req.files.image[0].filename}`
    
     const newDataContent = await Content.update(
         { path_img, path_video },

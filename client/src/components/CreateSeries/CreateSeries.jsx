@@ -32,12 +32,15 @@ const CreateSeries = () => {
         setAddMulter(false)
     }
     const fileChangeHandler = (e) => {
+        console.log("fileChangeHandler==================================", e.target.files)
         setFileData(e.target.files[0])
     }
     const filmChangeHandler = (e) => {
+        console.log("filmChangeHandler==================================", e.target.files)
         setvideoData(e.target.files[0])
     }
     const seasonChangeHandler = (e) => {
+        console.log("seasonChangeHandler================================", e.target.files)
         setSeasonData(e.target.files[0])
     }
 

@@ -47,81 +47,49 @@ router
         }
     })
     .delete(adminCheck, async (req, res) => {
-        const regEx = /http:\/\/\w+(\.\w+)*(:[0-9]+)?\/?(\/[.\w]*)\//mg
-        const path = './public/uploads/'
         try {
             const content = await Content.findAll({ where: { serial_id: req.params.id } })
-            const fileNames = content.map((el => {
-                return new Promise((resolve, rej) => {
-                    const pathImg = el.path_img.split(regEx)
-                    const pathVideo = el.path_video.split(regEx)
-                    const videoFileName = pathVideo.pop()
-                    const imgFileName = pathImg.pop()
-                    rm(path + videoFileName)
-                    rm(path + imgFileName)
-                    Content.destroy({ where: { id: el.id } })
-                    resolve()
-                })
-            }))
-            await Promise.all(fileNames)
-            // content.forEach(async (element) => {
-            //     try {
-            //         const { dataValues } = element
-            //         const pathImg = dataValues.path_img.split(regEx)
-            //         const pathVideo = dataValues.path_video.split(regEx)
-            //         const videoFileName = pathVideo.pop()
-            //         const imgFileName = pathImg.pop()
-            //         await rm(path + videoFileName)
-            //         await rm(path + imgFileName)
-            //         await Content.destroy({ where: { id: dataValues.id } })
-            //     } catch (error) {
-            //         console.log(error)
-            //     }
-            // })
+            console.log(content)
+
+            for (const element of content) {
+                try {
+                    const { dataValues } = element
+                    const pathImg = dataValues.path_img
+                    const pathVideo = dataValues.path_video
+                    await rm(pathVideo, { recursive:true, force:true })
+                    await rm(pathImg, { recursive:true, force:true })
+                    await Content.destroy({ where: { id: dataValues.id } })
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+
+
             const seasons = await Season.findAll({ where: { serial_id: req.params.id } })
-            const s = seasons.map((el => {
-                return new Promise((resolve, rej) => {
-                    const pathImg = el.path_img.split(regEx)
-                    const imgFileName = pathImg.pop()
-                    rm(path + imgFileName)
-                    Season.destroy({ where: { id: el.id } })
-                    resolve()
-                })
-            }))
-            await Promise.all(s)
-            // seasons.forEach(async (element) => {
-            //     try {
-            //         const { dataValues } = element
-            //         const pathImg = dataValues.path_img.split(regEx)
-            //         const imgFileName = pathImg.pop()
-            //         await rm(path + imgFileName)
-            //         await Season.destroy({ where: { id: dataValues.id } })
-            //     } catch (error) {
-            //         console.log(error)
-            //     }
-            // })
+            console.log(seasons);
+            for (const element of seasons) {
+                try {
+                    const { dataValues } = element
+                    const pathImg = dataValues.path_img
+                    await rm(pathImg, { recursive: true, force: true })
+                    await Season.destroy({ where: { id: dataValues.id } })
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+
 
             const serial = await Serial.findOne({ where: { id: req.params.id } })
-            const se = serial.map(el => {
-                return new Promise((resolve, reject) => {
-                    const pathImg = el.path_img.split(regEx)
-                    const imgFileName = pathImg.pop()
-                    rm(path + imgFileName)
-                    Serial.destroy({ where: { id: req.params.id } })
-                    resolve()
-                })
-            })
-            await Promise.all(se)
-            // const { dataValues } = serial
-            // const pathImg = dataValues.path_img.split(regEx)
-            // const imgFileName = pathImg.pop()
-            // try {
-            //     await rm(path + imgFileName)
-            //     await Serial.destroy({ where: { id: req.params.id } })
-            //     console.log("Serial successfully deleted")
-            // } catch (error) {
-            //     console.log(error)
-            // }
+            console.log(serial)
+            const { dataValues } = serial
+            const pathImg = dataValues.path_img
+            try {
+                await rm(pathImg, { recursive: true, force: true })
+                await Serial.destroy({ where: { id: req.params.id } })
+                console.log("Serial successfully deleted")
+            } catch (error) {
+                console.log(error)
+            }
             res.sendStatus(200)
         } catch (error) {
             console.log(error)

@@ -13,7 +13,7 @@ const fileStorageEngine = multer.diskStorage({
             max = Math.floor(max);
             return Math.random() * (max - min) + min; //The maximum is exclusive and the minimum is inclusive
           }
-        cb(null, getRandomInt(0, 1000000) + file.originalname)
+        cb(null, getRandomInt(0, 100) + file.originalname)
     },
 })
 
@@ -40,10 +40,10 @@ router.route('/:id').post(
             (await req.files.path_imgserial) &&
             (await req.files.path_imgseason)
         ) {
-            const path_video = `http://localhost:3001/uploads/${req.files.video[0].filename}`
-            const path_img = `http://localhost:3001/uploads/${req.files.image[0].filename}`
-            const path_imgserial = `http://localhost:3001/uploads/${req.files.path_imgserial[0].filename}`
-            const path_imgseason = `http://localhost:3001/uploads/${req.files.path_imgseason[0].filename}`
+            const path_video = `./public/uploads/${req.files.video[0].filename}`
+            const path_img = `./public/uploads/${req.files.image[0].filename}`
+            const path_imgserial = `./public/uploads/${req.files.path_imgserial[0].filename}`
+            const path_imgseason = `./public/uploads/${req.files.path_imgseason[0].filename}`
             const newDataContent = await Content.update(
                 { path_img, path_video },
                 {
@@ -67,8 +67,8 @@ router.route('/:id').post(
 
 
         else {
-            const path_video = `http://localhost:3001/uploads/${req.files.video[0].filename}`
-            const path_img = `http://localhost:3001/uploads/${req.files.image[0].filename}`
+            const path_video = `./public/uploads/${req.files.video[0].filename}`
+            const path_img = `./public/uploads/${req.files.image[0].filename}`
             const newDataContent = await Content.update(
                 { path_img, path_video },
                 {
