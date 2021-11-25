@@ -48,7 +48,7 @@ const UploadFormFilm = () => {
                 setPersent(uploadPercentage)
             }
         }
-        console.log(options);
+      
 
         axios.post(`http://localhost:3001/uploadfilm/${id}`, dataImg, options)
             .then((result) => {
