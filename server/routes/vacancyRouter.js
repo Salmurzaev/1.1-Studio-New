@@ -2,7 +2,8 @@ const router = require('express').Router()
 const { Vacancy } = require('../db/models')
 const adminCheck = require('../middleware/adminCheck')
 
-router.route('/')
+router
+    .route('/')
     .get(async (req, res) => {
         try {
             const vacancies = await Vacancy.findAll()
@@ -21,10 +22,13 @@ router.route('/')
             res.sendStatus(401)
         }
     })
-router.route('/:id')
+router
+    .route('/:id')
     .get(async (req, res) => {
         try {
-            const vacancy = await Vacancy.findOne({ where: { id: req.params.id } })
+            const vacancy = await Vacancy.findOne({
+                where: { id: req.params.id },
+            })
             res.json(vacancy)
         } catch (error) {
             console.log(error)

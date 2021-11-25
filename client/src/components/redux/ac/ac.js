@@ -1,17 +1,23 @@
 import axios from 'axios'
 import {
-    SET_SERIES,
-    SET_FILMS,
-    SET_WATCH_SERIES,
-    GET_WORDS,
-    SET_SEASON,
-    SET_CONTENT,
-    SET_SERIALS,
-    SIGNIN,
-    SIGNOUT,
-    SIGNUP,
-    GET_PRODUCER,
-    CLEAR_SEARCH,
+  SET_SERIES,
+  SET_FILMS,
+  DEL_FILMS,
+  SET_WATCH_SERIES,
+  GET_WORDS,
+  SET_SEASON,
+  SET_CONTENT,
+  SET_SERIALS,
+  SIGNIN,
+  SIGNOUT,
+  SIGNUP,
+  GET_PRODUCER,
+  CLEAR_SEARCH,
+  DEL_SERIAL,
+  DEL_SERIE,
+  DEL_SEASON,
+  NEW_JOB,
+  SET_JOB,
 } from '../types/types'
 
 const setContent = (value) => {
@@ -24,7 +30,14 @@ const setContent = (value) => {
 const setSerials = (value) => {
     return {
         type: SET_SERIALS,
-        payload: value,
+        payload: value
+    }
+}
+
+const setJobs = (value) => {
+    return {
+        type: SET_JOB,
+        payload: value
     }
 }
 
@@ -47,10 +60,72 @@ const setWatchSeries = (value) => {
     }
 }
 
+
+const deleteFilm = (id) => {
+    return {
+        type: DEL_FILMS,
+        payload: id
+    }
+}
+
+
+const deleteSerial = (id) => {
+    return {
+        type: DEL_SERIAL,
+        payload: id
+    }
+}
+
+const deleteSerie = (id) => {
+  return {
+    type: DEL_SERIE,
+    payload: id
+  }
+}
+
+const deleteSeason = (id) => {
+  return {
+    type: DEL_SEASON,
+    payload: id
+  }
+}
+
+
+export const delSeason = (id) => async (dispatch) => {
+  const response = await axios.delete(`/seasons/${id}`)
+  
+  dispatch(deleteSeason(id))
+}
+
+
+export const delSerie = (id) => async (dispatch) => {
+  const response = await axios.delete(`/content/${id}`)
+  
+  dispatch(deleteSerie(id))
+}
+
+export const delSerial = (id) => async (dispatch) => {
+    const response = await axios.delete(`/serials/${id}`)
+
+    dispatch(deleteSerial(id))
+}
+
+
+
+export const delFilm = (id) => async (dispatch) => {
+    const response = await axios.delete(`/content/${id}`)
+
+    dispatch(deleteFilm(id))
+}
+
+
 export const getContent = () => async (dispatch) => {
     const content = await axios('/content')
+ 
     dispatch(setContent(content.data))
 }
+
+
 
 export const getSerials = () => async (dispatch) => {
     const serials = await axios('/serials')
@@ -77,6 +152,18 @@ export const signUp = (value) => async (dispatch) => {
 
     dispatch({ type: SIGNUP, payload: user.data.user })
 }
+
+export const setJob = () => async (dispatch) => {
+    const jobs = await axios('/vacancies')
+    dispatch({type:SET_JOB, payload:jobs.data})
+}
+
+export const jobAdd = (value) => async (dispatch) => {
+    const job = await axios.post('/vacancies', value)
+    dispatch({type: NEW_JOB, payload: job.data})
+}
+
+
 
 export const signIn = (value, navigate) => async (dispatch) => {
     try {

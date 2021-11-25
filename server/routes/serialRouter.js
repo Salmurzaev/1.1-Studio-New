@@ -1,6 +1,8 @@
 const router = require('express').Router()
 const { Season, Serial, Content } = require('../db/models')
 const adminCheck = require('../middleware/adminCheck')
+const { rm } = require('fs/promises');
+const { resolve } = require('path');
 
 router
     .route('/')
@@ -15,6 +17,7 @@ router
     })
     .post(adminCheck, async (req, res) => {
         try {
+
             const newSerial = await Serial.create({ ...req.body })
             res.json(newSerial)
         } catch (error) {
@@ -35,7 +38,8 @@ router
     })
     .post(adminCheck, async (req, res) => {
         try {
-            const newSeason = await Season.create({ title: req.body.title, serial_id: req.params.id })
+            console.log(req.body, req.params.id, 'asd')
+            const newSeason = await Season.create({ ...req.body, serial_id: req.params.id })
             res.json(newSeason)
         } catch (error) {
             console.log(error)
@@ -44,7 +48,40 @@ router
     })
     .delete(adminCheck, async (req, res) => {
         try {
-            await Serial.destroy({ where: { id: req.params.id } })
+            const content = await Content.findAll({ where: { serial_id: req.params.id } })
+            for (const element of content) {
+                try {
+                    const { dataValues } = element
+                    const pathImg = dataValues.path_img
+                    const pathVideo = dataValues.path_video
+                    await rm(pathVideo, { recursive: true, force: true })
+                    await rm(pathImg, { recursive: true, force: true })
+                    await Content.destroy({ where: { id: dataValues.id } })
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+            const seasons = await Season.findAll({ where: { serial_id: req.params.id } })
+            for (const element of seasons) {
+                try {
+                    const { dataValues } = element
+                    const pathImg = dataValues.path_img
+                    await rm(pathImg, { recursive: true, force: true })
+                    await Season.destroy({ where: { id: dataValues.id } })
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+            const serial = await Serial.findOne({ where: { id: req.params.id } })
+            const { dataValues } = serial
+            const pathImg = dataValues.path_img
+            try {
+                await rm(pathImg, { recursive: true, force: true })
+                await Serial.destroy({ where: { id: req.params.id } })
+                console.log("Serial successfully deleted")
+            } catch (error) {
+                console.log(error)
+            }
             res.sendStatus(200)
         } catch (error) {
             console.log(error)
@@ -65,7 +102,6 @@ router.route('/:serial_id/:season_id')
             console.log(error)
             res.sendStatus(500)
         }
-        res.json(content)
     })
 
 

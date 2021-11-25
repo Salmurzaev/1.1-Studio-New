@@ -103,7 +103,7 @@ module.exports = {
       {
         title: 'Cерия 1',
         desc: "Описание 1",
-        season_id: 2,
+        season_id: 1,
         serial_id: 1,
         path_video: 'qqqqqqqqqqq',
         path_img: 'wwwwwwwww'
@@ -111,7 +111,7 @@ module.exports = {
       {
         title: 'Cерия 2',
         desc: "Описание 2",
-        season_id: 2,
+        season_id: 1,
         serial_id: 1,
         path_video: 'qqqqqqqqqqq',
         path_img: 'wwwwwwwww'
@@ -119,7 +119,7 @@ module.exports = {
       {
         title: 'Cерия 3',
         desc: "Описание 3",
-        season_id: 2,
+        season_id: 1,
         serial_id: 1,
         path_video: 'qqqqqqqqqqq',
         path_img: 'wwwwwwwww'

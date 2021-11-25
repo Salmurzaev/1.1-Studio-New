@@ -2,6 +2,7 @@ const router = require('express').Router()
 const { Content, Season, Serial, Rating } = require('../db/models')
 const userCheck = require('../middleware/userCheck')
 const adminCheck = require('../middleware/adminCheck')
+const { rm } = require('fs/promises');
 
 router.route('/')
     .get(async (req, res) => {
@@ -16,6 +17,7 @@ router.route('/')
     .post(adminCheck, async (req, res) => {
         try {
             const content = await Content.create({ ...req.body })
+            
             res.json(content)
         } catch (error) {
             console.log(error)
@@ -45,21 +47,29 @@ router.route('/:id')
         const sumRating = rating.reduce((acc, item) => {
             return acc + item.rating
         }, 0)
-        const data = await Content.findOne({ where: { id: req.params.id }})
+        const data = await Content.findOne({ where: { id: req.params.id } })
         const { dataValues } = data
         const currentRating = sumRating / rating.length
-        res.json({...dataValues, currentRating })
+        res.json({ ...dataValues, currentRating })
     })
-    .post(async (req, res) => {
-        await Rating.create({
-            content_id: req.params.id,
-            user_id: req.session.user.id,
-            rating: req.body.rating,
-        })
-        res.sendStatus(200)
-    })
+    
     .delete(adminCheck, async (req, res) => {
-        await Content.destroy({ where: { id: req.params.id } })
+        const content = await Content.findOne({ where: { id: req.params.id } })
+        const { dataValues } = content
+        const pathVideo = dataValues.path_video
+        const pathImg = dataValues.path_img
+        // const videoFileName = pathVideo.pop()
+        // const imgFileName = pathImg.pop()
+        // const path = './public/uploads/'
+
+        try {
+            await rm(pathVideo)
+            await rm(pathImg)
+            await Content.destroy({ where : {id : req.params.id}})
+            console.log("Content successfully deleted")
+        } catch (error) {
+            console.log(error)
+        }
         res.sendStatus(200)
     })
 

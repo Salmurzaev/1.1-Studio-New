@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import ProgresBar from '../ProgresBar/ProgresBar'
 
 const UploadFormFilm = () => {
     const navigate = useNavigate()
     const [fileData, setFileData] = useState()
     const [videoData, setvideoData] = useState()
     const [addMulter, setAddMulter] = useState(true)
+
+    //////////////////////////////////////////
+    const [progress, setProgress] = useState(0);
 
     const [postInput, setPostInput] = useState({ title: '', desc: '' })
 
@@ -24,15 +28,25 @@ const UploadFormFilm = () => {
         setvideoData(e.target.files[0])
     }
 
-    const onSubmitHandler = (e) => {
+    const onSubmitHandler =  (e) => {
         e.preventDefault()
         const dataImg = new FormData()
         dataImg.append('image', fileData)
         dataImg.append('video', videoData)
-        fetch(`http://localhost:3001/uploadfilm/${id}`, {
-            method: 'POST',
-            body: dataImg,
-        })
+
+        const options = {
+            onUploadProgress: progress => {
+                const { total, loaded } = progress;
+                const totalSizeInMB = total / 1000000;
+                const loadedSizeInMB = loaded / 1000000;
+                const uploadPercentage = (loadedSizeInMB / totalSizeInMB) * 100;
+                setProgress(uploadPercentage.toFixed(2))
+                console.log("total size in MB ==> ", totalSizeInMB);
+                console.log("uploaded size in MB ==> ", loadedSizeInMB);
+            }
+        }
+
+        axios.post(`http://localhost:3001/uploadfilm/${id}`, dataImg, options)
             .then((result) => {
                 console.log('File Sent Successful')
                 navigate('/films')
@@ -88,22 +102,23 @@ const UploadFormFilm = () => {
             ) : (
                 <>
                     <h1>Загрузить Постер, Фильм</h1>
-                        <form onSubmit={onSubmitHandler}>
+                    <form onSubmit={onSubmitHandler}>
                         <span>Загрузите постер</span>
                         <input
                             type='file'
-                                name='img'
-                                label='Загрузите постер'
+                            name='img'
+                            label='Загрузите постер'
                             onChange={fileChangeHandler}
-                            />
-                             <span>Загрузите фильм</span>
+                        />
+                        <span>Загрузите фильм</span>
                         <input
                             type='file'
-                                name='video'
-                                label='Загрузите видео'
+                            name='video'
+                            label='Загрузите видео'
                             onChange={filmChangeHandler}
                         />
                         <br />
+                        {/* <ProgresBar progress={progress}/> */}
                         <br />
                         <button type='submit'>Submit File to Backend</button>
                     </form>

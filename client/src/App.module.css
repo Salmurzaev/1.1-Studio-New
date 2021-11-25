@@ -5,6 +5,7 @@
     color: white;
     background: url('./components/image/BackgroundMain.png');
     background-repeat: repeat;
+    background-attachment: fixed;
     background-size: cover;
     -moz-background-size: 100%; /* Firefox 3.6+ */
     -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */

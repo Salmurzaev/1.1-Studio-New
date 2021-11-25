@@ -33,12 +33,18 @@ const NavBar = () => {
                 <Link to='/contacts'>
                     <div className={style.navbarLinks}> Контакты </div>
                 </Link>
+                {user?
+                <></>
+              :
+              <>
                 <Link to='/user/signin'>
                     <div className={style.navbarLinks}> Вход </div>
                 </Link>
                 <Link to='/user/signup'>
                     <div className={style.navbarLinks}> Регистрация </div>
                 </Link>
+                </>
+              }
                 {
                     user ?
                         <button onClick={logOutHandler} className={style.navbarLinks}>

@@ -4,7 +4,8 @@ const initState = {
   content: [],
   serials: [],
   season:[],
-  words: []
+  words: [],
+  job: []
 }
 
 // const getInitState = () => {
@@ -14,3 +15,10 @@ const initState = {
 // export default getInitState
 
 export default initState
+
+// const getInitState = () => {
+//   const stateFromLS = JSON.parse(window.localStorage.getItem("redux"));
+//   return stateFromLS ? stateFromLS : initState;
+// };
+// export default getInitState;
+
