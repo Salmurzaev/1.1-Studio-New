@@ -25,3 +25,6 @@ export const CLEAR_SEARCH = 'CLEAR_SEARCH'
 
 export const NEW_JOB = 'NEW_JOB'
 export const SET_JOB = 'SET_JOB'
+
+export const NEW_SERVICE = 'NEW_SERVICE'
+export const SET_SERVICE = 'SET_SERVICE'

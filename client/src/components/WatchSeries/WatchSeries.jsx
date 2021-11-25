@@ -22,11 +22,11 @@ const WatchSeries = () => {
     <>
       <div>
         <div className={style.videoplayer}>
-          <video id="videoPlayer" className="video" width="100%" poster={`http://localhost:3001/${seriya.path_img.replace(/.\public/gmi, '')}`}  controls autoPlay>
+          <video id="videoPlayer" className="video" width="100%"   controls autoPlay>
             <source src={`http://localhost:3001/video/${id}`} type="video/mp4" />
           </video>
         </div>
-        
+
       <div className={style.title}>{seriya.title}</div>
       
         <div className={style.description}>

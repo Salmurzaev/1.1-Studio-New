@@ -31,7 +31,7 @@ const JobForm = () => {
       curator_email: '',
       curator_phone:'',
     })
-    // navigate('/job')
+     navigate('/job')
 }
 
 

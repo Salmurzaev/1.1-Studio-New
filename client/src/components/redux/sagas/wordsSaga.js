@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { call, put, takeEvery, debounce } from 'redux-saga/effects'
+import { call, put, takeEvery, debounce, delay } from 'redux-saga/effects'
 import { GET_WORDS, SET_WORDS } from '../types/types';
 
 const fetchWords = (word) => {
@@ -9,6 +9,7 @@ const fetchWords = (word) => {
 
 function* wordsSagaWorker(action) {
   try {
+    yield delay(500)
     const words = yield call(fetchWords, action.payload);
     yield put({ type: SET_WORDS, payload: words });
   } catch (e) {
