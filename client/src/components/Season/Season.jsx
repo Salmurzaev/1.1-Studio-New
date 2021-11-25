@@ -29,7 +29,15 @@ const Season = () => {
 
   return (
     <div className={style.allFilm}>
-      <Link to={`/season/${serial_id}`}>Добавить сезон</Link>
+
+      {user?.name === "admin" ?
+        <div>
+          <Link to={`/season/${serial_id}`}>Добавить сезон</Link>
+        </div>
+        :
+        <></>
+      }
+
       {seasons.map(el => (
         // <>
         //   <Link to={`/serials/${serial_id}/${el.id}`}> {el.title} </Link>
