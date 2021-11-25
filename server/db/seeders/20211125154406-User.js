@@ -11,21 +11,15 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('Projects', [
-      {
-        title: 'Проект 1',
-        desc: "Описание проекта 1"
-      },
-      {
-        title: 'Проект 2',
-        desc: "Описание проекта 2"
-      },
-      {
-        title: 'Проект 3',
-        desc: "Описание проекта 3"
-      },
-
-    ], {});
+   await queryInterface.bulkInsert('Users', 
+   [
+     {
+        name: 'admin',
+        email: "admin@admin.com",
+        password: '123',
+        isAdmin: true
+     }
+   ], {})
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -35,6 +29,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Projects', null, {});
+     await queryInterface.bulkDelete('Users', null, {});
   }
 };

@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
+import ProgresBar from '../ProgresBar/ProgresBar'
+import Button from '@mui/material/Button'
 
 const CreateSeries = () => {
     const [postInput, setPostInput] = useState({ title: '', desc: '' })
@@ -11,6 +13,8 @@ const CreateSeries = () => {
     const [seasonData, setSeasonData] = useState()
     const [fileData, setFileData] = useState()
     const [videoData, setvideoData] = useState()
+    const [progress, setProgress] = useState(0);
+    const [persent, setPersent] = useState(0)
     const navigate = useNavigate()
     const postInputHandler = (e) => {
         setPostInput((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -42,21 +46,31 @@ const CreateSeries = () => {
     }
 
     const onSubmitHandler = (e) => {
-      e.preventDefault()
-      const dataImg = new FormData()
-      dataImg.append('image', fileData)
-      dataImg.append('video', videoData)
-     
-      dataImg.append('path_imgseason', seasonData)
-      
-      fetch(`http://localhost:3001/newseries/${serial_id}/${season_id}/${contentId}`, {
-          method: 'POST',
-          body: dataImg,
-      })
-          .then((res)=>navigate('/serials'))
-      
-  }  
-  
+        e.preventDefault()
+        const dataImg = new FormData()
+        dataImg.append('image', fileData)
+        dataImg.append('video', videoData)
+        dataImg.append('path_imgseason', seasonData)
+
+        const options = {
+            onUploadProgress: progress => {
+                const { total, loaded } = progress;
+                const totalSizeInMB = total / 1000000;
+                const loadedSizeInMB = loaded / 1000000;
+                const uploadPercentage = (loadedSizeInMB / totalSizeInMB) * 100;
+                setProgress(uploadPercentage.toFixed(2))
+                console.log("total size in MB ==> ", totalSizeInMB);
+                console.log("uploaded size in MB ==> ", loadedSizeInMB);
+                setPersent(uploadPercentage)
+            }
+        }
+        console.log(options);
+
+        axios.post(`http://localhost:3001/newseries/${serial_id}/${season_id}/${contentId}`, dataImg, options)
+            .then((res) => navigate('/serials'))
+
+    }
+
     return (
         <div>
             {addMulter ? (
@@ -101,7 +115,8 @@ const CreateSeries = () => {
                     />
                     <br />
                     <br />
-                    <button type='submit'>Submit File to Backend</button>
+                    <ProgresBar progress={progress} />
+                    <Button type='submit' variant="contained" color="error">Send</Button>
                 </form>
             )}
         </div>
