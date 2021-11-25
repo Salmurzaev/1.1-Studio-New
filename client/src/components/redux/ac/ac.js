@@ -23,6 +23,8 @@ import {
     DEL_JOB,
     CHANGE_RATING,
     DEL_SERVICE,
+    SET_MODAL,
+    DEL_MODAL,
 } from '../types/types'
 
 const setContent = (value) => {
@@ -101,10 +103,19 @@ const deleteJob = (id) => {
 }
 
 
+export const delModal = (value) => {
+    return {
+        type: DEL_MODAL,
+        payload: value
+    }
+}
 
-
-
-
+export const setModal = (value) => {
+    return {
+        type: SET_MODAL,
+        payload: value
+    }
+}
 
 export const delSeason = (id) => async (dispatch) => {
     const response = await axios.delete(`/seasons/${id}`)
@@ -192,7 +203,7 @@ export const serviceAdd = (value) => async (dispatch) => {
 
 export const delSerice = (id) => async (dispatch) => {
     await axios.delete(`/services/${id}`)
-    dispatch({type: DEL_SERVICE, payload: id})
+    dispatch({ type: DEL_SERVICE, payload: id })
 }
 
 export const signIn = (value, navigate) => async (dispatch) => {

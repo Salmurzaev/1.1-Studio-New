@@ -29,11 +29,14 @@ import CreateSeries from '../CreateSeries/CreateSeries'
 import CreateSeriesOne from '../CreateSeriesOne/CreateSeriesOne'
 import JobForm from '../JobForm/JobForm'
 import AdvertisingForm from '../AdvertisingForm/AdvertisingForm'
+import BasicModal from '../Modal/Modal'
 
 
 
 
 export default function MainRouter() {
+
+
     return (
         <div className={style.mainRouterWrapper}>
             <Routes>
@@ -65,6 +68,7 @@ export default function MainRouter() {
                 <Route path='/newserial/:serial_id/:season_id/' element={<CreateSeriesOne />} />
                 <Route path='/newjob' element={<JobForm />} />
                 <Route path='/newadvertising' element={<AdvertisingForm />} />
+                <Route path='/modal' element={<BasicModal />} />
             </Routes>
         </div>
     )

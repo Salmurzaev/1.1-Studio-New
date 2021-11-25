@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import ProgresBar from '../ProgresBar/ProgresBar'
 import Button from '@mui/material/Button'
+import { useDispatch } from 'react-redux'
+import { setModal } from '../redux/ac/ac'
 
 
 const MultSecondPartForm = () => {
@@ -17,6 +19,9 @@ const MultSecondPartForm = () => {
     const [videoData, setvideoData] = useState()
     const [serialData, setSerialData] = useState()
     const [seasonData, setSeasonData] = useState()
+    const dispatch = useDispatch()
+
+  const handleOpen = () => dispatch(setModal(true));
 
     const postInputHandler = (e) => {
         setPostInput((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -74,6 +79,7 @@ const MultSecondPartForm = () => {
             .then((result) => {
                 console.log('File Sent Successful')
                 navigate('/serials')
+                handleOpen()
             })
             .catch((err) => {
                 console.log(err.message)

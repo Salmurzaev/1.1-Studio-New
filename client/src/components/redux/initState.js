@@ -5,7 +5,8 @@ const initState = {
   serials: [],
   season:[],
   words: [],
-  job: []
+  job: [],
+  modalState: null
 }
 
 // const getInitState = () => {

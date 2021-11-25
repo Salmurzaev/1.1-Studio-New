@@ -32,3 +32,7 @@ export const SET_SERVICE = 'SET_SERVICE'
 export const DEL_SERVICE = 'DEL_SERVICE'
 
 export const CHANGE_RATING = 'CHANGE_RATING'
+
+
+export const SET_MODAL = 'SET_MODAL'
+export const DEL_MODAL = 'DEL_MODAL'

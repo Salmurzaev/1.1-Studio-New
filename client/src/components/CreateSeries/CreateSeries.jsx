@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import ProgresBar from '../ProgresBar/ProgresBar'
 import Button from '@mui/material/Button'
+import { useDispatch } from 'react-redux'
+import { setModal } from '../redux/ac/ac'
 
 const CreateSeries = () => {
     const [postInput, setPostInput] = useState({ title: '', desc: '' })
@@ -15,7 +17,11 @@ const CreateSeries = () => {
     const [videoData, setvideoData] = useState()
     const [progress, setProgress] = useState(0);
     const [persent, setPersent] = useState(0)
+
     const navigate = useNavigate()
+
+    const dispatch = useDispatch()
+  const handleOpen = () => dispatch(setModal(true));
     const postInputHandler = (e) => {
         setPostInput((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
@@ -67,7 +73,10 @@ const CreateSeries = () => {
         console.log(options);
 
         axios.post(`http://localhost:3001/newseries/${serial_id}/${season_id}/${contentId}`, dataImg, options)
-            .then((res) => navigate('/serials'))
+        .then((res) => {
+          navigate('/serials')
+          handleOpen()
+        })
 
     }
 
