@@ -21,7 +21,7 @@ const SignInForm = () => {
 
     const submitLoginHandler = (e) => {
         e.preventDefault()
-        dispatch(signIn({ loginInput, navigate }))
+        dispatch(signIn( loginInput, navigate ))
         setLoginInput({
             email: '',
             password: '',

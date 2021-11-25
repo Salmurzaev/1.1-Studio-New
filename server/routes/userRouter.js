@@ -8,12 +8,12 @@ const authCheck = require('../middleware/authCheck');
 
 
 router.route('/signup').post(async (req, res) => {
-    const { name, password, email } = req.body.registerInput
+    const { name, password, email } = req.body
     if (email && name && password) {
         const cryptPass = await bcrypt.hash(password, Number(process.env.SALT_ROUND))
         try {
             const currentUser = await User.create({
-                ...req.body.registerInput,
+                ...req.body,
                 password: cryptPass,
             })
 
@@ -37,7 +37,7 @@ router.route('/signup').post(async (req, res) => {
 
 router.route( '/signin')
     .post(authCheck, async (req, res) => {
-        const { email, password } = req.body.loginInput;
+        const { email, password } = req.body;
         if (email && password) {
             try {
                 const currentUser = await User.findOne({ where: { email } })
