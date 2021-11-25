@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import LinearProgress from '@mui/material/LinearProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button'
 
 function LinearProgressWithLabel(props) {
     return (
@@ -27,8 +28,8 @@ LinearProgressWithLabel.propTypes = {
     value: PropTypes.number.isRequired,
 };
 
-export default function ProgresBar({progress}) {
-    
+export default function ProgresBar({ progress }) {
+
 
     // React.useEffect(() => {
     //     const timer = setInterval(() => {
