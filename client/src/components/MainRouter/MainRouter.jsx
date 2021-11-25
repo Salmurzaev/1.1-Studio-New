@@ -28,11 +28,14 @@ import CreateSeason from '../CreateSeason/CreateSeason'
 import CreateSeries from '../CreateSeries/CreateSeries'
 import CreateSeriesOne from '../CreateSeriesOne/CreateSeriesOne'
 import JobForm from '../JobForm/JobForm'
+import BasicModal from '../Modal/Modal'
 
 
 
 
 export default function MainRouter() {
+
+
     return (
         <div className={style.mainRouterWrapper}>
             <Routes>
@@ -63,7 +66,7 @@ export default function MainRouter() {
                 <Route path='/season/:serial_id/:season_id' element={<CreateSeries />} />
                 <Route path='/newserial/:serial_id/:season_id/' element={<CreateSeriesOne />} />
                 <Route path='/newjob' element={<JobForm />} />
-
+                <Route path='/modal' element={<BasicModal />} />
             </Routes>
         </div>
     )

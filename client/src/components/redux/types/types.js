@@ -26,3 +26,8 @@ export const CLEAR_SEARCH = 'CLEAR_SEARCH'
 export const NEW_JOB = 'NEW_JOB'
 export const SET_JOB = 'SET_JOB'
 export const DEL_JOB = 'DEL_JOB'
+
+
+
+export const SET_MODAL = 'SET_MODAL'
+export const DEL_MODAL = 'DEL_MODAL'

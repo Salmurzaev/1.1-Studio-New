@@ -19,6 +19,8 @@ import {
   NEW_JOB,
   SET_JOB,
   DEL_JOB,
+  SET_MODAL,
+  DEL_MODAL,
 } from '../types/types'
 
 const setContent = (value) => {
@@ -95,6 +97,21 @@ const deleteJob = (id) => {
   return {
     type: DEL_JOB,
     payload: id
+  }
+}
+
+
+export const delModal = (value) => {
+  return {
+    type: DEL_MODAL,
+    payload: value
+  }
+}
+
+export const setModal = (value) => {
+  return {
+    type: SET_MODAL,
+    payload: value
   }
 }
 
