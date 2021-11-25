@@ -104,7 +104,7 @@ const MultSecondPartForm = () => {
                             value={postInput.desc}
                             onChange={postInputHandler}
                         />
-                        <button>Send</button>
+                       <Button variant="contained" color="error" type='submit'>Submit</Button>
                     </form>
                 </>
             ) : (

@@ -41,7 +41,7 @@ const Films = () => {
       }
       <div className={style.allFilm}>
         {
-          films.map((el) => (
+          films?.map((el) => (
             <>
               <div className={style.main}>
                 <div className={style.col}>
