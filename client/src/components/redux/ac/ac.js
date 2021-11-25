@@ -18,6 +18,7 @@ import {
   DEL_SEASON,
   NEW_JOB,
   SET_JOB,
+  DEL_JOB,
 } from '../types/types'
 
 const setContent = (value) => {
@@ -89,6 +90,21 @@ const deleteSeason = (id) => {
     payload: id
   }
 }
+
+const deleteJob = (id) => {
+  return {
+    type: DEL_JOB,
+    payload: id
+  }
+}
+
+
+export const delJob = (id) => async (dispatch) => {
+  const response = await axios.delete(`/vacancies/${id}`)
+  
+  dispatch(deleteJob(id))
+}
+
 
 
 export const delSeason = (id) => async (dispatch) => {
