@@ -131,7 +131,7 @@ export const delSerial = (id) => async (dispatch) => {
 
 export const delFilm = (id) => async (dispatch) => {
     const response = await axios.delete(`/content/${id}`)
-
+    console.log(id)
     dispatch(deleteFilm(id))
 }
 

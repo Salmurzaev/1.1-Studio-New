@@ -28,7 +28,7 @@ const SeriesOne = () => {
   console.log(series, 'series')
   return (
     <div className={style.allFilm}>
-      {user?.name === "admin" ?
+      {user?.isAdmin ?
         <div>
           <Link to={`/newserial/${serial_id}/${season_id}`}>Добавить Cерию</Link>
         </div>
@@ -46,7 +46,7 @@ const SeriesOne = () => {
                 <h5 className={style.card_title}>{el.title}</h5>
                 <Link to={`/content/${el.id}`}> <Button variant="contained" path={`/content/${el.id}`} description={el.desc} color="error">Смотреть</Button></Link>
                 {
-                  user?.name === "admin"
+                  user?.isAdmin
                     ?
                     <Button variant="contained" color="error" onClick={() => dispatch(delSerie(el.id))}>Delete</Button>
                     :

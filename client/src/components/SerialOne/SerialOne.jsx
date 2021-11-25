@@ -13,7 +13,7 @@ const SerialOne = ({serial_id, title}) => {
   return (
     <div>
       <Link to={`/serials/${serial_id}`}> {title}</Link>
-      {user?.name === "admin" ?
+      {user?.isAdmin ?
                     <Button variant="contained" color="error" onClick={() => dispatch(delSerial(serial_id))}>Delete</Button>
                     :
                     <></>

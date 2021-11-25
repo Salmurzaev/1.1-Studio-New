@@ -2,6 +2,7 @@ const router = require('express').Router()
 const { Content, Season, Serial } = require('../db/models')
 const path = require('path')
 const multer = require('multer')
+
 const fileStorageEngine = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, __dirname + '/../public/uploads') //important this is a direct path fron our current file to storage location

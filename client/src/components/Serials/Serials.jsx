@@ -28,7 +28,7 @@ const Serials = () => {
       <div className={style.filmWrapper}>
         <Search path={location.pathname} />
         {
-          user?.name === "admin" ?
+          user?.isAdmin ?
             <div>
               <Link to='/uploadserial'>Добавить Cериал</Link>
             </div>
@@ -61,7 +61,7 @@ const Serials = () => {
                       </Button>
                     </Link>
                     {
-                      user?.name === 'admin' ? (
+                      user?.isAdmin ? (
                         <Button
                           variant='contained'
                           color='error'

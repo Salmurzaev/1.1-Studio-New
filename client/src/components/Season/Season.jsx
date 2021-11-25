@@ -30,7 +30,7 @@ const Season = () => {
   return (
     <div className={style.allFilm}>
 
-      {user?.name === "admin" ?
+      {user?.isAdmin ?
         <div>
           <Link to={`/season/${serial_id}`}>Добавить сезон</Link>
         </div>
@@ -50,7 +50,7 @@ const Season = () => {
             <div className={style.card}>
               <h5 className={style.card_title}>{el.title}</h5>
               <Link to={`/serials/${serial_id}/${el.id}`}> <Button variant="contained" path={`/content/${el.id}`} description={el.desc} color="error">Смотреть</Button></Link>
-              {user?.name === "admin" ?
+              {user?.isAdmin ?
                 <Button variant="contained" color="error" onClick={() => dispatch(delSeason(el.id))}>Delete</Button>
                 :
                 <></>
