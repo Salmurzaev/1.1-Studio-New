@@ -49,7 +49,7 @@ router
     .delete(adminCheck, async (req, res) => {
         try {
             const content = await Content.findAll({ where: { serial_id: req.params.id } })
-            console.log(content)
+      
 
             for (const element of content) {
                 try {

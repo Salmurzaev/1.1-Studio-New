@@ -40,7 +40,7 @@ router.route('/')
 
 router.route('/:id')
     .get(async (req, res) => {
-        const regEx = /http:\/\/\w+(\.\w+)*(:[0-9]+)?\/?(\/[.\w]*)\//mg
+     
         try {
             const content = await Content.findOne({ where: { id: req.params.id } })
             const { dataValues } = content
@@ -49,8 +49,8 @@ router.route('/:id')
                 if (!range) {
                     res.status(400).send("Requires Range header");
                 }
-                const fileName = dataValues.path_video.split(regEx)
-                const videoPath = './public/uploads/' + fileName.pop()
+              
+                const videoPath = content.path_video
                 const videoSize = fs.statSync(videoPath).size;
                 
                 const CHUNK_SIZE = 10 ** 10

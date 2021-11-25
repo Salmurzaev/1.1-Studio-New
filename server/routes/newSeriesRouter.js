@@ -42,7 +42,7 @@ router.route('/:serial_id/:season_id/:contentId').post(
                 },
             }
         )
-        await Season.update({ path_img }, { where: { id: season_id } })
+        await Season.update({ path_img:path_imgseason }, { where: { id: season_id } })
         res.sendStatus(200)
     }
 )

@@ -121,6 +121,7 @@ export const delFilm = (id) => async (dispatch) => {
 
 export const getContent = () => async (dispatch) => {
     const content = await axios('/content')
+ 
     dispatch(setContent(content.data))
 }
 
