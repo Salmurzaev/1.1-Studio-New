@@ -7,6 +7,7 @@ import { userReducer } from './userReducer'
 import { watchSeriesReducer } from './watchSeriesReducer'
 import { wordsReducer } from './wordsReducer'
 import { producerReducer } from './producerReducer'
+import { jobReducer } from './jobReducer'
 
 
 export const rootReducer = combineReducers({
@@ -19,5 +20,6 @@ export const rootReducer = combineReducers({
     user: userReducer,
     words: wordsReducer,
     producer: producerReducer,
+    job: jobReducer
 })
 

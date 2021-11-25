@@ -16,6 +16,8 @@ import {
   DEL_SERIAL,
   DEL_SERIE,
   DEL_SEASON,
+  NEW_JOB,
+  SET_JOB,
 } from '../types/types'
 
 const setContent = (value) => {
@@ -28,7 +30,14 @@ const setContent = (value) => {
 const setSerials = (value) => {
     return {
         type: SET_SERIALS,
-        payload: value,
+        payload: value
+    }
+}
+
+const setJobs = (value) => {
+    return {
+        type: SET_JOB,
+        payload: value
     }
 }
 
@@ -115,6 +124,8 @@ export const getContent = () => async (dispatch) => {
     dispatch(setContent(content.data))
 }
 
+
+
 export const getSerials = () => async (dispatch) => {
     const serials = await axios('/serials')
     dispatch(setSerials(serials.data))
@@ -140,6 +151,18 @@ export const signUp = (value) => async (dispatch) => {
 
     dispatch({ type: SIGNUP, payload: user.data.user })
 }
+
+export const setJob = () => async (dispatch) => {
+    const jobs = await axios('/vacancies')
+    dispatch({type:SET_JOB, payload:jobs.data})
+}
+
+export const jobAdd = (value) => async (dispatch) => {
+    const job = await axios.post('/vacancies', value)
+    dispatch({type: NEW_JOB, payload: job.data})
+}
+
+
 
 export const signIn = (value, navigate) => async (dispatch) => {
     try {

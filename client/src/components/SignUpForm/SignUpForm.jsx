@@ -12,7 +12,7 @@ const SignUpForm = () => {
         email: '',
         password: '',
     })
-    console.log(registerInput)
+   
     const registerInputHandler = (e) => {
         setRegisterInput((prev) => ({
             ...prev,

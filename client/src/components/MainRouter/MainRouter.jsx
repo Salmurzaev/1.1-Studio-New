@@ -27,7 +27,7 @@ import MultSecondPartForm from '../MutlSecondPartForm/MultSecondPartForm'
 import CreateSeason from '../CreateSeason/CreateSeason'
 import CreateSeries from '../CreateSeries/CreateSeries'
 import CreateSeriesOne from '../CreateSeriesOne/CreateSeriesOne'
-
+import JobForm from '../JobForm/JobForm'
 
 
 
@@ -62,6 +62,8 @@ export default function MainRouter() {
                 <Route path='/season/:serial_id/' element={<CreateSeason />} />
                 <Route path='/season/:serial_id/:season_id' element={<CreateSeries />} />
                 <Route path='/newserial/:serial_id/:season_id/' element={<CreateSeriesOne />} />
+                <Route path='/newjob' element={<JobForm />} />
+
             </Routes>
         </div>
     )
