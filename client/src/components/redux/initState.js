@@ -14,11 +14,11 @@ const initState = {
 // }
 // export default getInitState
 
-export default initState
+// export default initState
 
-// const getInitState = () => {
-//   const stateFromLS = JSON.parse(window.localStorage.getItem("redux"));
-//   return stateFromLS ? stateFromLS : initState;
-// };
-// export default getInitState;
+const getInitState = () => {
+  const stateFromLS = JSON.parse(window.localStorage.getItem("redux"));
+  return stateFromLS ? stateFromLS : initState;
+};
+export default getInitState;
 
