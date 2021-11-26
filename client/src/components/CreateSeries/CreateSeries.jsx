@@ -21,7 +21,7 @@ const CreateSeries = () => {
     const navigate = useNavigate()
 
     const dispatch = useDispatch()
-  const handleOpen = () => dispatch(setModal(true));
+    const handleOpen = () => dispatch(setModal(true));
     const postInputHandler = (e) => {
         setPostInput((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
@@ -37,8 +37,8 @@ const CreateSeries = () => {
             `http://localhost:3001/season/${serial_id}/${season_id}`,
             info
         )
-
         setContentId(response.data.id)
+        console.log(123)
         setAddMulter(false)
     }
     const fileChangeHandler = (e) => {
@@ -73,10 +73,10 @@ const CreateSeries = () => {
         console.log(options);
 
         axios.post(`http://localhost:3001/newseries/${serial_id}/${season_id}/${contentId}`, dataImg, options)
-        .then((res) => {
-          navigate('/serials')
-          handleOpen()
-        })
+            .then((res) => {
+                navigate('/serials')
+                handleOpen()
+            })
 
     }
 
@@ -98,7 +98,7 @@ const CreateSeries = () => {
                             value={postInput.desc}
                             onChange={postInputHandler}
                         />
-                        <Button variant="contained" color="error">Send</Button>
+                        <Button variant="contained" color="error" type="submit">Send</Button>
                     </form>
                 </>
             ) : (

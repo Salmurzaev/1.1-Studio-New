@@ -96,7 +96,7 @@ const CreateSeriesOne = () => {
               value={postInput.desc}
               onChange={postInputHandler}
             />
-            <Button variant="contained" color="error">Send</Button>
+            <Button type='submit' variant="contained" color="error">Send</Button>
           </form>
         </>
       ) : (
