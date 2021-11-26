@@ -3,10 +3,11 @@ import style from './style.module.css'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
-import { jobAdd } from '../redux/ac/ac'
+import { jobAdd, setModal } from '../redux/ac/ac'
 const JobForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const handleOpen = () => dispatch(setModal(true));
   const [jobInput, setJobInput] = useState({
     title: '',
     desc: '',
@@ -31,7 +32,8 @@ const JobForm = () => {
       curator_email: '',
       curator_phone:'',
     })
-     navigate('/job')
+    navigate('/job')
+    handleOpen()
 }
 
 

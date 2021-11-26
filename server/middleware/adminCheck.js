@@ -1,5 +1,6 @@
 const adminCheck = (req, res, next) => {
-    if (req.session.user?.name === "admin") {
+    console.log(req.session.user)
+    if (req.session.user.isAdmin) {
         next()
     } else {
         res.sendStatus(401)

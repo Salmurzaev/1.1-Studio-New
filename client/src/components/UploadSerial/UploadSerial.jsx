@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import Button from '@mui/material/Button'
 
 const UploadSerial = () => {
     const navigate = useNavigate()
@@ -59,7 +60,7 @@ const UploadSerial = () => {
                         value={postInput.desc}
                         onChange={titleHandler}
                     />
-                    <button type='submit'>Submit</button>
+                    <Button variant="contained" color="error" type='submit'>Submit</Button>
                 </form>
             ) : (
                 <form onSubmit={onSubmitSeasonHandler}>
@@ -75,7 +76,7 @@ const UploadSerial = () => {
                         value={season_input.desc}
                         onChange={seasonTitleHandler}
                     />
-                    <button type='submit'>Submit</button>
+                    <Button variant="contained" color="error" type='submit'>Submit</Button>
                 </form>
             )}
         </div>

@@ -19,7 +19,7 @@ const Job = () => {
   return (
     <>
       <h1>Job</h1>
-        {user?.name === "admin" ?
+        {user?.isAdmin ?
           <div>
             <Link to='/newJob'>Добавить вакансию</Link>
           </div>
@@ -59,7 +59,7 @@ const Job = () => {
                   {el.curator_phone}
                 </div>
               </div>
-              {user?.name === "admin" ?
+              {user?.isAdmin ?
                 <div className={style.button}>
                   <div>
                   <button onClick={() => dispatch(delJob(el.id))}>Delete</button>

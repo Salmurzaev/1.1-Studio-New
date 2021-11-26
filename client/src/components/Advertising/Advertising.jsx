@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { delSerice, setService } from '../redux/ac/ac'
+import plus from '../image/plus.png'
+import Button from '@mui/material/Button'
 
 const Advertising = () => {
     const dispatch = useDispatch()
@@ -16,9 +18,20 @@ const Advertising = () => {
     return (
         <>
             <h1>Advertising</h1>
-            {user?.name === 'admin' ? (
-                <div>
-                    <Link to='/newadvertising'>Добавить услугу</Link>
+            {user?.isAdmin ? (
+                <div className={style.allServiceContainer}>
+                    <Link className={style.addService} to='/newadvertising'>
+                        Добавить услугу
+                    </Link>
+                    <Link to='/newadvertising'>
+                        <img
+                            src={plus}
+                            className={style.plus}
+                            width='30px'
+                            height='30px'
+                            alt='plus'
+                        />
+                    </Link>
                 </div>
             ) : (
                 <></>
@@ -29,14 +42,27 @@ const Advertising = () => {
                     {service.map((el) => (
                         <>
                             <div className={style.serviceTitle}>
-                                <h3>{el.title}</h3>
+                                <h3 className={style.titleAdvertising}>
+                                    {el.title}
+                                </h3>
                             </div>
                             <div className={style.serviceDescript}>
-                                {el.desc}
+                                <p> {el.desc}</p>
+                                {user.isAdmin ? (
+                                    <Button
+                                        variant='contained'
+                                        color='error'
+                                        onClick={() =>
+                                            dispatch(delSerice(el.id))
+                                        }
+                                    >
+                                        Delete
+                                    </Button>
+                                ) : (
+                                    ''
+                                )}
                             </div>
-                            <div><button onClick={()=> dispatch(delSerice(el.id))}>Delete</button></div>
                         </>
-                        
                     ))}
                 </div>
             </div>

@@ -4,30 +4,37 @@ import axios from 'axios'
 import ProgresBar from '../ProgresBar/ProgresBar'
 import style from './style.module.css'
 import Button from '@mui/material/Button'
+import { useDispatch, useSelector } from 'react-redux'
+import { delModal, setModal } from '../redux/ac/ac'
+
 const UploadFormFilm = () => {
-    const navigate = useNavigate()
-    const [fileData, setFileData] = useState()
-    const [videoData, setvideoData] = useState()
-    const [addMulter, setAddMulter] = useState(true)
+  const navigate = useNavigate()
+  const [fileData, setFileData] = useState()
+  const [videoData, setvideoData] = useState()
+  const [addMulter, setAddMulter] = useState(true)
 
-    //////////////////////////////////////////
-    const [progress, setProgress] = useState(0);
+  
+  const dispatch = useDispatch()
+  const handleOpen = () => dispatch(setModal(true));
+  
+  //////////////////////////////////////////
+  const [progress, setProgress] = useState(0);
 
-    const [postInput, setPostInput] = useState({ title: '', desc: '' })
+  const [postInput, setPostInput] = useState({ title: '', desc: '' })
 
     const [id, setId] = useState('')
     const [persent, setPersent] = useState(0)
 
+    
     const postInputHandler = (e) => {
-        setPostInput((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+      setPostInput((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
-
     const fileChangeHandler = (e) => {
-        setFileData(e.target.files[0])
+      setFileData(e.target.files[0])
     }
     const filmChangeHandler = (e) => {
-        console.log(e.target.files)
-        setvideoData(e.target.files[0])
+      console.log(e.target.files)
+      setvideoData(e.target.files[0])
     }
 
     const onSubmitHandler = (e) => {
@@ -48,12 +55,12 @@ const UploadFormFilm = () => {
                 setPersent(uploadPercentage)
             }
         }
-      
 
         axios.post(`http://localhost:3001/uploadfilm/${id}`, dataImg, options)
             .then((result) => {
                 console.log('File Sent Successful')
                 navigate('/films')
+                handleOpen()
             })
             .catch((err) => {
                 console.log(err.message)
@@ -61,16 +68,16 @@ const UploadFormFilm = () => {
     }
 
     const onSubmitInfoHandler = async (e) => {
-        e.preventDefault()
-        const response = await axios.post(
-            'http://localhost:3001/content',
-            postInput
-        )
-        setId(response.data.id)
-        setAddMulter(false)
-    }
+      e.preventDefault()
+      const response = await axios.post(
+          'http://localhost:3001/content',
+          postInput
+      )
+      setId(response.data.id)
+      setAddMulter(false)
+  }
 
-    return (
+        return (
         <div className='AP'>
             {addMulter ? (
                 <>
@@ -133,6 +140,9 @@ const UploadFormFilm = () => {
             )}
         </div>
     )
-}
+   
+  }
+
+
 
 export default UploadFormFilm
