@@ -18,10 +18,20 @@ const Advertising = () => {
     return (
         <>
             <h1>Advertising</h1>
-            {user?.name === 'admin' ? (
+            {user?.isAdmin ? (
                 <div className={style.allServiceContainer}>
-                    <Link className={style.addService} to='/newadvertising'>Добавить услугу</Link>
-                    <Link to='/newadvertising'><img src={plus} className={style.plus} width='30px' height='30px' alt="plus" /></Link>
+                    <Link className={style.addService} to='/newadvertising'>
+                        Добавить услугу
+                    </Link>
+                    <Link to='/newadvertising'>
+                        <img
+                            src={plus}
+                            className={style.plus}
+                            width='30px'
+                            height='30px'
+                            alt='plus'
+                        />
+                    </Link>
                 </div>
             ) : (
                 <></>
@@ -32,15 +42,27 @@ const Advertising = () => {
                     {service.map((el) => (
                         <>
                             <div className={style.serviceTitle}>
-                                <h3 className={style.titleAdvertising}>{el.title}</h3>
+                                <h3 className={style.titleAdvertising}>
+                                    {el.title}
+                                </h3>
                             </div>
                             <div className={style.serviceDescript}>
-                               <p> {el.desc}</p> 
-                                <Button variant="contained" color="error" onClick={() => dispatch(delSerice(el.id))}>Delete</Button>
+                                <p> {el.desc}</p>
+                                {user.isAdmin ? (
+                                    <Button
+                                        variant='contained'
+                                        color='error'
+                                        onClick={() =>
+                                            dispatch(delSerice(el.id))
+                                        }
+                                    >
+                                        Delete
+                                    </Button>
+                                ) : (
+                                    ''
+                                )}
                             </div>
-                            
                         </>
-
                     ))}
                 </div>
             </div>

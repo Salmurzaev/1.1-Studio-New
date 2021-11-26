@@ -18,7 +18,7 @@ const Search = ({ path }) => {
     }, [input])
 
     const content = useSelector((state) => state.words)
-
+    
     return (
         <>
             <div className={style.wrapper}>
@@ -33,33 +33,41 @@ const Search = ({ path }) => {
             <div className={style.allFilm}>
                 {content?.length
                     ? content.map((el) => (
-                          <div className={style.main}>
-                              <div className={style.col}>
-                                  <img
-                                      src={`http://localhost:3001/${el.path_img.replace(
-                                          /.\public/gim,
-                                          ''
-                                      )}`}
-                                      className={style.cardImgTop}
-                                      alt='...'
-                                  />
-                                  <div className={style.card}>
-                                      <h5 className={style.card_title}>
-                                          {el.title}
-                                      </h5>
-                                      <Link to={`/serials/${el.id}`}>
-                                          <Button
-                                              variant='contained'
-                                              path={`/serials/${el.id}`}
-                                              description={el.desc}
-                                              color='error'
+                          <>
+                              <div className={style.main}>
+                                  <div className={style.col}>
+                                      <img
+                                          src={`http://localhost:3001/${el.path_img.replace(
+                                              /.\public/gim,
+                                              ''
+                                          )}`}
+                                          className={style.cardImgTop}
+                                          alt='...'
+                                      />
+                                      <div className={style.card}>
+                                          <h5 className={style.card_title}>
+                                              {el.title}
+                                          </h5>
+                                          <Link
+                                              to={
+                                                  el.serial_id === null
+                                                      ? `/content/${el.id}`
+                                                      : `/serials/${el.id}`
+                                              }
                                           >
-                                              Смотреть
-                                          </Button>
-                                      </Link>
+                                              <Button
+                                                  variant='contained'
+                                                  //   path={`/serials/${el.id}`}
+                                                  description={el.desc}
+                                                  color='error'
+                                              >
+                                                  Смотреть
+                                              </Button>
+                                          </Link>
+                                      </div>
                                   </div>
                               </div>
-                          </div>
+                          </>
                       ))
                     : ''}
             </div>
@@ -68,3 +76,4 @@ const Search = ({ path }) => {
 }
 
 export default Search
+                                       

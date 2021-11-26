@@ -22,13 +22,13 @@ const SeriesOne = () => {
   }, [dispatch])
 
   const series = useSelector((state) => state.series)
-  const domen = 'http://localhost:3001/'
-  const path_img = domen.replace(/.\public/gmi, '')
+  const regEx = /.\public/gmi
+  const domen = `http://localhost:3001/`
 
 
   console.log(series, 'series')
   return (
-    <div className={style.allFilm}>
+    <>
       {user?.isAdmin ?
         <div className={style.allSeriesContainer}>
           <Link className={style.addSeries} to={`/newserial/${serial_id}/${season_id}`}>Добавить Cерию</Link>
@@ -37,13 +37,15 @@ const SeriesOne = () => {
         :
         <></>
       }
-
+   
+    <div className={style.allFilm}>
+      
       {
         series.map((el) => (
 
           <div className={style.main}>
             <div className={style.col}>
-              <img src={path_img} className={style.cardImgTop} alt="..." />
+              <img src={domen + el.path_img.replace(regEx, '')} className={style.cardImgTop} alt="..." />
               <div className={style.card}>
                 <h5 className={style.card_title}>{el.title}</h5>
                 <Link to={`/content/${el.id}`}> <Button variant="contained" path={`/content/${el.id}`} description={el.desc} color="error">Смотреть</Button></Link>
@@ -60,6 +62,7 @@ const SeriesOne = () => {
         ))
       }
     </div>
+    </>
   )
 }
 

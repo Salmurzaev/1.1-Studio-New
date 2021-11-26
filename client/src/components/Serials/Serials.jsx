@@ -11,7 +11,8 @@ import { Link } from 'react-router-dom'
 import { Button } from '@material-ui/core'
 import plus from '../image/plus.png'
 // import Button from '@mui/material/Button'
-
+import VideoPlayer from '../VideoPlayer/VideoPlayer'
+import Carousel from '../Carousel/Carousel'
 const Serials = () => {
   let location = useLocation()
   const dispatch = useDispatch()
@@ -24,28 +25,42 @@ const Serials = () => {
   )
 
   const user = useSelector((state) => state.user)
-  const domen = 'http://localhost:3001/'
-  const path_img = domen.replace(/.\public/gmi, '')
+  const words = useSelector((state) => state.words)
+
+  const regEx = /.\public/gmi
+  const domen = `http://localhost:3001/`
   return (
     <>
       <div className={style.filmWrapper}>
         <Search path={location.pathname} />
-        {
-            user?.isAdmin ?
-            <div className={style.allSerialContainer}>
-              <Link className={style.addSerial}  to='/uploadserial'>Добавить Cериал</Link>
-              <Link to='/uploadserial'><img src={plus} className={style.plus} width='30px' height='30px' alt="plus" /></Link>
-            </div>
-            :
-            <></>
-        }
-        <div className={style.allFilm}>
-          {
-            serials.map((el) => (
+        <Carousel />
+        {user?.isAdmin ? (
+          <div className={style.allSerialContainer}>
+            <Link className={style.addSerial} to='/uploadserial'>
+              Добавить Cериал
+            </Link>
+            <Link to='/uploadserial'>
+              <img
+                src={plus}
+                className={style.plus}
+                width='30px'
+                height='30px'
+                alt='plus'
+              />
+            </Link>
+          </div>
+        ) : (
+          <></>
+        )}
+        {words.length ? (
+          ''
+        ) : (
+          <div className={style.allFilm}>
+            {serials.map((el) => (
               <div className={style.main}>
                 <div className={style.col}>
                   <img
-                    src={path_img}
+                    src={domen + el.path_img.replace(regEx, '')}
                     className={style.cardImgTop}
                     alt='...'
                   />
@@ -64,29 +79,28 @@ const Serials = () => {
                         Смотреть
                       </Button>
                     </Link>
-                    {
-                      user?.isAdmin ? (
-                        <Button
-                          variant='contained'
-                          color='error'
-                          onClick={() =>
-                            dispatch(delSerial(el.id))
-                          }
-                        >
-                          Delete
-                        </Button>
-                      ) : (
-                        <></>
-                      )}
+                    {user?.isAdmin ? (
+                      <Button
+                        variant='contained'
+                        color='error'
+                        onClick={() =>
+                          dispatch(delSerial(el.id))
+                        }
+                      >
+                        Delete
+                      </Button>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 </div>
               </div>
             ))}
-        </div>
+          </div>
+        )}
       </div>
     </>
   )
 }
-
 
 export default Serials
