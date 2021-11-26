@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
+import Button from '@mui/material/Button'
 
 const CreateSeason = () => {
   const [season_input, setSeason_Input] = useState({ title: '', desc: '' })
@@ -38,7 +39,8 @@ const CreateSeason = () => {
                     value={season_input.desc}
                     onChange={seasonTitleHandler}
                 />
-                <button type='submit'>Submit</button>
+                
+                <Button variant="contained" color="error" type='submit'>Submit</Button>
             </form>
         </div>
     )

@@ -25,6 +25,8 @@ const Films = () => {
   )
   const user = useSelector((state) => state.user)
   const words = useSelector((state)=> state.words)
+  const domen = 'http://localhost:3001/'
+  const path_img = domen.replace(/.\public/gmi, '')
   return (
     <div className={style.filmWrapper}>
       <Search path={location.pathname} />
@@ -45,7 +47,7 @@ const Films = () => {
             <>
               <div className={style.main}>
                 <div className={style.col}>
-                  <img src={`http://localhost:3001/${el.path_img.replace(/.\public/gmi, '')}`} className={style.cardImgTop} alt="..." />
+                  <img src={path_img} className={style.cardImgTop} alt="..." />
                   <div className={style.card}>
                     <h5 className={style.card_title}>{el.title}</h5>
                     <Link to={`/content/${el.id}`}> <Button variant="contained" path={`/content/${el.id}`} description={el.desc} color="error">Смотреть</Button></Link>

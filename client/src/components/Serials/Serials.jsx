@@ -24,7 +24,8 @@ const Serials = () => {
   )
 
   const user = useSelector((state) => state.user)
-
+  const domen = 'http://localhost:3001/'
+  const path_img = domen.replace(/.\public/gmi, '')
   return (
     <>
       <div className={style.filmWrapper}>
@@ -44,7 +45,7 @@ const Serials = () => {
               <div className={style.main}>
                 <div className={style.col}>
                   <img
-                    src={`http://localhost:3001/${el.path_img.replace(/.\public/gmi, '')}`}
+                    src={path_img}
                     className={style.cardImgTop}
                     alt='...'
                   />

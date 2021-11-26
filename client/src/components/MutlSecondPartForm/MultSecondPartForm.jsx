@@ -6,7 +6,7 @@ import ProgresBar from '../ProgresBar/ProgresBar'
 import Button from '@mui/material/Button'
 import { useDispatch } from 'react-redux'
 import { setModal } from '../redux/ac/ac'
-
+import style from './style.module.css'
 
 const MultSecondPartForm = () => {
     const navigate = useNavigate()
@@ -89,7 +89,7 @@ const MultSecondPartForm = () => {
         <div>
             {addMulter ? (
                 <>
-                    <h1>Название серии, описание</h1>
+    
                     <form onSubmit={onSubmitInfoHandler}>
                         <input
                             placeholder='Название серии'
@@ -109,34 +109,35 @@ const MultSecondPartForm = () => {
                 </>
             ) : (
                 <>
-                    <h1>Название серии, описание</h1>
+                   
                     <form onSubmit={onSubmitHandler}>
-                        <span>Постер серии</span>
+                        <span className={style.poster}>Постер серии</span>
                         <input
                             type='file'
                             name='img'
                             onChange={fileChangeHandler}
                         />
 
-                        <span>Постер Сериала</span>
+                        <span className={style.poster}>Постер Сериала</span>
                         <input
                             type='file'
                             name='path_imgserial'
                             onChange={serialChangeHandler}
                         />
-                        <span>Постер Сезона</span>
+                        <span className={style.poster}>Постер Сезона</span>
                         <input
                             type='file'
                             name='path_imgseason'
                             onChange={seasonChangeHandler}
                         />
-                        <span>Видео серии</span>
+                        <span className={style.poster}>Видео серии</span>
                         <input
                             type='file'
                             name='video'
                             onChange={filmChangeHandler}
                         />
                         <br />
+                        <div className={style.load}> Загрузка: {Math.floor(persent)} %</div>
                         <ProgresBar progress={progress} />
                         <br />
                         <Button type='submit' variant="contained" color="error">Submit File to Backend</Button>
