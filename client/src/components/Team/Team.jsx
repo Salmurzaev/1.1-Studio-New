@@ -4,7 +4,7 @@ import style from './style.module.css'
 const Team = () => {
   return (
     <div>
-      <h1 className={style.producers}>Producers</h1>
+      <h1 className={style.producers}>Продюсеры</h1>
       <OneProducer/>
     </div>
   )

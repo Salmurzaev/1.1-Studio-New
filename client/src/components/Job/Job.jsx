@@ -18,7 +18,7 @@ const Job = () => {
 
   return (
     <>
-      <h1>Job</h1>
+      <h1>Вакансии</h1>
         {user?.isAdmin ?
           <div>
             <Link to='/newJob'>Добавить вакансию</Link>
