@@ -3,7 +3,7 @@ import OneProducer from '../OneProducer/OneProducer'
 import style from './style.module.css'
 const Team = () => {
   return (
-    <div>
+    <div className={style.teamWrapper}>
       <h1 className={style.producers}>Producers</h1>
       <OneProducer/>
     </div>
