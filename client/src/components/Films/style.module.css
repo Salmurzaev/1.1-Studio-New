@@ -26,8 +26,8 @@
   flex-wrap: wrap;
 }
 .cardImgTop {
-  height: 230px;
-  aspect-ratio: 16/9;
+  height: 400px;
+  aspect-ratio: 12/16;
 }
 
 .allFilm {
