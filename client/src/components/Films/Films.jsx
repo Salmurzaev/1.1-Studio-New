@@ -57,6 +57,7 @@ const Films = () => {
                     {films?.map((el) => (
                         <>
                             <div className={style.main}>
+                         <Link to={`/content/${el.id}`}>
                                 <div className={style.col}>
                                     <img
                                         src={domen + el.path_img.replace(regEx, '')}
@@ -67,18 +68,23 @@ const Films = () => {
                                         <h5 className={style.card_title}>
                                             {el.title}
                                         </h5>
-                                        <Link to={`/content/${el.id}`}>
-                                            {' '}
+                                        {/* {user?.isAdmin ? (
                                             <Button
                                                 variant='contained'
-                                                path={`/content/${el.id}`}
-                                                description={el.desc}
                                                 color='error'
+                                                onClick={() =>
+                                                    dispatch(delFilm(el.id))
+                                                }
                                             >
-                                                Смотреть
+                                                Delete
                                             </Button>
-                                        </Link>
-                                        {user?.isAdmin ? (
+                                        ) : (
+                                            <></>
+                                        )} */}
+                                    </div>
+                                </div>
+                            </Link>
+                            {user?.isAdmin ? (
                                             <Button
                                                 variant='contained'
                                                 color='error'
@@ -91,8 +97,6 @@ const Films = () => {
                                         ) : (
                                             <></>
                                         )}
-                                    </div>
-                                </div>
                             </div>
                         </>
                     ))}

@@ -28,6 +28,8 @@ font-size: 17px;
 width: calc(100% / 12 * 4 - 40px);
 margin: 20px;
 display: flex;
+align-items:flex-end;
+flex-direction: column;
 flex-wrap: wrap;
 }
 .cardImgTop {
@@ -61,3 +63,14 @@ h1 {
   font-size: 34px;
 }
 
+/* <Link to={`/content/${el.id}`}>
+{' '}
+<Button
+    variant='contained'
+    path={`/content/${el.id}`}
+    description={el.desc}
+    color='error'
+>
+    Смотреть
+</Button>
+</Link> */

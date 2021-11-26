@@ -49,19 +49,26 @@ const Season = () => {
             // </>
 
             <div className={style.main}>
+              <Link to={`/serials/${serial_id}/${el.id}`}>
               <div className={style.col}>
                 <img src={domen + el.path_img.replace(regEx, '')} className={style.cardImgTop} alt="..." />
                 <div className={style.card}>
                   <h5 className={style.card_title}>{el.title}</h5>
-                  <Link to={`/serials/${serial_id}/${el.id}`}> <Button variant="contained" path={`/content/${el.id}`} description={el.desc} color="error">Смотреть</Button></Link>
-                  {
+                  {/* {
+                    user?.isAdmin ?
+                      <Button variant="contained" color="error" onClick={() => dispatch(delSeason(el.id))}>Delete</Button>
+                      :
+                      <></>
+                  } */}
+                </div>
+              </div>
+              </Link>
+              {
                     user?.isAdmin ?
                       <Button variant="contained" color="error" onClick={() => dispatch(delSeason(el.id))}>Delete</Button>
                       :
                       <></>
                   }
-                </div>
-              </div>
             </div>
           )
           )
