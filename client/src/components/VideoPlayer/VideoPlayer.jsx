@@ -14,10 +14,10 @@ export default function VideoPlayer() {
             <div className="gradient">
                 <div className="content">
                     <div className="film_desc">
-                        <div className="descrip_title">Название фильма</div>
-                        <div className="descrip_style">Описание фильма</div>
-                        <div className="descrip_style">Актерский состав:</div>
-                        <div className="descrip_style">Год выпуска</div>
+                        <div className="descrip_title">Трансформеры</div>
+                        <div className="descrip_style">Обычный подросток, Сэм Уитвикки озабочен повседневными хлопотами — школа, друзья, машины, девочки. Не ведая о том, что он является последним шансом человечества на спасение, Сэм вместе со своей подругой Микаэлой оказывается вовлеченным в противостояние Автоботов и Десептиконов. Только тогда Сэм понимает истинное значение семейного девиза Уитвикки — «без жертв нет победы!»</div>
+                        <div className="descrip_style">Актерский состав: Шайа ЛаБаф,Меган Фокс</div>
+                        <div className="descrip_style">Год выпуска: 2007</div>
                     </div>
                 </div>
             </div>

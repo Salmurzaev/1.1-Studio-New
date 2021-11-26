@@ -17,7 +17,7 @@ const Advertising = () => {
     const service = useSelector((state) => state.service)
     return (
         <>
-            <h1>Advertising</h1>
+            <h1>Реклама</h1>
             {user?.isAdmin ? (
                 <div className={style.allServiceContainer}>
                     <Link className={style.addService} to='/newadvertising'>

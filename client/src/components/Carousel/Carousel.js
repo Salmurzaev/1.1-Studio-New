@@ -65,7 +65,7 @@ const useStyles = makeStyles(({ palette, breakpoints, spacing }) => ({
     objectFit: 'cover',
     marginLeft: '12%',
     [breakpoints.up('sm')]: {
-      marginLeft: '7%',
+      margin: "20px auto",
     },
   },
   arrow: {
@@ -84,7 +84,7 @@ const useStyles = makeStyles(({ palette, breakpoints, spacing }) => ({
     color: 'white',
     left: 0,
     [breakpoints.up('lg')]: {
-      left: -24,
+      left: -78,
     },
   },
   arrowRight: {

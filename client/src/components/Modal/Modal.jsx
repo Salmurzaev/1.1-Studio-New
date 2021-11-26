@@ -28,7 +28,7 @@ export default function BasicModal() {
   const handleClose = () => dispatch(delModal(false));
  
   useEffect(() => {
-    setTimeout(handleClose, 2500)
+    setTimeout(handleClose, 1500)
   }, [modalState])
 
   
