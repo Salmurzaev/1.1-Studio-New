@@ -23,6 +23,8 @@ font-size: 17px;
 width: calc(100% / 12 * 4 - 40px);
 margin: 20px;
 display: flex;
+align-items:flex-end;
+flex-direction: column;
 flex-wrap: wrap;
 }
 .cardImgTop {
@@ -47,9 +49,9 @@ h1 {
   flex-direction: row;
 }
 .title {
+  padding-left: 500px;
   font-size: 34px;
 }
 .plus {
   margin-left: 10px;
-  margin-top: 10px;
 }
