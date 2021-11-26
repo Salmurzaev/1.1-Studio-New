@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 import { jobAdd, setModal } from '../redux/ac/ac'
+import Button from '@mui/material/Button'
 const JobForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -73,14 +74,14 @@ const JobForm = () => {
         />
               <input
                     placeholder='phone'
-                    type='number'
+                    type='tel'
                     name='curator_phone'
                     value={jobInput.curator_phone}
                     onChange={jobInputHandler}
                 />
-                <button class={style.buttonMain} type='submit'>
+                <Button variant="contained" color="error" type='submit'>
                     Submit
-                </button>
+                </Button>
             </form>
       
     </div>

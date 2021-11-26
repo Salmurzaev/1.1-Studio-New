@@ -53,3 +53,13 @@ flex-direction: column;
   /* width: 200px; */
   word-wrap: break-word;
 }
+.addJob{
+
+  font-size: 34px;
+}
+.jobAdd{
+  display: flex;
+  align-items:center;
+  flex-direction: column;
+  padding-bottom: 30px;
+}

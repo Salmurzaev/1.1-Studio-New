@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import style from './style.module.css'
 import { delJob, setJob } from '../redux/ac/ac'
 import { useDispatch, useSelector } from 'react-redux'
+import Button from '@mui/material/Button'
 const Job = () => {
 
   const dispatch = useDispatch()
@@ -18,10 +19,9 @@ const Job = () => {
 
   return (
     <>
-      <h1>Job</h1>
         {user?.isAdmin ?
-          <div>
-            <Link to='/newJob'>Добавить вакансию</Link>
+          <div className={style.jobAdd}>
+            <Link className={style.addJob} to='/newJob'>Добавить вакансию</Link>
           </div>
           :
           <></>
@@ -62,7 +62,8 @@ const Job = () => {
               {user?.isAdmin ?
                 <div className={style.button}>
                   <div>
-                  <button onClick={() => dispatch(delJob(el.id))}>Delete</button>
+                  <Button  variant='contained'
+                        color='error' onClick={() => dispatch(delJob(el.id))}>Delete</Button>
                   </div>
                 </div>
                 :

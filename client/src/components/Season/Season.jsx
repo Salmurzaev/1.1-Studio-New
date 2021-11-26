@@ -5,7 +5,7 @@ import { delSeason, getSeason } from '../redux/ac/ac'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { Button } from '@material-ui/core'
+import Button from '@mui/material/Button'
 import style from './style.module.css'
 import plus from '../image/plus.png'
 

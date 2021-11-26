@@ -2,11 +2,10 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
-import Button from '@mui/material/Button'
 import ProgresBar from '../ProgresBar/ProgresBar'
 import { useDispatch } from 'react-redux'
 import { setModal } from '../redux/ac/ac'
-// import Button from '@mui/material/Button'
+import Button from '@mui/material/Button'
 import style from './style.module.css'
 
 
