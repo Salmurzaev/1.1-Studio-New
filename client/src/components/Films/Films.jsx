@@ -9,7 +9,7 @@ import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Button from '@mui/material/Button'
 import plus from '../image/plus.png'
-
+import VideoPlayer from '../VideoPlayer/VideoPlayer'
 const Films = () => {
     let location = useLocation()
     const dispatch = useDispatch()
@@ -28,7 +28,8 @@ const Films = () => {
         <div className={style.filmWrapper}>
             <Search path={location.pathname} />
             <h1 className={style.new_film}>Новинки</h1>
-            <Carousel />
+           
+            <VideoPlayer className={style.player}/>
             {user?.isAdmin ? (
                 <div className={style.allFilmContainer}>
                     <Link className={style.addFilm} to='/uploadfilm'>

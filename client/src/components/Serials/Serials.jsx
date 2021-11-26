@@ -11,7 +11,8 @@ import { Link } from 'react-router-dom'
 import { Button } from '@material-ui/core'
 import plus from '../image/plus.png'
 // import Button from '@mui/material/Button'
-
+import VideoPlayer from '../VideoPlayer/VideoPlayer'
+import Carousel from '../Carousel/Carousel'
 const Serials = () => {
     let location = useLocation()
     const dispatch = useDispatch()
@@ -29,6 +30,7 @@ const Serials = () => {
         <>
             <div className={style.filmWrapper}>
                 <Search path={location.pathname} />
+                <Carousel />
                 {user?.isAdmin ? (
                     <div className={style.allSerialContainer}>
                         <Link className={style.addSerial} to='/uploadserial'>
