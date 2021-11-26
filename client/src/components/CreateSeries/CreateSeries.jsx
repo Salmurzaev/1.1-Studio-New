@@ -6,7 +6,7 @@ import ProgresBar from '../ProgresBar/ProgresBar'
 import Button from '@mui/material/Button'
 import { useDispatch } from 'react-redux'
 import { setModal } from '../redux/ac/ac'
-
+import style from './style.module.css'
 const CreateSeries = () => {
     const [postInput, setPostInput] = useState({ title: '', desc: '' })
     const { serial_id, season_id } = useParams()
@@ -98,25 +98,25 @@ const CreateSeries = () => {
                             value={postInput.desc}
                             onChange={postInputHandler}
                         />
-                        <button>Send</button>
+                        <Button variant="contained" color="error">Send</Button>
                     </form>
                 </>
             ) : (
                 <form onSubmit={onSubmitHandler}>
-                    <span>Постер серии</span>
+                    <span className={style.poster}>Постер серии</span>
                     <input
                         type='file'
                         name='image'
                         onChange={fileChangeHandler}
                     />
 
-                    <span>Постер Сезона</span>
+                    <span className={style.poster}>Постер Сезона</span>
                     <input
                         type='file'
                         name='path_imgseason'
                         onChange={seasonChangeHandler}
                     />
-                    <span>Видео серии</span>
+                    <span className={style.poster}>Видео серии</span>
                     <input
                         type='file'
                         name='video'
@@ -124,6 +124,7 @@ const CreateSeries = () => {
                     />
                     <br />
                     <br />
+                    <div className={style.load}> Загрузка: {Math.floor(persent)} %</div>
                     <ProgresBar progress={progress} />
                     <Button type='submit' variant="contained" color="error">Send</Button>
                 </form>

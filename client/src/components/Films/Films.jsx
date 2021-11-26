@@ -24,12 +24,14 @@ const Films = () => {
     )
     const user = useSelector((state) => state.user)
     const words = useSelector((state) => state.words)
+    const regEx = /.\public/gmi
+    const domen = `http://localhost:3001/`
     return (
         <div className={style.filmWrapper}>
             <Search path={location.pathname} />
             <h1 className={style.new_film}>Новинки</h1>
-           
-            <VideoPlayer className={style.player}/>
+
+            <VideoPlayer className={style.player} />
             {user?.isAdmin ? (
                 <div className={style.allFilmContainer}>
                     <Link className={style.addFilm} to='/uploadfilm'>
@@ -57,10 +59,7 @@ const Films = () => {
                             <div className={style.main}>
                                 <div className={style.col}>
                                     <img
-                                        src={`http://localhost:3001/${el.path_img.replace(
-                                            /.\public/gim,
-                                            ''
-                                        )}`}
+                                        src={domen + el.path_img.replace(regEx, '')}
                                         className={style.cardImgTop}
                                         alt='...'
                                     />

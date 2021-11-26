@@ -41,3 +41,15 @@ text-align: center;
 h1 {
   margin-top: 13px;
 }
+.allSeasonContainer {
+  padding-left: 520px;
+  display: flex;
+  flex-direction: row;
+}
+.title {
+  font-size: 34px;
+}
+.plus {
+  margin-left: 10px;
+  margin-top: 10px;
+}

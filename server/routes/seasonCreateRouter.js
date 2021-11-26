@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const { Content, Season, Serial } = require('../db/models')
+const adminCheck = require('../middleware/adminCheck')
 
 router.route('/:id')
     .post(async (req, res) => {
@@ -11,7 +12,7 @@ router.route('/:id')
 router
     .route('/:serial_id/:season_id')
 
-    .post(async (req, res) => {
+    .post(adminCheck, async (req, res) => {
         const content = await Content.create({ ...req.body })
         res.json(content)
     })

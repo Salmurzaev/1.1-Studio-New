@@ -6,6 +6,8 @@ import Button from '@mui/material/Button'
 import ProgresBar from '../ProgresBar/ProgresBar'
 import { useDispatch } from 'react-redux'
 import { setModal } from '../redux/ac/ac'
+// import Button from '@mui/material/Button'
+import style from './style.module.css'
 
 
 const CreateSeriesOne = () => {
@@ -94,12 +96,12 @@ const CreateSeriesOne = () => {
               value={postInput.desc}
               onChange={postInputHandler}
             />
-            <button>Send</button>
+            <Button variant="contained" color="error">Send</Button>
           </form>
         </>
       ) : (
         <form onSubmit={onSubmitHandler}>
-          <span>Постер серии</span>
+          <span className={style.poster}>Постер серии</span>
           <input
             type='file'
             name='img'
@@ -107,13 +109,14 @@ const CreateSeriesOne = () => {
           />
 
 
-          <span>Видео серии</span>
+          <span className={style.poster}>Видео серии</span>
           <input
             type='file'
             name='video'
             onChange={filmChangeHandler}
           />
           <br />
+          <div className={style.load}> Загрузка: {Math.floor(persent)} %</div>
           <ProgresBar progress={progress} />
           <br />
           <Button type='submit' variant="contained" color="error">Send</Button>

@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { Button } from '@material-ui/core'
 import style from './style.module.css'
-
+import plus from '../image/plus.png'
 
 
 const Season = () => {
@@ -25,45 +25,50 @@ const Season = () => {
   const seasons = useSelector((state) => state.season)
 
   const user = useSelector((state) => state.user)
-
+  const regEx = /.\public/gmi
+  const domen = `http://localhost:3001/`
 
   return (
-    <div className={style.allFilm}>
-
-      {user?.isAdmin ?
-        <div>
-          <Link to={`/season/${serial_id}`}>Добавить сезон</Link>
-        </div>
-        :
-        <></>
-      }
-
-      {seasons.map(el => (
-        // <>
-        //   <Link to={`/serials/${serial_id}/${el.id}`}> {el.title} </Link>
-        //   <Button variant="contained" color="error" onClick={() => dispatch(delSeason(el.id))}>Delete</Button>
-        // </>
-
-        <div className={style.main}>
-          <div className={style.col}>
-            <img src={`http://localhost:3001/${el.path_img.replace(/.\public/gmi, '')}`} className={style.cardImgTop} alt="..." />
-            <div className={style.card}>
-              <h5 className={style.card_title}>{el.title}</h5>
-              <Link to={`/serials/${serial_id}/${el.id}`}> <Button variant="contained" path={`/content/${el.id}`} description={el.desc} color="error">Смотреть</Button></Link>
-              {user?.isAdmin ?
-                <Button variant="contained" color="error" onClick={() => dispatch(delSeason(el.id))}>Delete</Button>
-                :
-                <></>
-              }
-            </div>
+    <>
+      {
+        user?.isAdmin ?
+          <div className={style.SeasonContainer}>
+            <Link className={style.title} to={`/season/${serial_id}`}>Добавить сезон</Link>
+            <Link to={`/season/${serial_id}`}><img src={plus} className={style.plus} width='30px' height='30px' alt="plus" /></Link>
           </div>
-        </div>
-      )
-      )
+          :
+          <></>
       }
-    </div>
+
+      <div className={style.allFilm}>
+        {
+          seasons.map(el => (
+            // <>
+            //   <Link to={`/serials/${serial_id}/${el.id}`}> {el.title} </Link>
+            //   <Button variant="contained" color="error" onClick={() => dispatch(delSeason(el.id))}>Delete</Button>
+            // </>
+
+            <div className={style.main}>
+              <div className={style.col}>
+                <img src={domen + el.path_img.replace(regEx, '')} className={style.cardImgTop} alt="..." />
+                <div className={style.card}>
+                  <h5 className={style.card_title}>{el.title}</h5>
+                  <Link to={`/serials/${serial_id}/${el.id}`}> <Button variant="contained" path={`/content/${el.id}`} description={el.desc} color="error">Смотреть</Button></Link>
+                  {
+                    user?.isAdmin ?
+                      <Button variant="contained" color="error" onClick={() => dispatch(delSeason(el.id))}>Delete</Button>
+                      :
+                      <></>
+                  }
+                </div>
+              </div>
+            </div>
+          )
+          )
+        }
+      </div>
+    </>
   )
 }
-
 export default Season
 

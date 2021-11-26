@@ -81,7 +81,7 @@ const UploadFormFilm = () => {
         <div className='AP'>
             {addMulter ? (
                 <>
-                    <h1>Название, Описание</h1>
+                 
                     <form
                         component='form'
                         noValidate
@@ -113,16 +113,16 @@ const UploadFormFilm = () => {
                 </>
             ) : (
                 <>
-                    <h1>Загрузить Постер, Фильм</h1>
+                   
                     <form onSubmit={onSubmitHandler}>
-                        <span>Загрузите постер</span>
+                        <span className={style.poster}>Загрузите постеp</span>
                         <input
                             type='file'
                             name='img'
                             label='Загрузите постер'
                             onChange={fileChangeHandler}
                         />
-                        <span>Загрузите фильм</span>
+                        <span className={style.poster}>Загрузите фильм</span>
                         <input
                             type='file'
                             name='video'
