@@ -33,7 +33,7 @@ const Serials = () => {
     <>
       <div className={style.filmWrapper}>
         <Search path={location.pathname} />
-        <Carousel />
+        
         {user?.isAdmin ? (
           <div className={style.allSerialContainer}>
             <Link className={style.addSerial} to='/uploadserial'>
@@ -55,6 +55,8 @@ const Serials = () => {
         {words.length ? (
           ''
         ) : (
+          <>
+          <Carousel />
           <div className={style.allFilm}>
             {serials.map((el) => (
               <div className={style.main}>
@@ -101,6 +103,7 @@ const Serials = () => {
               </div>
             ))}
           </div>
+          </>
         )}
       </div>
     </>

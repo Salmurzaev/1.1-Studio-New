@@ -29,9 +29,8 @@ const Films = () => {
     return (
         <div className={style.filmWrapper}>
             <Search path={location.pathname} />
-            <h1 className={style.new_film}>Новинки</h1>
 
-            <VideoPlayer className={style.player} />
+
             {user?.isAdmin ? (
                 <div className={style.allFilmContainer}>
                     <Link className={style.addFilm} to='/uploadfilm'>
@@ -53,22 +52,25 @@ const Films = () => {
             {words.length ? (
                 ''
             ) : (
-                <div className={style.allFilm}>
-                    {films?.map((el) => (
-                        <>
-                            <div className={style.main}>
-                         <Link to={`/content/${el.id}`}>
-                                <div className={style.col}>
-                                    <img
-                                        src={domen + el.path_img.replace(regEx, '')}
-                                        className={style.cardImgTop}
-                                        alt='...'
-                                    />
-                                    <div className={style.card}>
-                                        <h5 className={style.card_title}>
-                                            {el.title}
-                                        </h5>
-                                        {/* {user?.isAdmin ? (
+                <>
+                    <h1 className={style.new_film}>Новинки</h1>
+                    <VideoPlayer className={style.player} />
+                    <div className={style.allFilm}>
+                        {films?.map((el) => (
+                            <>
+                                <div className={style.main}>
+                                    <Link to={`/content/${el.id}`}>
+                                        <div className={style.col}>
+                                            <img
+                                                src={domen + el.path_img.replace(regEx, '')}
+                                                className={style.cardImgTop}
+                                                alt='...'
+                                            />
+                                            <div className={style.card}>
+                                                <h5 className={style.card_title}>
+                                                    {el.title}
+                                                </h5>
+                                                {/* {user?.isAdmin ? (
                                             <Button
                                                 variant='contained'
                                                 color='error'
@@ -81,26 +83,27 @@ const Films = () => {
                                         ) : (
                                             <></>
                                         )} */}
-                                    </div>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                    {user?.isAdmin ? (
+                                        <Button
+                                            variant='contained'
+                                            color='error'
+                                            onClick={() =>
+                                                dispatch(delFilm(el.id))
+                                            }
+                                        >
+                                            Delete
+                                        </Button>
+                                    ) : (
+                                        <></>
+                                    )}
                                 </div>
-                            </Link>
-                            {user?.isAdmin ? (
-                                            <Button
-                                                variant='contained'
-                                                color='error'
-                                                onClick={() =>
-                                                    dispatch(delFilm(el.id))
-                                                }
-                                            >
-                                                Delete
-                                            </Button>
-                                        ) : (
-                                            <></>
-                                        )}
-                            </div>
-                        </>
-                    ))}
-                </div>
+                            </>
+                        ))}
+                    </div>
+                </>
             )}
         </div>
     )
